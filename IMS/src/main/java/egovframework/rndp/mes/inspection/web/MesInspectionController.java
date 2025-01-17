@@ -34,6 +34,8 @@ import egovframework.com.cmm.service.FileVO;
 import egovframework.rndp.admin.env.service.EnvService;
 import egovframework.rndp.com.cmm.service.EgovProperties;
 import egovframework.rndp.com.utl.JsonHelper;
+import egovframework.rndp.mes.asset.service.MesAssetService;
+import egovframework.rndp.mes.asset.service.MesAssetVO;
 import egovframework.rndp.mes.gubun.service.MesGubunService;
 import egovframework.rndp.mes.gubun.service.MesGubunVO;
 import egovframework.rndp.mes.inspection.service.MesInspectionService;
@@ -71,6 +73,9 @@ public class MesInspectionController {
 
 	@Resource(name = "EgovFileMngUtil")
 	private EgovFileMngUtil fileUtil;
+	
+	@Resource(name = "mesAssetService")
+	private MesAssetService mesAssetService;
 	
 	 
 	@RequestMapping(value = "/mes/inspection/kw_inspection_lf.do")
@@ -453,6 +458,49 @@ public class MesInspectionController {
 		
 		
 		return "mes/inspection/kw_inspection_Result.tiles";
+	}
+	
+	@RequestMapping(value = "/mes/asset/kw_asset_box_inspection.do")
+	public String mesAssetInfoBoxPopup(HttpServletRequest request
+			, RedirectAttributes redirectAttributes
+			, HttpServletResponse response
+			, @ModelAttribute("mesAssetVO") MesAssetVO mesAssetVO
+			, ModelMap model) throws Exception {
+		
+		String sessionToken = (String) request.getSession().getAttribute("csrfToken");
+        String requestToken = request.getParameter("csrfToken");
+
+        if (sessionToken == null || !sessionToken.equals(requestToken)) {
+            request.getRequestDispatcher("/error.jsp").forward(request, response);
+        }
+		
+		
+		// paging
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(mesAssetVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(mesAssetVO.getRecordCountPerPage());
+		paginationInfo.setPageSize(mesAssetVO.getPageSize());
+		mesAssetVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		mesAssetVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		mesAssetVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		
+		List assetList = mesAssetService.selectMesAssetInfoList(mesAssetVO);
+		int totCnt = mesAssetService.selectMesAssetInfoListCnt(mesAssetVO);
+		paginationInfo.setTotalRecordCount(totCnt);
+		
+		
+
+		MesGubunVO vo = new MesGubunVO();
+		vo.setsGubunCateKey("36");
+		model.addAttribute("gubun36List", mesGubunService.selectMesGubunCodeList(vo));
+		
+		
+		model.addAttribute("assetList", assetList);
+		model.addAttribute("paginationInfo", paginationInfo);
+		
+		redirectAttributes.addFlashAttribute("mesAssetVO", mesAssetVO);
+
+		return "mesPopup/mes/inspection/popup/kw_asset_info_box_inspection";
 	}
 	
 	@RequestMapping(value = "/mes/inspection/kw_inspection_R_i.do")

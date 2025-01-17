@@ -249,7 +249,8 @@
 		// 동적으로 폼 생성
 	    const form = document.createElement("form");
 	    form.method = "POST";
-	    form.action = "/mes/asset/kw_asset_box_lf.do";
+	  //  form.action = "/mes/asset/kw_asset_box_lf.do";
+	    form.action = "/mes/asset/kw_asset_box_inspection.do";
 	    form.target = "AddrAdd"; // 새 창 이름
 	    
 	    const csrfTokenGubun = document.createElement("input");
