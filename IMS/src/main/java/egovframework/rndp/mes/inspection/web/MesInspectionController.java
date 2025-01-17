@@ -536,6 +536,11 @@ public class MesInspectionController {
 			
 			List eFileInfoList = mesInspectionService.eFileInfoList(mesInspectionVO);
 			
+			if(eFileInfoList.size() == 0) {
+				MesInspectionVO vo = new MesInspectionVO();
+				vo.seteFileName("첨부파일이 없습니다.");
+				eFileInfoList.add(vo);
+			}
 			ArrayList<String> file = new ArrayList<>(eFileInfoList);
 			beans.put("file", file);
 			

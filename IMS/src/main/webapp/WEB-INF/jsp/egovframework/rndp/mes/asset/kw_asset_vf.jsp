@@ -545,7 +545,7 @@ ${assetInfo.eAssetEtc}
 	<div class="tbl_list">
 		<table>
 			<caption style="text-align: left; margin-bottom:10px;">
-				   <a class="mes_btn"  onclick="eBarcodePop()" style="float:right;margin-left: 15px;">바코드출력</a>
+				   <a class="mes_btn"  onclick="eBarcodePop()" style="float:right;margin-left: 15px;">QR코드출력</a>
 				   <a class="mes_btn" onclick="sel_assetPop('M')" style="float:right;margin-left: 15px;">장애이력 조회</a>
 				   <a class="mes_btn" onclick="sel_assetPop('R')" style="float:right;margin-left: 15px;">부품교체이력 조회</a>
 				   <a class="mes_btn" onclick="sel_assetPop('C')" style="float:right;margin-left: 15px;">반/출입 조회</a>
