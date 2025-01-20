@@ -1299,5 +1299,220 @@ public class MesBlueprintController {
 				return "mesPopup/mes/blueprint/popup/kw_sr_File_add";
 		}
 		
+		// 상세보기 엑셀 다운 - 변경관리
+		@RequestMapping(value = "/mes/blueprint/kw_blueprint_download.do")
+		public void mesExcelDownload(
+			  HttpServletRequest request
+			, HttpServletResponse response
+			, @ModelAttribute("mesInspectionVO") MesBlueprintVO mesBlueprintVO
+			, ModelMap model) throws Exception {
+			
+			Map<String, List> beans = new HashMap<String, List>();
+			
+			MesBlueprintVO info = mesBlueprintService.selectChangeInfo(mesBlueprintVO);
+			List<MesBlueprintVO> infoList = new ArrayList<MesBlueprintVO>();
+			infoList.add(info);
+			beans.put("info", infoList);
+			
+			//상세정보
+			List<MesBlueprintVO> aDeteliList = mesBlueprintService.eSelectDeteliInfoList(mesBlueprintVO);
+			if(aDeteliList.size() == 0) {
+				MesBlueprintVO vo = new MesBlueprintVO();
+				vo.seteWorkerName("");
+				aDeteliList.add(vo);
+			} else {
+				// 파일 추가
+				List<MesBlueprintVO> aFileList = mesBlueprintService.eSelectFileInfoList(mesBlueprintVO);		
+				for(int i=0; i<aFileList.size(); i++) {
+					MesBlueprintVO file = aFileList.get(i);
+					int fileIndex = Integer.parseInt(file.geteFileRowIndex());
+					MesBlueprintVO vo = aDeteliList.get(fileIndex);
+					if(vo.geteFileRowName() != null && vo.geteFileRowName() != "") {
+						String files = vo.geteFileRowName() + ", " + file.geteFileRowName();
+						file.seteFileRowName(files);
+					}
+					vo.seteFileRowName(file.geteFileRowName());
+				}
+			}
+			beans.put("detail", aDeteliList);
+			
+			// 장비
+			List assetList = mesBlueprintService.eSelectAssetInfoList(mesBlueprintVO);
+			if(assetList.size() == 0) {
+				MesBlueprintVO vo = new MesBlueprintVO();
+				vo.setaAssetType("");
+				assetList.add(vo);
+			}
+			beans.put("asset", assetList);
+	
+			
+		    String templatePath = EgovProperties.getProperty("salesExcelTemplatePath");
+			String Specification = "blueprintDetail.xlsx";
+			String templateFileName = templatePath + Specification;
+			
+			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
+			Date currentTime = new Date ();
+			String mTime = mSimpleDateFormat.format ( currentTime );
+		    
+			String titleName = "변경관리상세_";
+		    String destFileName = titleName + mTime + ".xlsx"; 
+		    response.setContentType("application/vnd.ms-excel");
+		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
+		  
+		    try {
+		        XLSTransformer transformer = new XLSTransformer();           
+		        Workbook resultWorkbook = transformer.transformXLS(new FileInputStream(templateFileName), beans); 
+		        OutputStream os = response.getOutputStream();
+		        resultWorkbook.write(os);
+		    } catch (IOException e) {
+		    	e.printStackTrace();
+		    }
+		}
+		
+		// 상세보기 엑셀 다운 - 문제관리
+				@RequestMapping(value = "mes/blueprint/kw_blueprint_issue_download.do")
+				public void mesIssueExcelDownload(
+					  HttpServletRequest request
+					, HttpServletResponse response
+					, @ModelAttribute("mesInspectionVO") MesBlueprintVO mesBlueprintVO
+					, ModelMap model) throws Exception {
+					
+					Map<String, List> beans = new HashMap<String, List>();
+					
+					// 상단
+					MesBlueprintVO info = mesBlueprintService.selectIssueInfo(mesBlueprintVO);
+					List<MesBlueprintVO> infoList = new ArrayList<MesBlueprintVO>();
+					infoList.add(info);
+					beans.put("info", infoList);
+					
+					
+					// 회의록
+					List aNotesList = mesBlueprintService.eSelectIssueNotesInfoList(mesBlueprintVO);
+					if(aNotesList.size() == 0) {
+						MesBlueprintVO vo = new MesBlueprintVO();
+						vo.seteRowWorker("");
+						aNotesList.add(vo);
+					} 
+					beans.put("meeting", aNotesList);
+					
+					
+					// 상세내역
+					List<MesBlueprintVO> aDeteliList = mesBlueprintService.eSelectIssueDeteliInfoList(mesBlueprintVO);
+					if(aDeteliList.size() == 0) {
+						MesBlueprintVO vo = new MesBlueprintVO();
+						vo.seteWorkerName("");
+						aDeteliList.add(vo);
+					} else {
+						// 파일 추가
+						List<MesBlueprintVO> aFileList = mesBlueprintService.eSelectIssueFileInfoList(mesBlueprintVO);
+						for(int i=0; i<aFileList.size(); i++) {
+							MesBlueprintVO file = aFileList.get(i);
+							int fileIndex = Integer.parseInt(file.geteFileRowIndex());
+							MesBlueprintVO vo = aDeteliList.get(fileIndex);
+							if(vo.geteFileRowName() != null && vo.geteFileRowName() != "") {
+								String files = vo.geteFileRowName() + ", " + file.geteFileRowName();
+								file.seteFileRowName(files);
+							}
+							vo.seteFileRowName(file.geteFileRowName());
+						}
+					}
+					beans.put("detail", aDeteliList);
+					
+					
+					// 장비
+					List assetList = mesBlueprintService.eSelectIssueAssetInfoList(mesBlueprintVO);
+					if(assetList.size() == 0) {
+						MesBlueprintVO vo = new MesBlueprintVO();
+						vo.setaAssetType("");
+						assetList.add(vo);
+					} 
+					beans.put("asset", assetList);
+					
+					
+					
+				    String templatePath = EgovProperties.getProperty("salesExcelTemplatePath");
+					String Specification = "blueIssueDetail.xlsx";
+					String templateFileName = templatePath + Specification;
+					
+					SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
+					Date currentTime = new Date ();
+					String mTime = mSimpleDateFormat.format ( currentTime );
+				    
+					String titleName = "문제관리상세_";
+				    String destFileName = titleName + mTime + ".xlsx"; 
+				    response.setContentType("application/vnd.ms-excel");
+				    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
+				  
+				    try {
+				        XLSTransformer transformer = new XLSTransformer();           
+				        Workbook resultWorkbook = transformer.transformXLS(new FileInputStream(templateFileName), beans); 
+				        OutputStream os = response.getOutputStream();
+				        resultWorkbook.write(os);
+				    } catch (IOException e) {
+				    	e.printStackTrace();
+				    }
+				}
+				
+				
+				
+				// 상세보기 엑셀 다운 - SR관리
+				@RequestMapping(value = "mes/blueprint/kw_blueprint_sr_download.do")
+				public void mesSRExcelDownload(
+					  HttpServletRequest request
+					, HttpServletResponse response
+					, @ModelAttribute("mesInspectionVO") MesBlueprintVO mesBlueprintVO
+					, ModelMap model) throws Exception {
+					
+					Map<String, List> beans = new HashMap<String, List>();
+					
+					// 상세
+					MesBlueprintVO info = mesBlueprintService.selectSRInfo(mesBlueprintVO);
+					List<MesBlueprintVO> infoList = new ArrayList<MesBlueprintVO>();
+					infoList.add(info);
+					beans.put("info", infoList);
+					
+					// 첨부파일
+					List eFileInfoList = mesBlueprintService.eFileInfoList(mesBlueprintVO);
+					if(eFileInfoList.size() == 0) {
+						MesIssueVO vo = new MesIssueVO();
+						vo.seteFileName("첨부파일이 없습니다.");
+						eFileInfoList.add(vo);
+					}
+					beans.put("file", eFileInfoList);
+					
+					// 장비
+					List assetList = mesBlueprintService.eSelectSRAssetInfoList(mesBlueprintVO);
+					if(assetList.size() == 0) {
+						MesBlueprintVO vo = new MesBlueprintVO();
+						vo.setaAssetType("");
+						assetList.add(vo);
+					} 
+					beans.put("asset", assetList);
+					
+					
+					
+				    String templatePath = EgovProperties.getProperty("salesExcelTemplatePath");
+					String Specification = "SRDetail.xlsx";
+					String templateFileName = templatePath + Specification;
+					
+					SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
+					Date currentTime = new Date ();
+					String mTime = mSimpleDateFormat.format ( currentTime );
+				    
+					String titleName = "SR관리상세_";
+				    String destFileName = titleName + mTime + ".xlsx"; 
+				    response.setContentType("application/vnd.ms-excel");
+				    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
+				  
+				    try {
+				        XLSTransformer transformer = new XLSTransformer();           
+				        Workbook resultWorkbook = transformer.transformXLS(new FileInputStream(templateFileName), beans); 
+				        OutputStream os = response.getOutputStream();
+				        resultWorkbook.write(os);
+				    } catch (IOException e) {
+				    	e.printStackTrace();
+				    }
+				}
+		
 		
 }
