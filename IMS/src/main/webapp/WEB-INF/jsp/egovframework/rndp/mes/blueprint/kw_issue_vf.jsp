@@ -11,7 +11,12 @@
 <script src="/js/jquery-ui-1.14.1/jquery-ui.min.js"></script>
 
 <script type="text/javascript">
-
+	//상세보기 엑셀 다운
+	function eExcelDownload() {
+	    document.frm.action = "kw_blueprint_issue_download.do";
+	    document.frm.submit();
+	    document.frm.action = "mes/blueprint/kw_issue_vf.do";
+	}
 
 	// 오늘 날짜
 	function nowDate(){
@@ -638,6 +643,9 @@
 	</c:if>
 	<div class="tbl_btn_right">
 		<ul> 
+			<li>
+				<a style="cursor: pointer;" onclick="eExcelDownload();">다운로드</a>
+			</li>
 			 <c:if test="${(info.kStaffKey eq staffVO.kStaffKey && (info.sSignStatus eq '등록' || info.sSignStatus eq '반려' || info.sSignStatus eq '제외')) || (staffVO.kAdminAuth eq 'T' && (info.sSignStatus eq '등록' || info.sSignStatus eq '반려' || info.sSignStatus eq '제외')) }">
 				<c:if test="${staffVO.kStaffAuthModifyFlag eq 'T' || staffVO.kAdminAuth eq 'T'}">
 					<li>

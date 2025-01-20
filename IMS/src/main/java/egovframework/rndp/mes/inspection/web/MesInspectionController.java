@@ -592,6 +592,16 @@ public class MesInspectionController {
 			ArrayList<String> file = new ArrayList<>(eFileInfoList);
 			beans.put("file", file);
 			
+			
+			List eResultInfoList = mesInspectionService.eResultInfoList(mesInspectionVO);
+			
+			if(eResultInfoList.size() == 0) {
+				MesInspectionVO vo = new MesInspectionVO();
+				vo.seteAssetType("  ");
+				eResultInfoList.add(vo);
+			}
+			beans.put("asset", eResultInfoList);
+			
 		    String templatePath = EgovProperties.getProperty("salesExcelTemplatePath");
 			String Specification = "inspectionDetail.xlsx";
 			String templateFileName = templatePath + Specification;
