@@ -505,19 +505,38 @@ public class MesIssueController {
 		, ModelMap model) throws Exception {
 			
 		
-	    Map<String, MesIssueVO> beans = new HashMap<String, MesIssueVO>();
+	    Map<String, List> beans = new HashMap<String, List>();
 
 		MesIssueVO detailInfo = mesIssueService.eSelectIssueInfo(mesIssueVO);	
 		
-		beans.put("issueInfo", detailInfo);
+		List<MesIssueVO> detail = new ArrayList<>();
+		detail.add(detailInfo);
+		beans.put("issueInfo", detail);
 		
-		
-		List<MesIssueVO> handlerList = mesIssueService.eIssueHandlerInfoList(mesIssueVO);
-		int idx = 0;
-		for (MesIssueVO handler : handlerList) {
-			beans.put(String.format("handler%d", idx++), handler);
+		List handler = mesIssueService.eIssueHandlerInfoList(mesIssueVO);
+		if(handler.size() == 0) {
+			MesIssueVO vo = new MesIssueVO();
+			vo.seteRowWorker("");
+			handler.add(vo);
 		}
-						
+		beans.put("handler", handler);	
+		
+		List assetList = mesIssueService.eSelectIssueInfoAssetList(mesIssueVO);
+		if(assetList.size() == 0) {
+			MesIssueVO vo = new MesIssueVO();
+			vo.setaAssetType("");
+			assetList.add(vo);
+		}
+		beans.put("asset", assetList);
+		
+		List eFileInfoList = mesIssueService.eFileInfoList(mesIssueVO);
+		if(eFileInfoList.size() == 0) {
+			MesIssueVO vo = new MesIssueVO();
+			vo.seteFileName("첨부파일이 없습니다.");
+			eFileInfoList.add(vo);
+		}
+		beans.put("file", eFileInfoList);
+		
 			
 	    String templatePath = EgovProperties.getProperty("salesExcelTemplatePath");		//cms.properties에서 가져오는 파일 경로
 		String Specification = "issueDetail.xlsx"; //가져올 엑셀 파일명과 확장자
