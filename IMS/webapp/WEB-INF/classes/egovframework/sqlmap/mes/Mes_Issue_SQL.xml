@@ -78,7 +78,7 @@
 		<isNotEmpty property="eSearchWordG">
 				AND ( DATE_FORMAT(COALESCE(NULLIF(eActualWorkDate, ''), eProcessingDate), '%Y-%m-%d') >= DATE_FORMAT(#eSearchWordG#, '%Y-%m-%d'))
 		</isNotEmpty>
-		ORDER BY eRequestDate DESC
+		ORDER BY eCreationDate DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	

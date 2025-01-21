@@ -695,7 +695,7 @@ public class MesAssetController {
 	        return;// 파일 다운로드 중단
 	    }
 		
-	    String destFileName = "자산엑셀업로드_양식" + ".xlsx";
+	    String destFileName = "자산업로드양식" + ".xlsx";
 	    response.setContentType("application/vnd.ms-excel");
 	    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
 		
@@ -1153,7 +1153,7 @@ public class MesAssetController {
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 		Date currentTime = new Date ();
 		String mTime = mSimpleDateFormat.format ( currentTime );
-		String titleName = "소프트웨어 관리대장현황";
+		String titleName = "소프트웨어_라이센스_관리_";
 	    String destFileName = titleName + mTime + ".xls";
 	    response.setContentType("application/vnd.ms-excel");
 	    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1436,7 +1436,7 @@ public class MesAssetController {
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 		Date currentTime = new Date ();
 		String mTime = mSimpleDateFormat.format ( currentTime );
-		String titleName = "보유자산_반출입_현황";
+		String titleName = "보유자산_반출입_";
 	    String destFileName = titleName + mTime + ".xls";
 	    response.setContentType("application/vnd.ms-excel");
 	    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1841,7 +1841,7 @@ public class MesAssetController {
 			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
-			String titleName = "부품교체_현황";
+			String titleName = "부품교체_이력관리_";
 		    String destFileName = titleName + mTime + ".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -2721,6 +2721,17 @@ public class MesAssetController {
 				 
 //				List eSoftwarelist =  mesAssetService.mesSoftwareExcelList(mesAssetVO);
 				List assetList = mesAssetService.selectMesAssetExcelList(mesAssetVO);
+				ArrayList<MesAssetVO> assetlist = new ArrayList<>(assetList);
+				for(MesAssetVO vo : assetlist) {
+					if(vo.geteLifespan() != null && vo.geteLifespan() != "") {
+						String str = String.format("%s년 : %s", vo.geteLifespan(), vo.geteLifeType());
+						vo.seteLifespan(str);
+					} else {
+						vo.seteLifespan(vo.geteLifeType());
+					}
+				}
+				
+				
 				ArrayList<String> list = new ArrayList<>(assetList);
 				beans.put("list", list);
 		
@@ -2731,7 +2742,7 @@ public class MesAssetController {
 				SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 				Date currentTime = new Date ();
 				String mTime = mSimpleDateFormat.format ( currentTime );
-				String titleName = "정보관리대장_대상_장비_등록_현황";
+				String titleName = "정보_관리_대장_";
 			    String destFileName = titleName + mTime + ".xls";
 			    response.setContentType("application/vnd.ms-excel");
 			    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
