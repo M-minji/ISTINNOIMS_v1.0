@@ -170,6 +170,27 @@ public class MesIssueController {
 			
 			List infoList = mesIssueService.mesIssueExcelInfoList(mesIssueVO);
 			
+			// 처리자
+			ArrayList<MesIssueVO> listForHandler = new ArrayList<>(infoList);
+			for(MesIssueVO info : listForHandler) {
+				List eHandlerList = mesIssueService.eIssueHandlerInfoList(info);
+				if(eHandlerList != null && eHandlerList.size() > 1) {
+					String handler = String.format("%s 외 %d명", info.geteHandler(), eHandlerList.size() - 1);
+					info.seteHandler(handler);
+				}
+			}
+			
+			// 장비
+			for(MesIssueVO info : listForHandler) {
+				List assetselect = mesIssueService.eSelectIssueInfoAssetList(info);
+				ArrayList<MesIssueVO> assetList = new ArrayList<>(assetselect);
+				if(assetList != null && assetList.size() > 1) {
+					MesIssueVO assetVo = assetList.get(0);
+					String asset = String.format("%s 외 %d개", assetVo.getaAssetName(), assetList.size() - 1);
+					info.setaAssetName(asset);
+				}
+			}
+			
 			ArrayList<String> list = new ArrayList<>(infoList);
 			beans.put("list", list);
 	
@@ -180,7 +201,7 @@ public class MesIssueController {
 			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
-			String titleName = "장애관리_현황";
+			String titleName = "장애관리_현황_";
 		    String destFileName = titleName + mTime + ".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -548,7 +569,7 @@ public class MesIssueController {
 		String mTime = mSimpleDateFormat.format ( currentTime );
 	    
 	
-		String titleName = "장애관리상세_";
+		String titleName = "장애관리_상세_";
 	    String destFileName = titleName + mTime + ".xlsx"; //최종 파일 명
 		// 브라우저가 이 응답을 엑셀 파일로 인식하도록 MIME 타입을 설정
 	    response.setContentType("application/vnd.ms-excel");

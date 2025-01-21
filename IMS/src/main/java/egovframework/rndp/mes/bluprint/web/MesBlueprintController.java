@@ -139,6 +139,25 @@ public class MesBlueprintController {
 			}
 			
 			List infoList = mesBlueprintService.selectChangeExcelList(mesBlueprintVO);
+					
+			
+			// 작업자 & 장비
+			ArrayList<MesBlueprintVO> listForExcel = new ArrayList<>(infoList);
+			for(MesBlueprintVO info : listForExcel) {
+				List<MesBlueprintVO> workerList = mesBlueprintService.eSelectDeteliInfoList(info);
+				List<MesBlueprintVO> assetList = mesBlueprintService.eSelectAssetInfoList(info);
+				if(workerList != null && workerList.size() > 1) {
+					MesBlueprintVO vo = workerList.get(0);
+					String worker = String.format("%s 외 %d명", vo.geteWorker(), workerList.size() - 1);
+					info.seteWorker(worker);
+				}
+				if(assetList != null && assetList.size() > 1) {
+					MesBlueprintVO vo = assetList.get(0);
+					String asset = String.format("%s 외 %d개", vo.getaAssetName(), assetList.size() - 1);
+					info.setaAssetName(asset);
+				}
+			}
+			
 			
 			ArrayList<String> list = new ArrayList<>(infoList);
 			beans.put("list", list);
@@ -150,7 +169,7 @@ public class MesBlueprintController {
 			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
-			String titleName = "변경관리_현황";
+			String titleName = "변경관리_현황_";
 		    String destFileName = titleName + mTime + ".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -677,6 +696,32 @@ public class MesBlueprintController {
 				
 				List infoList = mesBlueprintService.selectIssueExcelList(mesBlueprintVO);
 				
+								
+				// 회의참여자 & 작업자 & 장비
+				ArrayList<MesBlueprintVO> listForExcel = new ArrayList<>(infoList);
+				for(MesBlueprintVO info : listForExcel) {
+					List<MesBlueprintVO> noteList = mesBlueprintService.eSelectIssueNotesInfoList(info);
+					List<MesBlueprintVO> workerList = mesBlueprintService.eSelectIssueDeteliInfoList(info);
+					List<MesBlueprintVO> assetList = mesBlueprintService.eSelectIssueAssetInfoList(info);
+					if(noteList != null && noteList.size() > 1) {
+						MesBlueprintVO vo = noteList.get(0);
+						String meet = String.format("%s 외 %d명", vo.geteRowWorker(), noteList.size() - 1);
+						info.seteRowWorker(meet);
+					}
+					if(workerList != null && workerList.size() > 1) {
+						MesBlueprintVO vo = workerList.get(0);
+						String worker = String.format("%s 외 %d명", vo.geteWorker(), workerList.size() - 1);
+						info.seteWorker(worker);
+					}
+					if(assetList != null && assetList.size() > 1) {
+						MesBlueprintVO vo = assetList.get(0);
+						String asset = String.format("%s 외 %d개", vo.getaAssetName(), assetList.size() - 1);
+						info.setaAssetName(asset);
+					}
+				}
+				
+				
+				
 				ArrayList<String> list = new ArrayList<>(infoList);
 				beans.put("list", list);
 		
@@ -687,7 +732,7 @@ public class MesBlueprintController {
 				SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 				Date currentTime = new Date ();
 				String mTime = mSimpleDateFormat.format ( currentTime );
-				String titleName = "문제관리_현황";
+				String titleName = "문제관리_현황_";
 			    String destFileName = titleName + mTime + ".xls";
 			    response.setContentType("application/vnd.ms-excel");
 			    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1002,6 +1047,17 @@ public class MesBlueprintController {
 				
 				List infoList = mesBlueprintService.selectSRExcelList(mesBlueprintVO);
 				
+				// 장비
+				ArrayList<MesBlueprintVO> listForExcel = new ArrayList<>(infoList);
+				for(MesBlueprintVO info : listForExcel) {
+					List<MesBlueprintVO> assetList = mesBlueprintService.eSelectSRAssetInfoList(info);
+					if(assetList != null && assetList.size() > 1) {
+						MesBlueprintVO vo = assetList.get(0);
+						String asset = String.format("%s 외 %d개", vo.getaAssetName(), assetList.size() - 1);
+						info.setaAssetName(asset);
+					}
+				}
+				
 				ArrayList<String> list = new ArrayList<>(infoList);
 				beans.put("list", list);
 		
@@ -1012,7 +1068,7 @@ public class MesBlueprintController {
 				SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 				Date currentTime = new Date ();
 				String mTime = mSimpleDateFormat.format ( currentTime );
-				String titleName = "SR관리_현황";
+				String titleName = "SR관리_현황_";
 			    String destFileName = titleName + mTime + ".xls";
 			    response.setContentType("application/vnd.ms-excel");
 			    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1354,7 +1410,7 @@ public class MesBlueprintController {
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
 		    
-			String titleName = "변경관리상세_";
+			String titleName = "변경관리_상세_";
 		    String destFileName = titleName + mTime + ".xlsx"; 
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1438,7 +1494,7 @@ public class MesBlueprintController {
 					Date currentTime = new Date ();
 					String mTime = mSimpleDateFormat.format ( currentTime );
 				    
-					String titleName = "문제관리상세_";
+					String titleName = "문제관리_상세_";
 				    String destFileName = titleName + mTime + ".xlsx"; 
 				    response.setContentType("application/vnd.ms-excel");
 				    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1499,7 +1555,7 @@ public class MesBlueprintController {
 					Date currentTime = new Date ();
 					String mTime = mSimpleDateFormat.format ( currentTime );
 				    
-					String titleName = "SR관리상세_";
+					String titleName = "SR관리_상세_";
 				    String destFileName = titleName + mTime + ".xlsx"; 
 				    response.setContentType("application/vnd.ms-excel");
 				    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");

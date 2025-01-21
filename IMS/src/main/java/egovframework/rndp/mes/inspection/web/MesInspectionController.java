@@ -155,6 +155,18 @@ public class MesInspectionController {
 //			List infoList = mesIssueService.mesIssueExcelInfoList(mesIssueVO);
 			List infoList = mesInspectionService.mesInspectiontExcelList(mesInspectionVO);
 			
+			// 장비
+			ArrayList<MesInspectionVO> listForAsset = new ArrayList<>(infoList);
+			for(MesInspectionVO info : listForAsset) {
+				List assetselect = mesInspectionService.eResultInfoList(info);
+				ArrayList<MesInspectionVO> assetList = new ArrayList<>(assetselect);
+				if(assetList != null && assetList.size() > 1) {
+					MesInspectionVO assetVo = assetList.get(0);
+					String asset = String.format("%s 외 %d개", assetVo.geteAssetName(), assetList.size() - 1);
+					info.seteAssetName(asset);
+				}
+			}
+			
 			ArrayList<String> list = new ArrayList<>(infoList);
 			beans.put("list", list);
 	
@@ -165,7 +177,7 @@ public class MesInspectionController {
 			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
-			String titleName = "점검관리_현황";
+			String titleName = "점검관리_현황_";
 		    String destFileName = titleName + mTime + ".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -610,7 +622,7 @@ public class MesInspectionController {
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
 		    
-			String titleName = "점검관리상세_";
+			String titleName = "점검관리_상세_";
 		    String destFileName = titleName + mTime + ".xlsx"; 
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
