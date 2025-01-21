@@ -158,7 +158,7 @@ public class MesProjectController {
 			SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 			Date currentTime = new Date ();
 			String mTime = mSimpleDateFormat.format ( currentTime );
-			String titleName = "프로젝트_현황";
+			String titleName = "프로젝트관리_";
 		    String destFileName = titleName + mTime + ".xls";
 		    response.setContentType("application/vnd.ms-excel");
 		    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");

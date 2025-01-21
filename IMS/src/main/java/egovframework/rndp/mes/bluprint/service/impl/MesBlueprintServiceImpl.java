@@ -435,7 +435,7 @@ public class MesBlueprintServiceImpl implements MesBlueprintService {
 	}
 	private void eChangeManagementDetailInfo(MesBlueprintVO mesBlueprintVO) throws Exception {
 		// TODO Auto-generated method stub
-		if(mesBlueprintVO.geteDepartment() != null && !"".equals(mesBlueprintVO.geteDepartment())) {
+		if(mesBlueprintVO.geteWorker() != null && !"".equals(mesBlueprintVO.geteWorker())) {
 			
 			String[] eDepartment = EgovStringUtil.split(mesBlueprintVO.geteDepartment(), ",");
 			String[] eRowIndex = EgovStringUtil.split(mesBlueprintVO.geteRowIndex(), ",");
