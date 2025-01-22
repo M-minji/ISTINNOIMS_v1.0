@@ -1565,7 +1565,7 @@
 		<isNotEmpty property="searchTypeSet7">
 			AND LOWER(ASSET_NUMBER)   LIKE CONCAT('%',LOWER(#searchTypeSet7#),'%')
 		</isNotEmpty>
-	    ORDER BY eEI.ENTRY_ITEM_NUM DESC 
+	    ORDER BY eEI.ENTRY_NUM DESC, eEI.ENTRY_ITEM_NUM
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	 
@@ -1615,6 +1615,7 @@
 		, eE.eEntryStaffOrg 
 		, eE.eExportLocation 
 		, eEI.eEntryImporter
+		, eE.w_date AS aAssetDate
 		, DATE_FORMAT(eEI.eEntryImportDate, '%Y-%m-%d') AS eEntryImportDate
 		, eEI.eEntryNote
 		,	getContentLfNew(ASSET_NUMBER,14) AS eAssetNumber 
@@ -1879,7 +1880,7 @@
 		<isNotEmpty property="searchTypeSet7">
 			AND LOWER(ASSET_NUMBER)   LIKE CONCAT('%',LOWER(#searchTypeSet7#),'%')
 		</isNotEmpty>
-	    ORDER BY eReplacementRequestDate DESC, eR.E_REPLACEMENT_NUM DESC
+	    ORDER BY eR.E_REPLACEMENT_NUM DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	 
@@ -3054,6 +3055,13 @@
 		/* mesAssetDAO.eFileInfoDelete */
 		DELETE FROM A_ASSET_SW_FILE WHERE SWKey = #eSWRegisterKey#
 	</delete>
+	
+	<select id="mesAssetDAO.selectConditionDate" parameterClass="mesAssetVO" resultClass="mesAssetVO">
+		/* mesAssetDAO.selectConditionDate */
+		SELECT w_date AS aAssetDate
+		FROM E_ENTRY
+		WHERE ENTRY_NUM = #eEntryExitKey#
+	</select>
 	
 	
 </sqlMap>

@@ -548,7 +548,7 @@
 		<table>
 			<tbody>
 				<tr>
-					<th>*요청일</th>
+					<th>*반출일</th>
 					<td colspan="3"><span id="eEntryExitDate"></span>
 					</td>
 					
@@ -563,7 +563,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th>요청사유</th>
+					<th>반출사유</th>
 					<td colspan="1"><span id="eEntryRequestReason"></span>
 <!-- 						<input type="text" name="eEntryRequestReason" id="eEntryRequestReason" style="width:95%; text-align:left;" maxLength="150" value=""/> -->
 					</td>

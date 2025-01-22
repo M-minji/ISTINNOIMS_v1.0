@@ -341,7 +341,7 @@ function excelDwonload(){
 							</c:if>
 							<c:if test="${list.sSignStatus eq '승인' || list.sSignStatus eq '제외'}">
 								<c:if test="${list.eStatus eq '등록'}"> 
-									<c:if test="${list.kStaffKey eq staffVO.kStaffKey}">
+									<c:if test="${list.kStaffKey eq staffVO.kStaffKey || staffVO.kAdminAuth eq 'T'}">
 										<a style="cursor: pointer;" class="mes_btn"  onclick="eInspectionResult('${list.eInspectionKey}');">점검결과 등록</a>
 									</c:if>
 								</c:if> 

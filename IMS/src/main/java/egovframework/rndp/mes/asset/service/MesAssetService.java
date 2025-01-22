@@ -211,7 +211,7 @@ public interface MesAssetService {
 
 	public List accessInfoList(MesAssetVO mesAssetVO) throws Exception;
 
-	
+	public List selectConditionDate(MesAssetVO mesAssetVO) throws Exception;
 	
 	
 	

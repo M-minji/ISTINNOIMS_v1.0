@@ -530,6 +530,11 @@ public class MesAssetDAO extends EgovAbstractDAO{
 		// TODO Auto-generated method stub
 		delete("mesAssetDAO.eFileInfoDelete", mesAssetVO);
 	}
+	
+	public List selectConditionDate(MesAssetVO mesAssetVO) throws Exception  {
+		// TODO Auto-generated method stub
+		return list("mesAssetDAO.selectConditionDate", mesAssetVO);
+	}
 
 
 }

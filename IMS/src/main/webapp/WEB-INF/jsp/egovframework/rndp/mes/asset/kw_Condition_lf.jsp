@@ -242,7 +242,7 @@ function excelDwonload(){
 					<input type="text" id="searchTypeSet3" name="searchTypeSet3" style="width:100px;" class="searchWord" value="${mesAssetVO.searchTypeSet3}" maxlength="30" />
 				</li>
 				<li>
-					<span>반출일자</span>
+					<span>반출일</span>
 					<input type="text" id="topStartDate" name="topStartDate" style="width:90px;" class="inp_color"  value="${mesAssetVO.topStartDate}" readonly />
 		           	~ <input type="text" id="topEndDate" name="topEndDate" style="width:90px;" class="inp_color"  value="${mesAssetVO.topEndDate}" readonly />
 					
@@ -293,7 +293,7 @@ function excelDwonload(){
 					<th>자산명</th>
 					<th>제조사</th>
 					<th>모델명</th>
-					<th>반출일자</th>
+					<th>반출일</th>
 					<th>반출자</th>
 					<th>빈출사유</th>
 					<th>반입일자</th>

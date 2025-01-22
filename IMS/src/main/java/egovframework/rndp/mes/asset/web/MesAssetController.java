@@ -1426,6 +1426,14 @@ public class MesAssetController {
 				
 //				List eSoftwarelist =  mesAssetService.mesSoftwareExcelList(mesAssetVO);
 				List infolist =  mesAssetService.selectConditionExcelList(mesAssetVO);
+				
+				ArrayList<MesAssetVO> listForDate = new ArrayList<>(infolist);
+				
+				for(MesAssetVO Avo : listForDate) {
+					mesAssetService.selectConditionDate(Avo);
+				}
+				
+				
 				ArrayList<String> list = new ArrayList<>(infolist);
 				beans.put("list", list);
 		

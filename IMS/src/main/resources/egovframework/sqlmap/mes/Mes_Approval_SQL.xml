@@ -32,7 +32,7 @@
 				<isNotEmpty property="eSearchTypeSet2">
 					AND LOWER(ssi.SIGN_STAFF_GUBUN) LIKE LOWER(#eSearchTypeSet2#)
 				</isNotEmpty>
-			ORDER BY ssi.SIGN_TABLE_NUM DESC 
+			ORDER BY ssi.SIGN_ITEM_NUM DESC 
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	
