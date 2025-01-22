@@ -376,9 +376,17 @@ $(document).ready(function(){
 						</c:if>
 			 
 						 <c:if test="${list.sSignStatus eq '제외' || list.sSignStatus eq '승인'}"> 
-						 	<c:if test="${list.kStaffKey eq staffVO.kStaffKey}">
+						 	<c:if test="${list.kStaffKey eq staffVO.kStaffKey || staffVO.kAdminAuth eq 'T'}">
+						 
 							 	<c:if test="${list.eIssueStatus eq '요청등록'}">
+							 	
+							 	
+							 
+				
+							 	
+							 	
 									<a class="mes_btn" onclick="process_go(${list.eIssueKey});">처리등록</a>
+								
 								</c:if>
 							</c:if>
 							<c:if test="${list.eIssueStatus eq '처리등록'}">${list.eIssueStatus}</c:if>

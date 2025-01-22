@@ -27,7 +27,7 @@ $(document).ready(function(){
 
 function mesIMGregInsert() {
 	if($("#eEntryExporterDate").val() == ''){
-		alert("반출일자를 선택하세요.");
+		alert("반출일을 선택하세요.");
 		$("#eEntryExporterDate").focus();
 		return false;
 	}

@@ -1246,4 +1246,10 @@ public class MesAssetServiceImpl implements MesAssetService {
 		// TODO Auto-generated method stub
 		return mesAssetDAO.accessInfoList(mesAssetVO);
 	}
+	
+	@Override
+	public List selectConditionDate(MesAssetVO mesAssetVO) throws Exception {
+		// TODO Auto-generated method stub
+		return mesAssetDAO.selectConditionDate(mesAssetVO);
+	}
 }

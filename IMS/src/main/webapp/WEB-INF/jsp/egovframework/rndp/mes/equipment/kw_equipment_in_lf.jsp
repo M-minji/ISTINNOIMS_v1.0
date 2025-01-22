@@ -287,7 +287,7 @@ function excelDwonload(){
 					<th>반입일자</th>
 					<th>반입확인자</th>
 					<th>반입사유</th>
-					<th>반출일자</th>
+					<th>반출일</th>
 					<th>반출확인자</th>
 					<th>상태</th>
 				</tr>
