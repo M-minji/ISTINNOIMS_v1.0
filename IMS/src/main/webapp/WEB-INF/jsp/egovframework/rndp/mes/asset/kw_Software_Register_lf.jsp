@@ -135,7 +135,7 @@ $(document).ready(function() {
 		        'text-overflow': 'ellipsis'  // 텍스트가 넘칠 경우 '...'로 표시
 		    });
 		});
-	  $('table[role="grid"].gridjs-table th:nth-child(4)').css('width', '180px'); // 라이센스명
+	  $('table[role="grid"].gridjs-table th:nth-child(4)').css('width', '180px'); // 라이선스명
 	  $('table[role="grid"].gridjs-table td:nth-child(4)').each(function() {
 			 // nowrap을 적용하여 줄내림 방지, overflow는 숨기기
 			    $(this).css({
@@ -218,7 +218,7 @@ function startApproval(eSWRegisterKey, eStatus){
 	
 	<div class="content_up">
 		<div class="content_tit">
-			<h2>소프트웨어 라이센스 관리</h2>
+			<h2>소프트웨어 라이선스 관리</h2>
 		</div>		
 		
 		<div class="tbl_top"> 
@@ -228,7 +228,7 @@ function startApproval(eSWRegisterKey, eStatus){
 					<input type="text" id="searchTypeSet1" name="searchTypeSet1" style="width:150px;" class="searchWord" value="${mesAssetVO.searchTypeSet1}" maxlength="30" />
 				</li>
 				<li>
-					<span>라이센스명</span>
+					<span>라이선스명</span>
 					<input type="text" id="searchTypeSet2" name="searchTypeSet2" style="width:150px;" class="searchWord" value="${mesAssetVO.searchTypeSet2}"  maxlength="30" />
 				</li>
 				<li>
@@ -257,7 +257,7 @@ function startApproval(eSWRegisterKey, eStatus){
 					<th>No.</th>
 					<th>작성자</th>
 					<th>제조사</th>
-					<th>라이센스명</th>
+					<th>라이선스명</th>
 					<th>버전</th>
 					<th>구매일</th>
 					<th>시작일</th>
@@ -354,7 +354,7 @@ function startApproval(eSWRegisterKey, eStatus){
 			<ul class="tbl_bottom_right">
 					<c:if test="${staffVO.kStaffAuthWriteFlag eq 'T'}">
 						<li>
-							<a onclick="go_insert()">라이센스정보 등록</a> 
+							<a onclick="go_insert()">라이선스정보 등록</a> 
 						</li>
 					</c:if>
 			</ul>

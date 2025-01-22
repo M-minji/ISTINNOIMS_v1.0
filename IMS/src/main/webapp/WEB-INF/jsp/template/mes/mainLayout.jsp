@@ -18,7 +18,7 @@
 
 <script>
 </script>
-<title>IMSystem</title>
+<title>통합유지관리시스템</title>
 </head>
 <body>
 	<div class="wrap">

@@ -321,7 +321,7 @@ input[name="tab_item"] {
 	<input type="hidden" id="kStaffKey" name="kStaffKey" value="${staffVO.kStaffKey}" />	
 	<div class="content">	
 		<div class="content_tit">
-			<h2>소프트웨어 라이센스 정보 상세</h2>
+			<h2>소프트웨어 라이선스 정보 상세</h2>
 		</div>
 	</div>
 	
@@ -348,7 +348,7 @@ input[name="tab_item"] {
 			<thead>  
 	          	<tr>
 	             	<th style="width: 10%;">제조사</th>
-	             	<th style="width: 15%;">라이센스명</th>
+	             	<th style="width: 15%;">라이선스명</th>
 	             	<th style="width: 8%;">버전</th>
 	             	<th style="width: 8%;">구매일</th>
 	             	<th style="width: 8%;">시작일</th>
@@ -388,7 +388,7 @@ input[name="tab_item"] {
 		
 	<div class="content" style="padding-top:20px;">
 		<div class="content_tit">
-			<h2>라이센스 갱신 이력</h2>
+			<h2>라이선스 갱신 이력</h2>
 		</div>
 	</div>
 	<div class="tbl_list">
@@ -432,7 +432,7 @@ input[name="tab_item"] {
 		<div class="tbl_list">
 		<table>
 			<caption style="text-align: left; margin-bottom:10px;">
-				   <a class="mes_btn"  onclick="eAssetPop()" style="float:right;margin-left: 15px;">라이센스 사용자산 조회</a>
+				   <a class="mes_btn"  onclick="eAssetPop()" style="float:right;margin-left: 15px;">라이선스 사용자산 조회</a>
 				<c:if test="${swInfo.eUsedLicenseQuantity  ne '0'}">
 					<span style="float:right;margin-left: 15px;margin-top: 6px;">총 사용 수량:${swInfo.eUsedLicenseQuantity}</span>
 				</c:if>

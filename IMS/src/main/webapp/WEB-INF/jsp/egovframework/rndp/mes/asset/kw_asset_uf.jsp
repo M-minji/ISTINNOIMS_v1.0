@@ -74,7 +74,7 @@
 			for (var aa = 0; aa < eLicenseQuantityArr.length; aa++) {
 			 	var value = eLicenseQuantityArr[aa].value;
 				if (isValidLicenseQuantity(value)){
-					alert((aa+1)+"번째 라이센스 수량을 입력하세요.");
+					alert((aa+1)+"번째 라이선스의 수량을 입력하세요.");
 					eLicenseQuantityArr[aa].focus();
 					return;
 			    }
@@ -386,7 +386,7 @@
 			innerStr += "		<td>" +obj.eManufacturer;
 			innerStr += "			<input type='hidden' id='eSWRegisterKey_"+lineRowLicense_Index+"' name='eSWRegisterKey' value='"+obj.eSWRegisterKey+"'/>";
 			innerStr += "		</td>";
-			// 라이센스명
+			// 라이선스명
 			innerStr += "		<td>" +obj.eProductName;
 			innerStr += "		</td>";		
 			// 버전
@@ -845,7 +845,7 @@
 	</div>
 		<div class="content" style="padding-top:20px;">
 		<div class="content_tit">
-			<h2>라이센스 정보</h2><a class="mes_btn" style="float: right;" onclick="addLicense();">라이센스 정보 추가</a>
+			<h2>라이선스 정보</h2><a class="mes_btn" style="float: right;" onclick="addLicense();">라이선스 정보 추가</a>
 		</div>
 	</div>
 	<div class="tbl_list">
@@ -854,7 +854,7 @@
 				<tr>
 					<th style="width: 8%;">구분</th>
 					<th style="width: 10%;">제조사</th>
-					<th style="width: 10%;">라이센스명</th>
+					<th style="width: 10%;">라이선스명</th>
 					<th style="width: 12%;">버전</th> 
 					<th style="width: 12%;">구매일</th> 
 					<th style="width: 12%;">만료일</th> 

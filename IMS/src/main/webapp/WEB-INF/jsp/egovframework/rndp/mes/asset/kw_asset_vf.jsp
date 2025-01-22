@@ -555,7 +555,7 @@ ${assetInfo.eAssetEtc}
 <c:if test="${not empty assetList}">
 	<div class="content" style="padding-top:20px;">
 		<div class="content_tit">
-			<h2>라이센스 정보</h2> 
+			<h2>라이선스 정보</h2> 
 		</div>
 	</div>
 	<div class="tbl_list">
@@ -564,7 +564,7 @@ ${assetInfo.eAssetEtc}
 				<tr>
 					<th style="width: 8%;">구분</th>
 					<th style="width: 10%;">제조사</th>
-					<th style="width: 10%;">라이센스명</th>
+					<th style="width: 10%;">라이선스명</th>
 					<th style="width: 12%;">버전</th> 
 					<th style="width: 12%;">구매일</th> 
 					<th style="width: 12%;">만료일</th> 

@@ -49,7 +49,7 @@ function nowDate(){
 	<div class="pop_head">
 		<div id="pop_head">
 			<div class="tit">
-				<h3>라이센스 갱신 등록 POP</h3>
+				<h3>라이선스 갱신 등록 POP</h3>
 			</div>
 			<a href="javascript:self.close();">
 				<img src="/images/btn/close.gif" width="22" height="21">
@@ -58,7 +58,7 @@ function nowDate(){
 		<div id="itemCateZone" class="tbl_top"> 
 			<ul class="tbl_top_left">
 				<li>
-					 라이센스 갱신 정보
+					 라이선스 갱신 정보
 				</li>
 			</ul>
 		</div>
@@ -70,7 +70,7 @@ function nowDate(){
 			  <tbody>	
 				  <tr>
 						<td>제조사</td>
-						<td>라이센스명</td>
+						<td>라이선스명</td>
 						<td>종료일</td>
 						<td>갱신종료일</td>
 					</tr>
