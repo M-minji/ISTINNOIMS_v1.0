@@ -159,7 +159,7 @@
 			AND DATE_FORMAT(#eTopEndDate#, '%Y-%m-%d') >= DATE_FORMAT(eei.eEntryImportDate, '%Y-%m-%d')
 		</isNotEmpty>
 	 
-		ORDER BY eei.eEntryImportDate DESC, eeii.eEquipmentInKey DESC
+		ORDER BY eeii.eEquipmentInKey DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	<select id="mesEquipmentDAO.selectEquipmentListCnt" parameterClass="mesEquipmentVO" resultClass="int">

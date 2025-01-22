@@ -804,7 +804,7 @@
 			<c:if test="${staffVO.kStaffAuthWriteFlag eq 'T'}">
 				<c:if test="${issueInfo.sSignStatus eq '승인' || issueInfo.sSignStatus eq '제외' }">
 					<c:if test="${issueInfo.eIssueStatus eq '요청등록'}">
-						<c:if test="${issueInfo.kStaffKey eq staffVO.kStaffKey }">
+						<c:if test="${issueInfo.kStaffKey eq staffVO.kStaffKey || staffVO.kAdminAuth eq 'T'}">
 							<li>
 								<a id="process_go" style="cursor: pointer;" onclick="process_go();">처리정보 등록하기</a>
 							</li>

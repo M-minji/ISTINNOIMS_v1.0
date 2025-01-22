@@ -311,7 +311,7 @@ function deleteGyeoljaeList(){
 						</td>
 					</tr>
 					<tr>
-						<th style="width:10%;">기타</th>
+						<th style="width:10%;">비고</th>
             			<td id="td_editor" colspan="5" align="center" scope="row"> 
 							<textarea id="eRemarks" name="eRemarks" cols="100%" rows="20" style="font-size: 20px; width: 100%; height: 300px; resize: none;" >${projectInfo.eRemarks}
 							</textarea>

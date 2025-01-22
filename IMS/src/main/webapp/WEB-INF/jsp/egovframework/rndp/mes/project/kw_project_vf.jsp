@@ -503,7 +503,7 @@ input[name="tab_itemTwo"] {
 						</td>
 					</tr>
 					<tr>
-						<th style="width:10%;">기타</th>
+						<th style="width:10%;">비고</th>
 						<td id="td_editor" colspan="5" align="center" scope="row">${projectInfo.eRemarks}</td>
 					</tr>
 				</tbody>

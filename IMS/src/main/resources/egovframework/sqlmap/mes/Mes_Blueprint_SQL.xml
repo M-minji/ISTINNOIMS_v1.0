@@ -648,7 +648,7 @@
 		 
 		AND DATE_FORMAT(eReqDate, '%Y-%m-%d') BETWEEN #topStartDate# AND #topEndDate#
 		
-		ORDER BY wdate DESC
+		ORDER BY eChangeKey DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	
@@ -931,7 +931,7 @@
 			AND LOWER(eSolutionMethod) LIKE CONCAT('%',LOWER(#eTextSearchWord4#),'%')
 		</isNotEmpty>
 		AND DATE_FORMAT(eReqDate, '%Y-%m-%d') BETWEEN #topStartDate# AND #topEndDate#
-		ORDER BY wdate DESC
+		ORDER BY eIssueKey DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	
@@ -1223,7 +1223,7 @@
 		<isNotEmpty property="eTextSearchWord4">
 			AND LOWER(eSolutionMethod) LIKE CONCAT('%',LOWER(#eTextSearchWord4#),'%')
 		</isNotEmpty>
-		ORDER BY wdate DESC
+		ORDER BY eIssueKey DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
 	
@@ -1232,7 +1232,7 @@
 		/* mesBlueprintDAO.selectSRExcelList */
 		SELECT 
 		  eIssueKey ,
-		  eReqOrg,
+		  eRequesterOrg,
 		  eReqDept,
 		  eRequester,
 		  eReqDate,
