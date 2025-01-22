@@ -133,7 +133,7 @@
 			for(var i=0; i < idx ; i++){
 				var eProductName = document.getElementsByName("eProductName")[i].value;
 				if (eProductName.trim() == '') {
-					alert("라이센스명을 입력하세요.");
+					alert("라이선스명을 입력하세요.");
 					document.getElementsByName("eProductName")[i].focus;
 					return false;
 				}
@@ -418,7 +418,7 @@
 			
 	<div class="content">	
 		<div class="content_tit">
-			<h2>소프트웨어 라이센스 정보 수정페이지</h2>
+			<h2>소프트웨어 라이선스 정보 수정페이지</h2>
 		</div>
 	</div>
 	
@@ -445,7 +445,7 @@
 	          	<tr>
 <!-- 	             	<th style="width: 5%;">구분</th> -->
 	             	<th style="width: 10%;">제조사</th>
-	             	<th style="width: 15%;">라이센스명</th>
+	             	<th style="width: 15%;">라이선스명</th>
 	             	<th style="width: 8%;">버전</th>
 	             	<th style="width: 8%;">구매일</th>
 	             	<th style="width: 8%;">시작일</th>

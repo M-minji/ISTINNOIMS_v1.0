@@ -378,9 +378,9 @@ input[name="tab_item"] {
 									</thead>									
 									
 									<tbody>
-										<tr ><td colspan="3" style="height: 5%;" >&nbsp; </td></tr>
+										<tr ><td colspan="3" style="height: 20%;" >&nbsp; </td></tr>
 										<tr>
-											<td colspan="3" style="height: 85%;">
+											<td colspan="3" style="height: 80%;">
 													<table>
 														<tr > 
 															<td colspan="1" style="width: 30%;height: 10%; padding-left: 15px;font-size: 14pt;cursor:pointer;" <c:if test="${ass766 eq 'T' }">onclick="moveDetail('/mes/issue/kw_issue_lf.do');" </c:if>  >장애  :</td>

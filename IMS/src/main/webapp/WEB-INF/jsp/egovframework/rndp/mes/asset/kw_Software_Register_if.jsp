@@ -137,7 +137,7 @@
 			for(var i=0; i < idx ; i++){
 				var eProductName = document.getElementsByName("eProductName")[i].value;
 				if (eProductName.trim() == '') {
-					alert((i+1)+"번째 라이센스명을 입력하세요.");
+					alert((i+1)+"번째 라이선스명을 입력하세요.");
 					document.getElementsByName("eProductName")[i].focus;
 					return false;
 				}
@@ -498,7 +498,7 @@
 	<input type="hidden" id="oSignPass" name="oSignPass" value="" />
 	<div class="content">	
 		<div class="content_tit">
-			<h2>소프트웨어 라이센스 정보 등록</h2>
+			<h2>소프트웨어 라이선스 정보 등록</h2>
 		</div>
 	</div>
 	
@@ -534,7 +534,7 @@
 	          	<tr>
 	             	<th style="width: 5%;">구분</th>
 	             	<th style="width: 10%;">제조사</th>
-	             	<th style="width: 15%;">*라이센스명</th>
+	             	<th style="width: 15%;">*라이선스명</th>
 	             	<th style="width: 8%;">버전</th>
 	             	<th style="width: 8%;">구매일</th>
 	             	<th style="width: 8%;">시작일 <a class="mes_btn" onclick="setDateToInputs('S')">일괄반영</a> </th>

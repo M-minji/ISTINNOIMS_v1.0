@@ -1153,7 +1153,7 @@ public class MesAssetController {
 		SimpleDateFormat mSimpleDateFormat = new SimpleDateFormat ("yyyyMMdd", Locale.KOREA);
 		Date currentTime = new Date ();
 		String mTime = mSimpleDateFormat.format ( currentTime );
-		String titleName = "소프트웨어_라이센스_관리_";
+		String titleName = "소프트웨어_라이선스_관리_";
 	    String destFileName = titleName + mTime + ".xls";
 	    response.setContentType("application/vnd.ms-excel");
 	    response.setHeader("Content-Disposition", "attachment; filename="+ java.net.URLEncoder.encode(destFileName, "UTF-8") + ";");
@@ -1249,7 +1249,7 @@ public class MesAssetController {
 		return "mesPopup/mes/asset/popup/kw_PDF_add";
 	}
 	
-	// 소프트웨어 라이센스 파일 첨부
+	// 소프트웨어 라이선스 파일 첨부
 	@RequestMapping(value = "/mes/asset/popup/sw_file_add.do")
 	public String mesSWFileAddPop(HttpServletRequest request,
 			HttpServletResponse response,
