@@ -6,7 +6,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>자원관리시스템</title>
+<title>통합유지관리시스템</title>
 
 <link href="/css/mes/common.css" rel="stylesheet"	type="text/css" />
 <link href="/css/mes/mes_board.css" rel="stylesheet"	type="text/css" />

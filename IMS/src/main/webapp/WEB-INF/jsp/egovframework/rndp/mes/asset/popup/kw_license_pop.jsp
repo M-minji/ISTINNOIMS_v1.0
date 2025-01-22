@@ -222,7 +222,7 @@ function selectRow(key) {
 	<div class="pop_head">
 		<div id="pop_head">
 			<div class="tit">
-				<h3>라이센스 등록 현황</h3>
+				<h3>라이선스 등록 현황</h3>
 			</div>
 			<a href="javascript:self.close();"><img src="/images/btn/close.gif" width="22" height="21" /></a>
 		</div>
@@ -243,7 +243,7 @@ function selectRow(key) {
 					<input type="text" id="searchTypeSet1" name="searchTypeSet1" style="width:150px;" class="searchWord" value="${mesAssetVO.searchTypeSet1}" />
 				</li>
 				<li>
-					<span>라이센스명</span>
+					<span>라이선스명</span>
 					<input type="text" id="searchTypeSet2" name="searchTypeSet2" style="width:150px;" class="searchWord" value="${mesAssetVO.searchTypeSet2}" />
 				</li>
 				 
@@ -272,7 +272,7 @@ function selectRow(key) {
 					<tr>
 							<th style="width:2%;">-</th>
 							<th style="width:8%;">제조사</th>
-							<th style="width:8%;">라이센스명</th>
+							<th style="width:8%;">라이선스명</th>
 							<th style="width:8%;">버전</th>
 							<th style="width:8%;">구매일</th>
 							<th style="width:8%;">시작일</th>

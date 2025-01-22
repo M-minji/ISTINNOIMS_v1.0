@@ -25,7 +25,7 @@ $(function(){
 	  $('gridjs-tr').css('overflow-y', 'hidden');  
 	  $('table[role="grid"].gridjs-table th:nth-child(1)').css('width', '80px'); // No.
 	  $('table[role="grid"].gridjs-table th:nth-child(2)').css('width', '160px'); // 제조사
-	  $('table[role="grid"].gridjs-table th:nth-child(3)').css('width', '160px'); // 라이센스명
+	  $('table[role="grid"].gridjs-table th:nth-child(3)').css('width', '160px'); // 라이선스명
 	  $('table[role="grid"].gridjs-table th:nth-child(4)').css('width', '260px'); // 버전
 	  $('table[role="grid"].gridjs-table th:nth-child(5)').css('width', '140px'); // 구매일
 	  $('table[role="grid"].gridjs-table th:nth-child(6)').css('width', '140px'); // 시작일
@@ -174,7 +174,7 @@ function dataUpdate(key){
 	
 	<div class="content_up">
 		<div class="content_tit">
-			<h2>소프트웨어 라이센스 현황</h2>
+			<h2>소프트웨어 라이선스 현황</h2>
 		</div>		
 		
 		<div class="tbl_top"> 
@@ -184,7 +184,7 @@ function dataUpdate(key){
 					<input type="text" id="searchTypeSet1" name="searchTypeSet1" style="width:150px;" class="searchWord" value="${mesAssetVO.searchTypeSet1}" />
 				</li>
 				<li>
-					<span>라이센스명</span>
+					<span>라이선스명</span>
 					<input type="text" id="searchTypeSet2" name="searchTypeSet2" style="width:150px;" class="searchWord" value="${mesAssetVO.searchTypeSet2}" />
 				</li>
 				<li>
@@ -213,7 +213,7 @@ function dataUpdate(key){
 				<tr>
 					<th>No.</th>
 					<th>제조사</th>
-					<th>라이센스명</th>
+					<th>라이선스명</th>
 					<th>버전</th>
 					<th>구매일</th>
 					<th>시작일</th>
@@ -306,7 +306,7 @@ function dataUpdate(key){
 					</li>
 					<c:if test="${staffVO.kStaffAuthWriteFlag eq 'T'}">
 					<li>
-						<a onclick="go_insert()">라이센스정보 등록</a> 
+						<a onclick="go_insert()">라이선스정보 등록</a> 
 					</li>
 					</c:if>
 			</ul>

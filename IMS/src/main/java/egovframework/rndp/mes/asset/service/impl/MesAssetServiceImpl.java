@@ -109,7 +109,7 @@ public class MesAssetServiceImpl implements MesAssetService {
 //		}
 //		
 //		mesAssetVO.setaAssetImage(atchFileId);
-		//라이센스 정보 삭제
+		//라이선스 정보 삭제
 		mesAssetDAO.eDeleteAssetLicenseInfo(mesAssetVO);
 		//결재정보 삭제처리
 		
@@ -126,7 +126,7 @@ public class MesAssetServiceImpl implements MesAssetService {
 		
 		mesAssetDAO.updateMesAssetNew(mesAssetVO);
 		
-		//라이센스정보등록
+		//라이선스정보등록
 		this.insertInfoAssetLicenseInfo(mesAssetVO);
 		
 		//결재정보 등록
@@ -468,7 +468,7 @@ public class MesAssetServiceImpl implements MesAssetService {
 		
 		mesAssetVO.setsSignStatus(status);
 		mesAssetDAO.insertInfoAsset(mesAssetVO);
-		//라이센스정보등록
+		//라이선스정보등록
 		this.insertInfoAssetLicenseInfo(mesAssetVO);
 		//결재정보 등록
 		mesAssetVO.setsSignTableName("A_ASSET");
@@ -688,7 +688,7 @@ public class MesAssetServiceImpl implements MesAssetService {
 		// TODO Auto-generated method stub
 		//갱신 이력 테이블에 저장,
 		mesAssetDAO.mesSoftwareDateInsert(mesAssetVO);
-		//라이센스테이블에 업데이트
+		//라이선스테이블에 업데이트
 		mesAssetDAO.mesSoftwareDateUpdate(mesAssetVO);
 	}
 
