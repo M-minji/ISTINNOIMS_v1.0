@@ -27,6 +27,9 @@ public class MesAssetVO extends DefultVO{
 	private String  eFileRowName                        = "";        
 	private String  eFileRowIndex                        = "";   
 	
+	private String  eAssetStatusList                        = "";        
+	private String  eAssetTypeList                        = "";   
+	
 	
 	// 자산정보
 	private String aAssetKey					= "";
@@ -1536,5 +1539,17 @@ public class MesAssetVO extends DefultVO{
 	}
 	public void seteFileId(String eFileId) {
 		this.eFileId = eFileId;
+	}
+	public String geteAssetStatusList() {
+		return eAssetStatusList;
+	}
+	public void seteAssetStatusList(String eAssetStatusList) {
+		this.eAssetStatusList = eAssetStatusList;
+	}
+	public String geteAssetTypeList() {
+		return eAssetTypeList;
+	}
+	public void seteAssetTypeList(String eAssetTypeList) {
+		this.eAssetTypeList = eAssetTypeList;
 	}
 }

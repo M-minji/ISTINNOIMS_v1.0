@@ -113,10 +113,10 @@ public class MesAssetController {
 		mesAssetVO.setTopStartDate("");
 		mesAssetVO.setTopEndDate("");
 		MesGubunVO vo = new MesGubunVO();
-		vo.setsGubunCateKey("36");
+		vo.setsGubunCateKey("36");	// 자산유형
 		model.addAttribute("gubun36List", mesGubunService.selectMesGubunCodeList(vo));
 		
-		vo.setsGubunCateKey("37");
+		vo.setsGubunCateKey("37");	// 자산상태
 		model.addAttribute("gubun37List", mesGubunService.selectMesGubunCodeList(vo));
 		
 		
