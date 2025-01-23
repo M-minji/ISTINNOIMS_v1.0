@@ -980,6 +980,7 @@
 	</delete>
 	
 	
+	
 	<select id="mesUserDAO.selectUserffPopList" parameterClass="mesUserVO" resultClass="mesUserVO">
 		/* mesUserDAO.selectUserffPopList */
 		SELECT
@@ -1041,6 +1042,133 @@
 			AND LOWER(k_staff_name) LIKE CONCAT('%',LOWER(#searchWord#),'%')
 		</isNotEmpty>
 	</select>
+	
+	<delete id="mesUserDAO.databaseAllTruncate1"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate1 */
+			 /* 결재 정보 */	
+			 TRUNCATE TABLE S_SIGN;
+			 TRUNCATE TABLE S_SIGN_ITEM;
+			 TRUNCATE TABLE S_SIGN_PATH;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate2"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate2 */
+			/* 정보관리대장 정보1 */	
+			DELETE FROM A_ASSET;
+			ALTER TABLE A_ASSET AUTO_INCREMENT = 1;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate3"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate3 */
+			 /* 자산 사용(반입,반출) */
+			 TRUNCATE TABLE E_ENTRY;
+			 TRUNCATE TABLE E_ENTRY_ITEM;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate4"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate4 */
+			  /*부품교체 */
+			 TRUNCATE TABLE E_REPLACEMENT;
+			 TRUNCATE TABLE E_REPLACEMENT_ITEM;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate5"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate5 */
+			   /*문제관리 */
+			 TRUNCATE TABLE I_BLUE_ISSUE;
+			 TRUNCATE TABLE I_BLUE_ISSUE_ASSET;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate6"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate6 */
+			 /*임시장비 반입,반출 */
+			 TRUNCATE TABLE E_EQUIPMENT_IN;
+			 TRUNCATE TABLE E_EQUIPMENT_IN_ITEM;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate7"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate7 */
+			  /*SR관리 */
+			 TRUNCATE TABLE I_BLUE_SR;
+			 TRUNCATE TABLE I_BLUE_SR_ASSET;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate8"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate8 */
+			  /*변경관리 */
+			 TRUNCATE TABLE I_CHANGE;
+			 TRUNCATE TABLE I_CHANGE_ASSET;
+			 TRUNCATE TABLE I_CHANGE_DETALI;
+			 TRUNCATE TABLE I_CHANGE_FILE;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate9"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate9 */			 
+			  /*프로젝트관리 */
+			 TRUNCATE TABLE P_PROJECT;
+			 TRUNCATE TABLE P_PROJECT_ITEM;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate10"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate10 */ 
+			/*산출물관리 */
+			 TRUNCATE TABLE P_Deliverable;
+			 TRUNCATE TABLE P_Deliverable_file;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate11"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate11 */			 
+			  /*보고서관리 */
+			 TRUNCATE TABLE P_Report;
+			 TRUNCATE TABLE P_Report_file;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate12"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate12 */			 
+			   /* 담당자관리 */
+			 TRUNCATE TABLE CONTACT;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate13"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate13 */			 
+			    /* 결재 테이블 */
+			 TRUNCATE TABLE S_SIGN;
+			 TRUNCATE TABLE S_SIGN_ITEM;
+			 TRUNCATE TABLE S_SIGN_PATH;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate14"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate14 */
+		     /* 사용 로그 */
+			 TRUNCATE TABLE Log;
+			 TRUNCATE TABLE k_menu_log;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate15"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate15 */
+			  /* 파일  로그 */
+			 TRUNCATE TABLE comtecopseq;
+			 TRUNCATE TABLE comtnfile;
+			 TRUNCATE TABLE comtnfiledetail;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate16"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate16 */			 
+			  /*장애관리 */
+			 TRUNCATE TABLE I_ISSUE;
+			 TRUNCATE TABLE I_ISSUE_ASSET;
+			 TRUNCATE TABLE I_ISSUE_DETALI;
+			 TRUNCATE TABLE I_ISSUE_FILE;
+			 TRUNCATE TABLE I_ISSUE_NOTES;
+			 TRUNCATE TABLE I_ISSUE_HANDLER;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate17"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate17 */			 
+			 /* 점검관리 */
+			 TRUNCATE TABLE INSPECTION;
+			 TRUNCATE TABLE INSPECTION_FILE;
+			 TRUNCATE TABLE INSPECTION_RESULT;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate18"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate18 */
+			 /* 정보관리대장2 */
+			 TRUNCATE TABLE A_ASSET_SW;
+			 TRUNCATE TABLE A_ASSET_SW_LOG;
+	</delete>
+	<delete id="mesUserDAO.databaseAllTruncate19"  parameterClass="mesUserVO">
+		/* mesUserDAO.databaseAllTruncate19 */
+			/* 정보관리대장 정보3 */	
+			 TRUNCATE TABLE A_ASSET_LICENSE;
+			/* 파일관련 추가된 테이블 */	
+			 TRUNCATE TABLE A_ASSET_SW_FILE;
+			 TRUNCATE TABLE I_BLUE_SR_FILE;
+			 TRUNCATE TABLE I_ISSUE_FILEINFO;
+	</delete>
 	
 	
 </sqlMap>

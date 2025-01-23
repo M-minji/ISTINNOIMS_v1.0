@@ -241,4 +241,82 @@ public class MesUserDAO extends EgovAbstractDAO{
 		// TODO Auto-generated method stub
 		return (int) select("mesUserDAO.selectUserPopCount", mesUserVO);
 	}
+	
+	public void databaseAllTruncate1(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate1", mesUserVO);
+	}
+	
+	public void databaseAllTruncate2(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate2", mesUserVO);
+	}
+	public void databaseAllTruncate3(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate3", mesUserVO);
+	}
+	public void databaseAllTruncate4(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate4", mesUserVO);
+	}
+	public void databaseAllTruncate5(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate5", mesUserVO);
+	}
+	public void databaseAllTruncate6(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate6", mesUserVO);
+	}
+	public void databaseAllTruncate7(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate7", mesUserVO);
+	}
+	public void databaseAllTruncate8(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate8", mesUserVO);
+	}
+	public void databaseAllTruncate9(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate9", mesUserVO);
+	}
+	public void databaseAllTruncate10(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate10", mesUserVO);
+	}
+	public void databaseAllTruncate11(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate11", mesUserVO);
+	}
+	public void databaseAllTruncate12(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate12", mesUserVO);
+	}
+	public void databaseAllTruncate13(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate13", mesUserVO);
+	}
+	public void databaseAllTruncate14(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate14", mesUserVO);
+	}
+	public void databaseAllTruncate15(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate15", mesUserVO);
+	}
+	public void databaseAllTruncate16(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate16", mesUserVO);
+	}
+	public void databaseAllTruncate17(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate17", mesUserVO);
+	}
+	public void databaseAllTruncate18(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate18", mesUserVO);
+	}
+	public void databaseAllTruncate19(MesUserVO mesUserVO) {
+		// TODO Auto-generated method stub
+		delete("mesUserDAO.databaseAllTruncate19", mesUserVO);
+	}
 }

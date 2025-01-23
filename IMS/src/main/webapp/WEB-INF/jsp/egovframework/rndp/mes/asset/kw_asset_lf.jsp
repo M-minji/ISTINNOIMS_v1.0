@@ -170,6 +170,13 @@ function checkAllConditions() {
 	        return false;  // 모든 카운트가 0일 때 false  반환
 	    }else{
 	    	alertMessage += "으로 등록이 취소되었습니다."
+	    	// 카운트 초기화
+	    	assetTypeCount = 0;
+	    	assetStatusCount=0;
+	    	specialCharCount=0;
+	    	checkCount=0;
+	    	dateCheckCount=0;
+	    	requiredFieldsCount=0;
 	    }
     return true;  // 그 외에는 true 반환
 }

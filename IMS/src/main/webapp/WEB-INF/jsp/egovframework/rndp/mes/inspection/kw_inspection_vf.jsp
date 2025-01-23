@@ -841,13 +841,13 @@
 			<li>
 				<a style="cursor: pointer;" onclick="eExcelDownload();">다운로드</a>
 			</li>
-			<c:if test="${selInfo.kStaffKey eq staffVO.kStaffKey && (selInfo.sSignStatus eq '등록' || selInfo.sSignStatus eq '반려' || selInfo.sSignStatus eq '제외')}">
-				<c:if test="${staffVO.kStaffAuthModifyFlag eq 'T' }">
+			<c:if test="${(selInfo.kStaffKey eq staffVO.kStaffKey && (selInfo.sSignStatus eq '등록' || selInfo.sSignStatus eq '반려' || selInfo.sSignStatus eq '제외')) || (staffVO.kAdminAuth eq 'T' && (selInfo.sSignStatus eq '등록' || selInfo.sSignStatus eq '반려' || selInfo.sSignStatus eq '제외'))}">
+				<c:if test="${staffVO.kStaffAuthModifyFlag eq 'T' || staffVO.kAdminAuth eq 'T'}">
 					<li>
 						<a onclick="eModifunction();">수정</a>
 					</li>
 				</c:if>
-				<c:if test="${staffVO.kStaffAuthDelFlag eq 'T'}">
+				<c:if test="${staffVO.kStaffAuthDelFlag eq 'T' || staffVO.kAdminAuth eq 'T'}">
 					<li>
 						<a onclick="eDelete();">삭제</a>
 					</li>
