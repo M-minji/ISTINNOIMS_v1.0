@@ -12,6 +12,20 @@
 <link href="/css/mes/jquery-ui.min.css" rel="stylesheet"	type="text/css" />
 <script src="/js/xlsx.full.min.js"></script>
 <script src="/js/papaparse.min.js"></script>
+<select id="gubun36List">
+  <c:forEach var="item" items="${gubun36List}">
+      <option data-name="${item.sGubunName}">
+          ${item.sGubunName}
+      </option>
+  </c:forEach>
+</select>
+<select id="gubun37List">
+  <c:forEach var="item" items="${gubun37List}">
+      <option data-name="${item.sGubunName}">
+          ${item.sGubunName}
+      </option>
+  </c:forEach>
+</select>
 <script type="text/javascript">
 function fn_guestList(pageNo) {
 	$('#mloader').show();
@@ -53,8 +67,12 @@ let dateCheckCount = 0;
 var regex = /^\d{4}-\d{2}-\d{2}$/;
 
 function checkDateFormat(dateString) {
+	
+		if(dateString == null){  // 빈값일땐 빈값 저장
+			return true;
+		}
 	 
-	 if (dateString == null || dateString === undefined || String(dateString).trim() === "") {
+	 if (dateString === undefined || String(dateString).trim() === "") {
 	        dateCheckCount++;
 	        return false;
 	    }
@@ -81,7 +99,10 @@ let checkCount = 0;
 let specialCharCount = 0;
 //텍스트 길이 체크 함수
 function checkTextLength(text, maxLength) {
-	if (text == null || text === undefined || String(text).trim() === "" ){
+	if(text == null || text == ""){
+		return;
+	}
+	if (text === undefined || String(text).trim() === "" ){
 		specialCharCount++;
 		return;
 	}
@@ -105,21 +126,26 @@ function checkTextLength(text, maxLength) {
  
 }
 
-const assetTypeChars = ['네트워크', '서버', '보안', "PC", '기반시설', '소프트웨어'];
-const assetStatusChars = ['사용', '불용', '예비', '-'];
+
+
+const assetTypeChars = [];  
+const assetStatusChars = [];
+let assetStatusFirst = "";
 
 let assetTypeCount = 0;
 let assetStatusCount = 0;
 
 function checkAssetType(assetType) {//자산유형 확인
-	
-	 if (!assetType || !assetTypeChars.includes(String(assetType).trim())) {  // 빈값이거나 배열에 없을 경우
+	if(!assetType){ // 빈값일 때는 증가 안함 (필수입력 누락으로만 나오게)
+		return;
+	}
+	 if (!assetTypeChars.includes(String(assetType).trim())) {  // 배열에 없을 경우
 	        assetTypeCount++;
 	    }
 }
 
 function checkAssetStatus(assetStatus) {//자산상태 확인
-	 if (!assetStatus || !assetStatusChars.includes(String(assetStatus).trim())) {  // 배열에 없을 경우
+	 if (!assetStatusChars.includes(String(assetStatus).trim())) {  // 배열에 없을 경우
         assetStatusCount++;
     }
 }
@@ -135,7 +161,7 @@ function checkRequiredFields(field1, field2, field3, field4, field5, field6) {
 	      field5 == null || field5 === undefined || String(field5).trim() === "" ||
 	      field6 == null || field6 === undefined || String(field6).trim() === ""
         ) {
-        requiredFieldsCount++;  // 필수값 하나라도 없으면 카운트 증가
+        requiredFieldsCount++;  // 필수값 하나라도 없으면 카운트 증가    -> 이렇게 해버리니까 몇개가 잘못돼도 카운트가 1임 -> 필수 누락은 카운트 뺌
     }
 }
 
@@ -163,13 +189,20 @@ function checkAllConditions() {
 	    }
 	  
 	    if (requiredFieldsCount > 0) {
-	        alertMessage += "필수 입력 항목 누락!  "+requiredFieldsCount+"건\n";
+	        alertMessage += "필수 입력 항목 누락!  " ; // +requiredFieldsCount+"건\n";    // 필수 누락은 카운트 뺌
 	    }
 	if (assetTypeCount === 0 && assetStatusCount === 0 && specialCharCount === 0 &&
 	        checkCount === 0 && dateCheckCount === 0 && requiredFieldsCount === 0) {
 	        return false;  // 모든 카운트가 0일 때 false  반환
 	    }else{
 	    	alertMessage += "으로 등록이 취소되었습니다."
+	    	// 카운트 초기화
+	    	assetTypeCount = 0;
+	    	assetStatusCount=0;
+	    	specialCharCount=0;
+	    	checkCount=0;
+	    	dateCheckCount=0;
+	    	requiredFieldsCount=0;
 	    }
     return true;  // 그 외에는 true 반환
 }
@@ -214,7 +247,10 @@ function readExcel(e) {
         		checkTextLength(arr[i][4],30);//제조번호
         		checkTextLength(arr[i][5],30);//모델명
         		//자산상태 확인
-        		console.log( "6:자산상태(선택)="+ arr[i][6]); 
+        	//	console.log( "6:자산상태(선택)="+ arr[i][6]); 
+        		if(arr[i][6] == null || arr[i][6] == "") {
+        			arr[i][6] = assetStatusFirst;
+        		}
         		checkAssetStatus(arr[i][6]);
         		//도입원가
         		//processInput(arr[i][7],8);//숫자로만 입력 확인 후 그 외  0 처리
@@ -229,8 +265,14 @@ function readExcel(e) {
         		checkTextLength(arr[i][14],50);//운영체제
         		
         		//EoS
+        		if(arr[i][15] == null) {
+        			arr[i][15] = '2999-01-01';
+        		}
         		checkDateFormat(arr[i][15]);//'yyyy-mm-dd'
         		//EoL
+        		if(arr[i][16] == null) {
+        			arr[i][16] = '2999-01-01';
+        		}
         		checkDateFormat(arr[i][16]);//'yyyy-mm-dd'
         		//내구연수
         		//processInput(arr[i][17],2);//숫자로만 입력 확인 후 그 외  0 처리
@@ -293,7 +335,7 @@ function readExcel(e) {
     			       		
     		             	}
     			  		,	success:function(msg){
-    			  				console.log("성공");
+    			  			//	console.log("성공");
     			  			}
     			  		,	error: function(xhr, status, error) {
     			           		// 요청이 실패했을 때 수행할 작업
@@ -305,6 +347,7 @@ function readExcel(e) {
     								} 
     			   		});
     			 } //for
+    			 alert("업로드 완료!");
     			 
     		 }//if else
         	
@@ -318,6 +361,25 @@ function readExcel(e) {
 }
 
 $(document).ready(function() {
+
+	$('#gubun36List option').each(function () {
+	     const dataname = $(this).data('name');  
+	     if (dataname) {
+	    	assetTypeChars.push(dataname); 
+	     }
+	   });
+	$('#gubun37List option').each(function () {
+	     const dataname = $(this).data('name');
+	     if (dataname) {
+	    	 assetStatusChars.push(dataname); 
+	     }
+	   });
+	if(assetStatusChars.length > 0){
+		assetStatusFirst = assetStatusChars[0];
+	}
+	
+    
+	    
 	 datepickerSet('topStartDate', 'topEndDate');
 		// No를 제외한 나머지 설정-다른항목 한가지를 제외하고 공통으로 변경할때 -
 		// 	  $('table[role="grid"].gridjs-table th:not(:nth-child(1))').css('width', '150px');

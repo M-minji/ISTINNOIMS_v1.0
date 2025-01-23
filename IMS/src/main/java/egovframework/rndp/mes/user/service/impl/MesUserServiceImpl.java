@@ -362,7 +362,26 @@ public class MesUserServiceImpl implements MesUserService{
 	@Override
 	public void databaseAllTruncate(MesUserVO mesUserVO) {
 		// TODO Auto-generated method stub
-		mesUserDAO.databaseAllTruncate(mesUserVO);
+		// 여기서 자꾸 트랜잭션 오류가 나서 나눠서 확인해봄
+		mesUserDAO.databaseAllTruncate1(mesUserVO);
+		mesUserDAO.databaseAllTruncate2(mesUserVO);
+		mesUserDAO.databaseAllTruncate3(mesUserVO);
+		mesUserDAO.databaseAllTruncate4(mesUserVO);
+		mesUserDAO.databaseAllTruncate5(mesUserVO);
+		mesUserDAO.databaseAllTruncate6(mesUserVO);
+		mesUserDAO.databaseAllTruncate7(mesUserVO);
+		mesUserDAO.databaseAllTruncate8(mesUserVO);
+		mesUserDAO.databaseAllTruncate9(mesUserVO);
+		mesUserDAO.databaseAllTruncate10(mesUserVO);
+		mesUserDAO.databaseAllTruncate11(mesUserVO);
+		mesUserDAO.databaseAllTruncate12(mesUserVO);
+		mesUserDAO.databaseAllTruncate13(mesUserVO);
+		mesUserDAO.databaseAllTruncate14(mesUserVO);
+		mesUserDAO.databaseAllTruncate15(mesUserVO);
+		mesUserDAO.databaseAllTruncate16(mesUserVO);
+		mesUserDAO.databaseAllTruncate17(mesUserVO);
+		mesUserDAO.databaseAllTruncate18(mesUserVO);
+		mesUserDAO.databaseAllTruncate19(mesUserVO);
 	}
 
 	@Override
