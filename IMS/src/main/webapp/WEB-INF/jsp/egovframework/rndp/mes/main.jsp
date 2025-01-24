@@ -227,7 +227,7 @@ input[name="tab_item"] {
 							<div <c:if test="${ass766 eq 'T' }">onclick="moveDetail('/mes/issue/kw_issue_lf.do');" </c:if> style="cursor:pointer;">
 								<table>
 									<tr style="height: 10%">
-										<th colspan="3" style="vertical-align: middle;font-size: 18pt;color: #22499d;">장애관리</th>
+										<th colspan="3" style="vertical-align: middle;font-size: 18pt;color: #22499d;">장애처리현황</th>
 									</tr>
 									<tr style="height: 10%;font-size: 16pt;color: #22499d;font-weight: bold;">
 										<th>등록</th>
@@ -284,7 +284,7 @@ input[name="tab_item"] {
 							<div>
 								<table>
 									<tr>
-										<th colspan="3" style="vertical-align: middle;height: 7%;font-size: 16pt;color: #22499d;">대상장비  등록현황</th>
+										<th colspan="3" style="vertical-align: middle;height: 7%;font-size: 16pt;color: #22499d; padding-top: 3px;">대상장비  등록현황</th>
 									</tr>
 									<tr style="height: 90%;">
 										<td>
@@ -378,7 +378,8 @@ input[name="tab_item"] {
 									</thead>									
 									
 									<tbody>
-										<tr ><td colspan="3" style="height: 20%;" >&nbsp; </td></tr>
+					<%--					<tr ><td colspan="3" style="height: 20%;" >&nbsp; </td></tr>	--%>
+										<tr ><th colspan="3" style="vertical-align: middle;font-size: 18pt;color: #22499d; padding-bottom: 10px;">유지 및 자산 관리 현황</th></tr>
 										<tr>
 											<td colspan="3" style="height: 80%;">
 													<table>
