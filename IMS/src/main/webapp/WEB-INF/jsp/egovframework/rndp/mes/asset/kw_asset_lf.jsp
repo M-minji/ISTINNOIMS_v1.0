@@ -12,20 +12,6 @@
 <link href="/css/mes/jquery-ui.min.css" rel="stylesheet"	type="text/css" />
 <script src="/js/xlsx.full.min.js"></script>
 <script src="/js/papaparse.min.js"></script>
-<select id="gubun36List">
-  <c:forEach var="item" items="${gubun36List}">
-      <option data-name="${item.sGubunName}">
-          ${item.sGubunName}
-      </option>
-  </c:forEach>
-</select>
-<select id="gubun37List">
-  <c:forEach var="item" items="${gubun37List}">
-      <option data-name="${item.sGubunName}">
-          ${item.sGubunName}
-      </option>
-  </c:forEach>
-</select>
 <script type="text/javascript">
 function fn_guestList(pageNo) {
 	$('#mloader').show();
@@ -136,9 +122,6 @@ let assetTypeCount = 0;
 let assetStatusCount = 0;
 
 function checkAssetType(assetType) {//자산유형 확인
-	if(!assetType){ // 빈값일 때는 증가 안함 (필수입력 누락으로만 나오게)
-		return;
-	}
 	 if (!assetTypeChars.includes(String(assetType).trim())) {  // 배열에 없을 경우
 	        assetTypeCount++;
 	    }
@@ -241,11 +224,11 @@ function readExcel(e) {
         		//자산유형 확인
         		checkAssetType(arr[i][0]);
                 //텍스트 입력값 길이 확인        		
-        		checkTextLength(arr[i][1],50);//자산번호
+        		checkTextLength(arr[i][1],80);//자산번호
         		checkTextLength(arr[i][2],80);//자산명
-        		checkTextLength(arr[i][3],30);//제조사
-        		checkTextLength(arr[i][4],30);//제조번호
-        		checkTextLength(arr[i][5],30);//모델명
+        		checkTextLength(arr[i][3],80);//제조사
+        		checkTextLength(arr[i][4],80);//제조번호
+        		checkTextLength(arr[i][5],80);//모델명
         		//자산상태 확인
         	//	console.log( "6:자산상태(선택)="+ arr[i][6]); 
         		if(arr[i][6] == null || arr[i][6] == "") {
@@ -257,12 +240,12 @@ function readExcel(e) {
         		//도입일자 날짜 체크
         		checkDateFormat(arr[i][8]);//'yyyy-mm-dd'
         		
-        		checkTextLength(arr[i][9],50);//장비구분
-        		checkTextLength(arr[i][10],50);//사업명
-        		checkTextLength(arr[i][11],50);//망구분
-        		checkTextLength(arr[i][12],50);//호스트
-        		checkTextLength(arr[i][13],50);//아이피
-        		checkTextLength(arr[i][14],50);//운영체제
+        		checkTextLength(arr[i][9],80);//장비구분
+        		checkTextLength(arr[i][10],80);//사업명
+        		checkTextLength(arr[i][11],80);//망구분
+        		checkTextLength(arr[i][12],80);//호스트
+        		checkTextLength(arr[i][13],80);//아이피
+        		checkTextLength(arr[i][14],80);//운영체제
         		
         		//EoS
         		if(arr[i][15] == null) {
@@ -362,14 +345,14 @@ function readExcel(e) {
 
 $(document).ready(function() {
 
-	$('#gubun36List option').each(function () {
-	     const dataname = $(this).data('name');  
+	$('#searchTypeSet1 option').each(function () {
+	     const dataname = $(this).data('value2');  
 	     if (dataname) {
 	    	assetTypeChars.push(dataname); 
 	     }
 	   });
-	$('#gubun37List option').each(function () {
-	     const dataname = $(this).data('name');
+	$('#searchType option').each(function () {
+	     const dataname = $(this).data('value2');
 	     if (dataname) {
 	    	 assetStatusChars.push(dataname); 
 	     }

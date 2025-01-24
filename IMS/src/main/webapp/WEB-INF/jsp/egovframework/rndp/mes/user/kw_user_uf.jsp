@@ -76,20 +76,70 @@ function chkIns(){
 	return true;
 }
 
+function checkPassword(password){	
+    if(!/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{9,25}$/.test(password)){            
+        alert('숫자+영문자+특수문자 조합으로 9자리 이상 사용해야 합니다.');
+        $('#password').val('').focus();
+        return false;
+    }    
+    var checkNumber = password.search(/[0-9]/g);
+    var checkEnglish = password.search(/[a-z]/ig);
+    if(checkNumber <0 || checkEnglish <0){
+        alert("숫자와 영문자를 혼용하여야 합니다.");
+        $('#password').val('').focus();
+        return false;
+    }
+    if(/(\w)\1\1\1/.test(password)){
+        alert('같은 문자를 4번 이상 사용하실 수 없습니다.');
+        $('#password').val('').focus();
+        return false;
+    }
+        
+   /*  if(password.search(id) > -1){
+        alert("비밀번호에 아이디가 포함되었습니다.");
+        $('#password').val('').focus();
+        return false;
+    } */
+    return true;
+}
+
 function updatePwd_go(){
+	var mesMemberPassword = $('#mesMemberPassword').val();
 	var chPassword = $('#chPassword').val();
 	var chPassword2 = $('#chPassword2').val();
 		
-	if(chPassword != chPassword2){
-		alert("변경할 비밀번호가 일치하지 않습니다.");
+	if(mesMemberPassword == ""){
+		alert("현재 비밀번호를 입력하세요.");
+		$("#mesMemberPassword").focus();
+		return false;
+	}
+	
+	if(chPassword == ""){
+		alert("변경 비밀번호를 입력하세요.");
+		$("#chPassword").focus();
+		return false;
+	}
+	
+	if(chPassword2 == ""){
+		alert("비밀번호 확인을 입력하세요.");
+		$("#chPassword2").focus();
+		return false;
+	}
+	
+	if(checkPassword(chPassword) == false){
+		return;	
+	}
+	
+ 	if(chPassword != chPassword2){
+		alert("변경할 비밀번호 일치하지 않습니다. ");
 		$('#chPassword').focus();
 		return false;
 	}else{
-		
+
 		var shMemberNum = $('#mesUserKey').val();
 		var mesMemberPassword = CryptoJS.SHA256($('#mesMemberPassword').val()).toString();
 		var chPassword2 = CryptoJS.SHA256($('#chPassword2').val()).toString();
-		
+	
 		
 		$.ajax({
 			method : "post",
@@ -97,16 +147,16 @@ function updatePwd_go(){
 			dataType : "json",
 			data : {"mesUserKey":shMemberNum, "chPassword2":chPassword2, "mesMemberPassword":mesMemberPassword},
 			success : function(msg){
+				
 				var idx = msg.result.idx;
 				var message = msg.result.message;
 				
 				if(idx == 0){
-					//변경오류
+					//비밀번호 변경 오류
 					alert(message);
 					$('#mesMemberPassword').focus();
 					return false;
 				}else{
-					//변경완료
 					alert(message);
 					$("#mesMemberPassword").val("");
 					$("#chPassword").val("");

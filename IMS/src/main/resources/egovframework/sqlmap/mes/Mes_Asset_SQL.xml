@@ -1337,7 +1337,7 @@
 		,	#eAssetStatusName#
 		,	(SELECT GC_NUM 
 			FROM GC
-			WHERE GU_NUM=36 AND  LOWER(REPLACE(GC_NAME, ' ', '')) = LOWER(REPLACE(#eAssetStatusName#, ' ', ''))
+			WHERE GU_NUM=37 AND  LOWER(REPLACE(GC_NAME, ' ', '')) = LOWER(REPLACE(#eAssetStatusName#, ' ', ''))
 			)
 		,	#eAssetTypeName#
 		,	(SELECT GC_NUM 

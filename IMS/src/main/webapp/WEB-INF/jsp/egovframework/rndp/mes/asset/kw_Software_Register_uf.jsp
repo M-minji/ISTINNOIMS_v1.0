@@ -459,10 +459,10 @@
 	         <tbody id="lineRow">
 				<tr>
 					<td> 
-			 			<input type='text' id='eManufacturer' name='eManufacturer' style='text-align:center;' value='${swInfo.eManufacturer}' maxLength='30'  />
+			 			<input type='text' id='eManufacturer' name='eManufacturer' style='text-align:center;' value='${swInfo.eManufacturer}' maxLength='50'  />
 					</td>
 					<td> 
-			 			<input type='text' id='eProductName' name='eProductName' style='text-align:center;' value='${swInfo.eProductName}' maxLength='30'  />
+			 			<input type='text' id='eProductName' name='eProductName' style='text-align:center;' value='${swInfo.eProductName}' maxLength='50'  />
 					</td>
 					<td> 
 			 			<input type='text' id='eVersion' name='eVersion' style='text-align:center;' value='${swInfo.eVersion}' maxLength='30'  />
