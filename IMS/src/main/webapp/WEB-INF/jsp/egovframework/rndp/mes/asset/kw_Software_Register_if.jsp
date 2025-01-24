@@ -254,11 +254,11 @@
 		innerStr += "		</td>";
 		
 		innerStr += "		<td>"; 
-		innerStr +=	"			<input type='text' id='eManufacturer_"+rowIndex+"' name='eManufacturer' value='' maxLength='30'  />";
+		innerStr +=	"			<input type='text' id='eManufacturer_"+rowIndex+"' name='eManufacturer' value='' maxLength='50'  />";
 		innerStr +=	"			<input type='hidden' id='rowIndex_"+rowIndex+"' name='rowIndex' value='"+rowIndex+"'  />";
 		innerStr += "		</td>";
 		innerStr += "		<td>"; 
-		innerStr +=	"			<input type='text' id='eProductName_"+rowIndex+"' name='eProductName' value='' maxLength='30'  />";
+		innerStr +=	"			<input type='text' id='eProductName_"+rowIndex+"' name='eProductName' value='' maxLength='50'  />";
 		innerStr += "		</td>";
 		innerStr += "		<td>"; 
 		innerStr +=	"			<input type='text' id='eVersion_"+rowIndex+"' name='eVersion' value='' maxLength='30'  />";
@@ -458,9 +458,9 @@
 	    var startDate = "2000-01-01";
 	    var endDate = "2099-01-01";
 	    if (type === 'S') {
-	        message = "모든 eStartDate 필드에 날짜를 " + startDate + "로 설정하시겠습니까?";
+	        message = "추가된 모든 라이선스의 시작일을 " + startDate + "로 설정하시겠습니까?";
 	    } else if (type === 'E') {
-	        message = "모든 eEndDate 필드에 날짜를 " + endDate + "로 설정하시겠습니까?";
+	        message = "추가된 모든 라이선스의 종료일을 " + endDate + "로 설정하시겠습니까?";
 	    }  
 	    
 	    if (confirm(message)) {
