@@ -2952,6 +2952,7 @@
 		/* mesAssetDAO.mainAssetLifeStatusNewList */
 		SELECT 
 			ASSET_NAME AS aAssetName,
+			ASSET_MODEL AS aAssetModel,
 			ASSET_TYPE_NAME AS eAssetTypeName,
 			ASSET_TYPE AS eAssetType,
 			ASSET_LIFE AS eLifespan,

@@ -273,12 +273,13 @@ function selectRow(key) {
 							<th style="width:2%;">-</th>
 							<th style="width:8%;">제조사</th>
 							<th style="width:8%;">라이선스명</th>
-							<th style="width:8%;">버전</th>
+							<th style="width:5%;">버전</th>
 							<th style="width:8%;">구매일</th>
 							<th style="width:8%;">시작일</th>
 							<th style="width:8%;">종료일</th>
 							<th style="width:8%;">유효기간</th>
-							<th style="width:8%;">수량</th>
+							<th style="width:5%;">수량</th>
+							<th style="width:5%;">사용수량</th>
 							<th style="width:8%;">비고</th>
 					</tr>
 		        </thead>
@@ -311,8 +312,11 @@ function selectRow(key) {
 								<td>
 									${list.eValidityPeriod}
 								</td>
-								<td style="text-align:right; padding-right:5px;">
+								<td style="text-align: center; padding-right:5px;">
 									${list.eLicenseQuantity}
+								</td>
+								<td style="text-align: center; padding-right:5px;">
+									${list.eUsedLicenseQuantity}
 								</td>
 								<td>
 									${list.eRemarks}

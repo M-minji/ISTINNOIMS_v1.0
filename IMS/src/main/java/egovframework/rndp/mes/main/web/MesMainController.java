@@ -135,7 +135,10 @@ public class MesMainController {
 //			String temp = String.valueOf(newDateFormat.format(nowDate));
 //			temp = temp.substring(0,8);
 //			temp += "01";
-			String temp = newDateFormat.format(newNowDate).substring(0, 8) + "01";
+			// 이번달 1일부터
+//			String temp = newDateFormat.format(newNowDate).substring(0, 8) + "01";
+			// 이번년도 1월 1일부터
+			String temp = newDateFormat.format(newNowDate).substring(0, 5) + "01-01";
 			vo.setTopStartDate(temp);
 		}
 		if(vo.getTopEndDate().equals("") || vo.getTopEndDate() == null){

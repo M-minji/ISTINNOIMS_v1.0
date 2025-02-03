@@ -709,7 +709,7 @@
 	
 	<div class="tbl_btn_right">
 		<ul>
-			<c:if test="${(assetInfo.kStaffKey eq staffVO.kStaffKey && (assetInfo.sSignStatus eq '등록' || assetInfo.sSignStatus eq '반려' || assetInfo.sSignStatus eq '제외')) || (staffVO.kAdminAuth eq 'T' && (assetInfo.sSignStatus eq '등록' || assetInfo.sSignStatus eq '반려' || assetInfo.sSignStatus eq '제외')) }">
+			<c:if test="${(assetInfo.kStaffKey eq staffVO.kStaffKey && (assetInfo.eStatus eq '등록' || assetInfo.eStatus eq '반려' || assetInfo.eStatus eq '제외')) || (staffVO.kAdminAuth eq 'T' && (assetInfo.eStatus eq '등록' || assetInfo.eStatus eq '반려' || assetInfo.eStatus eq '제외')) }">
 				<c:if test="${staffVO.kStaffAuthWriteFlag eq 'T'  ||  staffVO.kAdminAuth eq 'T'}">
 					<li>
 						<a style="cursor: pointer;" onclick="update_go();">수정</a>

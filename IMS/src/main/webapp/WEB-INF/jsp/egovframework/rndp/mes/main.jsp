@@ -591,7 +591,8 @@ input[name="tab_item"] {
 														<c:forEach var="dlist" items="${mainLifeStatusList}" varStatus="d">
 															<tr style="vertical-align: middle; font-size: 12pt; height: 32px;border-bottom: 1px solid #ddd; ">
 																<td colspan="1">${d.count }</td>
-																<td colspan="1">${dlist.aAssetName }</td>
+														<%--		<td colspan="1">${dlist.aAssetName }</td>   --%>
+																<td colspan="1">${dlist.aAssetModel }</td>
 																<td colspan="1">${dlist.eAssetDate }(${dlist.eLifespan }) </td>
 															</tr>
 														</c:forEach>
