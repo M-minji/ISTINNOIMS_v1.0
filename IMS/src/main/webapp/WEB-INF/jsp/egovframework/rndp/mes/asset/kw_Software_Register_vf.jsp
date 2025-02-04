@@ -16,6 +16,10 @@ $(document).ready(function(){
 	settingSign(); // 싸인 설정
 });
 function delete_go(){
+	var useCount = $("#eUsedLicenseQuantity").val();
+	if(useCount != "") {
+		alert(useCount + "개의 자산에서 해당 라이선스를 사용 중 입니다.\n" + "자산의 라이선스 정보도 함께 삭제됩니다.");
+	}
 	if(confirm("삭제하시겠습니까?")){
 		document.frm.action = "/mes/asset/kw_Software_Register_d.do";
 		document.frm.submit();

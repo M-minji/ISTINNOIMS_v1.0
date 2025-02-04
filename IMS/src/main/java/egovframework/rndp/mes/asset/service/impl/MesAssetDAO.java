@@ -159,6 +159,11 @@ public class MesAssetDAO extends EgovAbstractDAO{
 		// TODO Auto-generated method stub
 		delete("mesAssetDAO.mesSoftwareAssetDelete", mesAssetVO);
 	}
+	
+	public void mesSoftwareAssetLicenceDelete(MesAssetVO mesAssetVO) throws Exception{
+		// TODO Auto-generated method stub
+		delete("mesAssetDAO.mesSoftwareAssetLicenceDelete", mesAssetVO);
+	}
 
 	public void mesSoftwareAssetUdate(MesAssetVO mesAssetVO) throws Exception{
 		// TODO Auto-generated method stub

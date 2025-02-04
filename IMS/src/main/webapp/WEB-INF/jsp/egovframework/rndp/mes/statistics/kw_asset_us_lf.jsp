@@ -147,7 +147,7 @@
 	
 	<div class="content_up">
 		<div class="content_tit">
-			<h2>보유자산 반출/입 통계</h2>
+			<h2>보유자산 반출입 통계</h2>
 		</div>
 	
 	
