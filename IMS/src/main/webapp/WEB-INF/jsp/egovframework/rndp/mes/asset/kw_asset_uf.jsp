@@ -69,6 +69,14 @@
 			return false;
 		}
 		
+		if(document.getElementById("eEosDate").value == ""){
+			document.getElementById("eEosDate").value = '2099-01-01';
+		}
+		
+		if(document.getElementById("eEolDate").value == ""){
+			document.getElementById("eEolDate").value = '2099-01-01';
+		}
+		
 		var eLicenseQuantityArr = document.getElementsByName("eLicenseQuantity");
 		if(eLicenseQuantityArr.length > 0){
 			for (var aa = 0; aa < eLicenseQuantityArr.length; aa++) {
@@ -122,6 +130,9 @@
 			document.writeForm.submit();
 		}
 			
+	}
+	function clearInput(inputId) {
+	    document.getElementById(inputId).value = '';
 	}
 	
 	function cancle(){
@@ -791,13 +802,13 @@
             		</td>
           		</tr>		
           		<tr>          		
-					<th onclick="setDate('eEosDate')">EoS</th>
+					<th onclick="clearInput('eEosDate')">EoS</th>
             		<td>
             			<input type="text" name="eEosDate" id="eEosDate" style="width:150px; text-align:center;" value="${assetInfo.eEosDate}"  class="inp_color" onchange="eDate('eEosDate')"  readonly />
             			<span id="eEosDateTxt"></span>
             			
             		</td>
-            		<th onclick="setDate('eEolDate')">EoL</th>
+            		<th onclick="clearInput('eEolDate')">EoL</th>
             		<td>
             			<input type="text" name="eEolDate" id="eEolDate" style="width:150px; text-align:center;" value="${assetInfo.eEolDate}"  class="inp_color" onchange="eDate('eEolDate')"  readonly  />
             			<span id="eEolDateTxt"></span>

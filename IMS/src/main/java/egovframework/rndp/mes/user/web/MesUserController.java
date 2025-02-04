@@ -170,6 +170,20 @@ public class MesUserController {
 		return "mes/user/kw_userMenu_vf.tiles";
 	}
 	
+	@RequestMapping(value = "/mes/user/kw_userMenu_user1_vf.do")
+	public String mesUserMenuInfouser1(HttpServletRequest request
+			, @ModelAttribute("mesUserVO") MesUserVO mesUserVO
+			, ModelMap model) throws Exception {
+		
+		MesK_StaffVo staffVo = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");
+		model.addAttribute("staffVo", staffVo);
+		mesUserVO.setMesUserKey(String.valueOf(staffVo.getkStaffKey()));
+		mesUserVO.setkStaffKey(String.valueOf(staffVo.getkStaffKey()));
+		List mesUserMenuList = mesUserService.mesUserMenuList(mesUserVO);
+		model.addAttribute("mesUserMenuList", mesUserMenuList);	
+		return "mes/user/kw_userMenu_vf.tiles";
+	}
+	
 	@RequestMapping(value = "/mes/kw_userMenu_u.do")
 	public String mesUserMenuInfoUpdate(HttpServletRequest request
 			, @ModelAttribute("mesUserVO") MesUserVO mesUserVO
@@ -445,11 +459,14 @@ public class MesUserController {
 	public String mesgiuplIf(HttpServletRequest request
 			, @ModelAttribute("mesUserVO") MesUserVO mesUserVO
 			, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
+		
+		if(mesUserVO.getEnvVal().split(",").length != mesUserVO.getEnvName().split(",").length) {
+			mesUserVO.setEnvVal(mesUserVO.getEnvVal() + " ");
+		}
 		for(int i=0; i<mesUserVO.getEnvName().split(",").length; i++){
 			MesUserVO vo = new MesUserVO();
 			vo.setEnvName(mesUserVO.getEnvName().split(",")[i]);
 			vo.setEnvVal(mesUserVO.getEnvVal().split(",")[i]);
-
 			vo.setEnvVal(vo.getEnvVal().replaceAll(("@@"),","));
 
 			mesUserService.updateEnv(vo);

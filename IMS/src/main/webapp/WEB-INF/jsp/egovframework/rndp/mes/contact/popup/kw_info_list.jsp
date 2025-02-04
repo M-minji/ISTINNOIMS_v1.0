@@ -60,7 +60,7 @@ function fn_guestList(pageNo) {
 			<table>
 		        <thead>
 					<tr>
-					 	<th>속소사명</th>
+					 	<th>소속사명</th>
 			           	<th>부서명</th>
 			           	<th>담당자명</th>
 						<th>연락처</th>

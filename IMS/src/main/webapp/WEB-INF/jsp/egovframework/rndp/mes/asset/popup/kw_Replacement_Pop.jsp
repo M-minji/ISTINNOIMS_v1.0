@@ -162,7 +162,7 @@ function fn_search_detail(){
 								<td>${list.eAssetMaker}</td>
 								<td>${list.eAssetModel}</td>
 								<td>${list.eReplacementRequestDate}</td>
-								<td>${list.eReplacementRequester}</td>
+								<td>${list.eReplacedByOrg}</td>
 								<td>${list.ePartReplacementReason}</td>
 								<td>${list.eReplacementDate}</td>
 								<td>${list.eReplacedBy}</td>

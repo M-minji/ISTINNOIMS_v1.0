@@ -239,7 +239,7 @@ function dCheak(idx,ref,root){
 			}
 		} 
 }
-
+var staffKey = "";
 function mesUserMenuUp(){
 	if(confirm("저장하시겠습니까?")){
 		document.listForm.action = "/mes/kw_userMenu_u.do";

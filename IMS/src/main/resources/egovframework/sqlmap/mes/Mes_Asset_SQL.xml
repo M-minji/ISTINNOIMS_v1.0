@@ -1177,6 +1177,11 @@
 	DELETE FROM A_ASSET_SW WHERE asset_sw_key   = #eSWRegisterKey#
 	</delete>
 	
+	<delete id="mesAssetDAO.mesSoftwareAssetLicenceDelete" parameterClass="mesAssetVO" >
+	/* mesAssetDAO.mesSoftwareAssetLicenceDelete */
+	DELETE FROM A_ASSET_LICENSE WHERE eSWRegisterKey   = #eSWRegisterKey#
+	</delete>
+	
 	<update id="mesAssetDAO.mesSoftwareAssetUdate" parameterClass="mesAssetVO" >
 	/* mesAssetDAO.mesSoftwareAssetUdate */
 	UPDATE A_ASSET_SW
@@ -1778,7 +1783,7 @@
 				)
 			VALUES(
 			  #eReplacementRequestDate#
-			 , #eReplacementRequester#
+			 , #eReplacedByOrg#
 			 , #ePartReplacementReason#
 			 , #ePartReplacementItem#
 			 , #eReplacementDate#
@@ -1812,7 +1817,7 @@
 		  	eR.E_REPLACEMENT_NUM AS eReplacedKey
 		,  	eRI.E_REPLACEMENT_ITEM_NUM AS eReplacedItemKey
 		,	DATE_FORMAT(eR.eReplacementRequestDate, '%Y-%m-%d') AS eReplacementRequestDate
-		,	eR.eReplacementRequester
+		,	eR.eReplacementRequester AS eReplacedByOrg
 		,	eR.ePartReplacementReason  AS ePartReplacementReason
 		,	eR.ePartReplacementItem			AS ePartReplacementItem
 		,	eR.eReqContent		AS eReqContent
@@ -1891,7 +1896,7 @@
 		  	eR.E_REPLACEMENT_NUM AS eReplacedKey
 		,  	eRI.E_REPLACEMENT_ITEM_NUM AS eReplacedItemKey
 		,	DATE_FORMAT(eR.eReplacementRequestDate, '%Y-%m-%d') AS eReplacementRequestDate
-		,	eR.eReplacementRequester
+		,	eR.eReplacementRequester AS eReplacedByOrg
 		,	eR.ePartReplacementReason
 		,	getContentLf(eR.ePartReplacementItem)			AS ePartReplacementItem
 		,	getContentLf(eR.eReqContent)			AS eReqContent
@@ -1994,7 +1999,7 @@
 		  	eR.E_REPLACEMENT_NUM AS eReplacedKey
 		,  	eRI.E_REPLACEMENT_ITEM_NUM AS eReplacedItemKey
 		,	DATE_FORMAT(eR.eReplacementRequestDate, '%Y-%m-%d') AS eReplacementRequestDate
-		,	eR.eReplacementRequester
+		,	eR.eReplacementRequester AS eReplacedByOrg
 		,	eR.ePartReplacementReason
 		,	eR.ePartReplacementItem			AS ePartReplacementItem
 		,	eR.eReqContent			AS eReqContent
@@ -2033,7 +2038,7 @@
 		SELECT 
 		  	eR.E_REPLACEMENT_NUM AS eReplacedKey
 		,	DATE_FORMAT(eR.eReplacementRequestDate, '%Y-%m-%d') AS eReplacementRequestDate
-		,	eR.eReplacementRequester
+		,	eR.eReplacementRequester AS eReplacedByOrg
 		,	eR.ePartReplacementReason
 		,	eR.ePartReplacementItem			AS ePartReplacementItem
 		,	eR.eReqContent			AS eReqContent
@@ -2117,7 +2122,7 @@
 		  	eR.E_REPLACEMENT_NUM AS eReplacedKey
 		,  	eRI.E_REPLACEMENT_ITEM_NUM AS eReplacedItemKey
 		,	DATE_FORMAT(eR.eReplacementRequestDate, '%Y-%m-%d') AS eReplacementRequestDate
-		,	eR.eReplacementRequester
+		,	eR.eReplacementRequester AS eReplacedByOrg
 		,	eR.ePartReplacementReason
 		,	getContentLf(eR.ePartReplacementItem)			AS ePartReplacementItem
 		,	getContentLf(eR.eReqContent)			AS eReqContent
@@ -2726,7 +2731,7 @@
 	 	/* mesAssetDAO.updateInfoReplacement */
 		UPDATE E_REPLACEMENT SET  
 			eReplacementRequestDate = #eReplacementRequestDate#
-			, eReplacementRequester = #eReplacementRequester#
+			, eReplacementRequester = #eReplacedByOrg#
 			, ePartReplacementReason =#ePartReplacementReason#
 			, ePartReplacementItem =#ePartReplacementItem#
 			, eReqContent =#eReqContent#
@@ -2952,6 +2957,7 @@
 		/* mesAssetDAO.mainAssetLifeStatusNewList */
 		SELECT 
 			ASSET_NAME AS aAssetName,
+			ASSET_MODEL AS aAssetModel,
 			ASSET_TYPE_NAME AS eAssetTypeName,
 			ASSET_TYPE AS eAssetType,
 			ASSET_LIFE AS eLifespan,

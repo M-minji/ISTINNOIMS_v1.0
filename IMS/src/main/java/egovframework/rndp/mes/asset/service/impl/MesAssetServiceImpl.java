@@ -417,6 +417,7 @@ public class MesAssetServiceImpl implements MesAssetService {
 	public void mesSoftwareAssetDelete(MesAssetVO mesAssetVO) throws Exception {
 		// TODO Auto-generated method stub
 		  mesAssetDAO.mesSoftwareAssetDelete(mesAssetVO);
+		  mesAssetDAO.mesSoftwareAssetLicenceDelete(mesAssetVO);
 		  mesSignService.deleteSignItemTwo(mesAssetVO.geteSWRegisterKey(), "A_ASSET_SW");
 		  
 	}

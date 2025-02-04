@@ -199,6 +199,7 @@ public class MesAssetVO extends DefultVO{
 	private String eReplacedBy				= "";
 	private String ePartReplacementItem				= "";
 	private String eReqContent				= "";
+	private String eReplacedByOrg				= "";  // 교체자 소속 바꿈
 	
 	private String eReplacedKey				= "";
 	private String eReplacedItemKey				= "";
@@ -1551,5 +1552,11 @@ public class MesAssetVO extends DefultVO{
 	}
 	public void seteAssetTypeList(String eAssetTypeList) {
 		this.eAssetTypeList = eAssetTypeList;
+	}
+	public String geteReplacedByOrg() {
+		return eReplacedByOrg;
+	}
+	public void seteReplacedByOrg(String eReplacedByOrg) {
+		this.eReplacedByOrg = eReplacedByOrg;
 	}
 }
