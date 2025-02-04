@@ -548,7 +548,7 @@
 	<div class="tbl_list">
 		<table>
 			<caption style="text-align: left; margin-bottom:10px;">
-				   <a class="mes_btn" onclick="sel_asset()" style="float:right">장비 선택</a>
+				   <a class="mes_btn" onclick="sel_asset()" style="float:right">*장비 선택</a>
 			</caption>
 				<thead>
 				<tr>

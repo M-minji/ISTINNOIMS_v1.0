@@ -72,7 +72,7 @@ function fn_search_detail(){
 	</div>
 		
 	<div class="popup_content">		
-		<div id="itemCateZone" class="tbl_top">
+	<%-- 	<div id="itemCateZone" class="tbl_top">
 			<ul class="tbl_top_left">
 				<li>
 	          		<select name="recordCountPerPage" class="select_recordCountPerPage" id="recordCountPerPage"  onchange="fn_guestList(1);">
@@ -99,7 +99,7 @@ function fn_search_detail(){
 				</li>
 				<li>
 					<span>도입일</span>
-					<input type="text" id="searchTypeSet5" name="searchTypeSet5" style="width:100px;" value="${mesAssetVO.searchTypeSet5}" readonly="readonly"/>
+					<input type="text" id="searchTypeSet5" name="searchTypeSet5" style="width:100px;" class="inp_color" value="${mesAssetVO.searchTypeSet5}" readonly="readonly"/>
 				</li>
 				<li>
 					<a onclick="fn_guestList(1);" style="cursor: pointer;">
@@ -122,7 +122,8 @@ function fn_search_detail(){
 					<input type="text" id="searchTypeSet7" name="searchTypeSet7" style="width:100px;" value="${mesAssetVO.searchTypeSet7}" />
 				</li>
 			</ul>
-		</div>
+		</div>  
+--%>
 		
 		
 		<div class="lf_tbl_list" id="pop_result_list">

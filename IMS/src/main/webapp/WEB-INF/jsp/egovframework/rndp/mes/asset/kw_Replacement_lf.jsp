@@ -20,9 +20,9 @@ $(function(){
 	  $('table[role="grid"].gridjs-table th:nth-child(1) button').hide();
 	  $('table[role="grid"].gridjs-table th:nth-child(1)').css('width', '70px'); 
 	  $('table[role="grid"].gridjs-table th:nth-child(2)').css('width', '160px'); 
-	  $('table[role="grid"].gridjs-table th:nth-child(3)').css('width', '120px'); 
+	  $('table[role="grid"].gridjs-table th:nth-child(3)').css('width', '100px'); 
 	  $('table[role="grid"].gridjs-table th:nth-child(4)').css('width', '100px'); 
-	  $('table[role="grid"].gridjs-table th:nth-child(5)').css('width', '100px'); 
+	  $('table[role="grid"].gridjs-table th:nth-child(5)').css('width', '120px'); 
 	  $('table[role="grid"].gridjs-table th:nth-child(6)').css('width', '160px'); 
 	  $('table[role="grid"].gridjs-table th:nth-child(7)').css('width', '160px'); 
 	  $('table[role="grid"].gridjs-table th:nth-child(8)').css('width', '160px'); 
@@ -313,7 +313,7 @@ function excelDwonload(){
 					<th>자산번호</th>
 					<th>작성자</th>
 					<th>교체일자</th>
-					<th>교체자</th>
+					<th>교체확인자</th>
 					<th>자산명</th>
 					<th>제조사</th>
 					<th>모델명</th>

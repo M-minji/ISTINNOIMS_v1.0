@@ -34,6 +34,11 @@ function meEnvUp(){
 			return false;
 		}
 		
+		// 우선순위 2 입력 안하면 에러가 나서 추가함
+<%--		if($("tr:has(th:contains('우선순위:2'))").find("input[name='envVal']").val() == ""){ 
+			$("tr:has(th:contains('우선순위:2'))").find("input[name='envVal']").val("null");
+		}   --%>
+		
 		if(confirm("저장하시겠습니까?")){
 			$("#mloader").show();
 			
@@ -42,7 +47,6 @@ function meEnvUp(){
 				var value = document.getElementsByName("envVal")[i].value;
 				document.getElementsByName("envVal")[i].value = value.replace(/,/g, "@@");
 			}
-			
 			document.writeform.action = "/mes/user/env_List_i.do";
 	 		document.writeform.submit();
 		} 
@@ -99,6 +103,7 @@ $(document).ready(function () {
         const restoredValue = decodeHtmlEntities(originalValue);
         $("#sComCategory").val(restoredValue);
     }
+    
 });
 function decodeHtmlEntities(str) {
 	  const textarea = document.createElement("textarea");
@@ -200,7 +205,7 @@ function decodeHtmlEntities(str) {
 								※포트포워딩 및  VPN등 별도 정보 경우 기입(시스템 접속 포트 포함) <br>
 							</td>
 						</tr>
-						<tr>
+<!--						<tr>	-->
 <!-- 						<TH>우선순위:3 -시스템 자동할당 IP</th> -->
 <%-- 							<TD style="text-align: left;">${eIPaddress} --%>
 <!-- 								<input type="hidden" name="envName" value="sPrivateIp" maxlength="30"/> -->

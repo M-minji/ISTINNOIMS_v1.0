@@ -451,13 +451,13 @@
 					</td>
 				</tr>
 				<tr>
-					<th>교체자</th>
+					<th>교체확인자</th>
 					<td>${info.eReplacedBy }
-						<input type="hidden" name="eReplacedBy" id="eReplacedBy" style="width:95%; text-align:left;" maxLength="50" value="${info.eReplacedBy}"/>
+						<input type="hidden" name="eReplacedBy" id="eReplacedBy" style="width:95%; text-align:left;" maxLength="100" value="${info.eReplacedBy}"/>
 					</td>
-					<th>교체자 소속</th>
-					<td>${info.eReplacementRequester }
-						<input type="hidden" name="eReplacementRequester" id="eReplacementRequester" style="width:95%; text-align:left;" maxLength="50" value="${info.eReplacementRequester}"/>
+					<th>교체확인자 소속</th>
+					<td ><span id="eReplacedByOrgTxt">${info.eReplacedByOrg}</span>
+						<input type="hidden" id="eReplacedByOrg" name="eReplacedByOrg" style="width:240px;" maxLength="100" class="inp_color"  readonly="readonly" />
 					</td>
 				</tr>
 				<tr>

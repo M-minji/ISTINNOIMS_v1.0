@@ -553,14 +553,14 @@
 					</td>
 				</tr>
 				
-				<tr>
-					<th>*교체자</th>
+				<tr>					
+					<th>*교체확인자</th>
 					<td>
-						<input type="text" name="eReplacedBy" id="eReplacedBy" style="width:120px; text-align:center;" class="inp_color"   value="${info.eReplacedBy }"  readonly="readonly"/>
+						<input type="text" name="eReplacedBy" id="eReplacedBy" style="width:120px; text-align:center;" class="inp_color"   value="${info.eReplacedBy }"  class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eReplacedBy')"/>
 					</td>
-					<th>교체자 소속</th>
-					<td>
-						<input type="text" name="eReplacementRequester" id="eReplacementRequester" style="width:95%; text-align:left;" maxLength="30" value="${info.eReplacementRequester }"/>
+					<th>교체확인자 소속</th>
+					<td><span id="eReplacedByOrgTxt">${info.eReplacedByOrg}</span>
+						<input type="hidden" name="eReplacedByOrg" id="eReplacedByOrg" style="width:95%; text-align:left;" maxLength="100" class="inp_color"  readonly="readonly" value="${info.eReplacedByOrg }"/>
 					</td>
 				</tr>
 				<tr>
@@ -587,7 +587,7 @@
 	<div class="tbl_list">
 		<table>
 			<caption style="text-align: left; margin-bottom:10px;">
-				   <a class="mes_btn" onclick="sel_asset()" style="float:right">장비 선택</a>
+				   <a class="mes_btn" onclick="sel_asset()" style="float:right">*장비 선택</a>
 			</caption>
 				<thead>
 				<tr>

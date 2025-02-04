@@ -909,7 +909,7 @@
 	<div class="tbl_list" id="viewDiv2">
 		<table>
 			<caption style="text-align: left; margin-bottom:10px;">
-				   <a class="mes_btn" onclick="set_eHandler()" style="float:right">*처리자 행 추가 </a>
+				   <a class="mes_btn" onclick="set_eHandler()" style="float:right">처리자 행 추가 </a>
 			</caption>
 				<thead>
 				<tr> 

@@ -113,7 +113,8 @@
 		AND m.k_menu_visible_flag = 'T'
 		GROUP BY m.k_menu_key
 		ORDER BY 	m.k_menu_root,	m.k_menu_ref,		m.k_menu_depth,		m.k_menu_step
-	</select>	
+	</select>		
+	
 	<select id="mesUserDAO.selectSectorList" parameterClass="mesUserVO" resultClass="mesUserVO">
 		/* mesUserDAO.selectSectorList */
 		SELECT
@@ -630,7 +631,8 @@
 	
 	<insert id="mesUserDAO.mesUserMenuAuthUpdate" parameterClass="mesUserVO">
 		/* mesUserDAO.mesUserMenuAuthUpdate */
-		insert into k_menu_auth(k_menu_auth_key
+		insert into k_menu_auth(
+			k_menu_auth_key
 			, k_staff_key
 			, k_menu_key
 			, k_menu_auth_flag
