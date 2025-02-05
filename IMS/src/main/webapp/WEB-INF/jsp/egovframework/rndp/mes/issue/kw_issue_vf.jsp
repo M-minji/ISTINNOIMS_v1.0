@@ -581,7 +581,7 @@
 <!-- 					<th style="width: 10%;">구분</th> -->
 					<th style="width: 18%;">처리자명</th>
 					<th style="width: 18%;">처리자소속</th>
-					<th style="width: 18%;">역할</th>
+					<th style="width: 18%;">처리내용</th>
 					<th style="width: 18%;">연락처</th>
 					<th style="width: *;">비고</th>
 				</tr>

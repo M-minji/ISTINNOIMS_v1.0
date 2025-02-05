@@ -160,6 +160,7 @@ public class MesStatisticsController {
 		return "mes/statistics/kw_asset_lf.tiles";
 	}
 
+	// 보유자산 통계
 	@RequestMapping(value = "/mes/statistics/kw_asset_us_lf.do")
 	public String mesAssetUsLf(HttpServletRequest request
 			, RedirectAttributes redirectAttributes
@@ -213,6 +214,62 @@ public class MesStatisticsController {
 		redirectAttributes.addFlashAttribute("mesStatisticsVO", mesStatisticsVO);
 		
 		return "mes/statistics/kw_asset_us_lf.tiles";
+	}
+	
+	// 임시자산 통계
+	@RequestMapping(value = "/mes/statistics/kw_asset_tmp_lf.do")
+	public String mesAssetUsTmpLf(HttpServletRequest request
+			, RedirectAttributes redirectAttributes
+			, @ModelAttribute("mesStatisticsVO") MesStatisticsVO mesStatisticsVO
+			, ModelMap model) throws Exception{
+		
+		MesK_StaffVo staffVo = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");        
+		model.addAttribute("staffVo", staffVo);
+		
+		/* paging */
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(mesStatisticsVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(mesStatisticsVO.getRecordCountPerPage());
+		paginationInfo.setPageSize(mesStatisticsVO.getPageSize());
+		
+		mesStatisticsVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		mesStatisticsVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		mesStatisticsVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+		mesStatisticsVO = (MesStatisticsVO) DefultVO.getSearch(mesStatisticsVO);
+		
+		Date nowDate = new Date();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if(mesStatisticsVO.getTopStartDate().equals("") || mesStatisticsVO.getTopStartDate() == null){
+//			String temp = String.valueOf(dateFormat.format(nowDate));
+//			temp = temp.substring(0,8);
+//			temp += "01";
+			String temp = dateFormat.format(nowDate).substring(0, 4) + "-01-01";
+			mesStatisticsVO.setTopStartDate(temp);
+		}
+		if(mesStatisticsVO.getTopEndDate().equals("") || mesStatisticsVO.getTopEndDate() == null){
+			mesStatisticsVO.setTopEndDate(String.valueOf(dateFormat.format(nowDate)));
+		}
+		
+//		List assetList = mesStatisticsService.selectAssetUsList(mesStatisticsVO);
+//		model.addAttribute("assetList", assetList);
+//		
+//		List assetmcList = mesStatisticsService.selectAssetUsMcList(mesStatisticsVO);
+//		model.addAttribute("assetmcList", assetmcList);
+//		
+//		List ieList = mesStatisticsService.selectIEUsList(mesStatisticsVO);
+//		model.addAttribute("ieList", ieList);
+		List iMakerList = mesStatisticsService.eAssetTmpMakerList(mesStatisticsVO);
+		model.addAttribute("iMakerList", iMakerList);
+		
+		List iTypeList = mesStatisticsService.eAssetTmpTypeList(mesStatisticsVO);
+		model.addAttribute("iTypeList", iTypeList);
+		
+		model.addAttribute("paginationInfo", paginationInfo);
+		
+		redirectAttributes.addFlashAttribute("mesStatisticsVO", mesStatisticsVO);
+		
+		return "mes/statistics/kw_asset_tmp_lf.tiles";
 	}
 
 	@RequestMapping(value = "/mes/statistics/kw_outputs_lf.do")

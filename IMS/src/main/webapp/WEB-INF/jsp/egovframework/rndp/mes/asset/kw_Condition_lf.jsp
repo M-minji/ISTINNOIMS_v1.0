@@ -295,7 +295,7 @@ function excelDwonload(){
 					<th>모델명</th>
 					<th>반출일</th>
 					<th>반출자</th>
-					<th>빈출사유</th>
+					<th>반출사유</th>
 					<th>반입일자</th>
 					<th>반입확인자</th>
 					<th>상태</th>

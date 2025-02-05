@@ -130,5 +130,17 @@ public class MesStatisticsServiceImpl implements MesStatisticsService  {
 		// TODO Auto-generated method stub
 		return mesStatisticsDAO.selectProjectList(mesStatisticsVO);
 	}
+	
+	@Override
+	public List eAssetTmpMakerList(MesStatisticsVO mesStatisticsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return mesStatisticsDAO.eAssetTmpMakerList(mesStatisticsVO);
+	}
+
+	@Override
+	public List eAssetTmpTypeList(MesStatisticsVO mesStatisticsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return mesStatisticsDAO.eAssetTmpTypeList(mesStatisticsVO);
+	}
 
 }
