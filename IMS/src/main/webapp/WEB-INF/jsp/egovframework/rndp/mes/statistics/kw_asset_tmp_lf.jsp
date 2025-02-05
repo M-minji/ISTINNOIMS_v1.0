@@ -4,7 +4,10 @@
 <%@ taglib uri="http://egovframework.gov/ctl/ui" prefix="ui"%>
 <meta http-equiv="refresh" content="900">
 <link rel="stylesheet" type="text/css" href="/js/jquery-ui-1.14.1/jquery-ui.min.css" />
-<!-- <script src="/js/jquery-ui-1.14.1/jquery-ui.min.js"></script> -->
+
+<!-- 그리드 S -->
+<link href="/css/mes/mermaid.min.css" rel="stylesheet"	type="text/css" />
+<link href="/css/mes/jquery-ui.min.css" rel="stylesheet"	type="text/css" />
 
 <script src="/js/highchart/code/highcharts.js"></script>
 <script src="/js/highchart/code/modules/exporting.js"></script>
@@ -65,7 +68,7 @@
 		$('#mloader').show();
 		document.frm.submit();
 	}
-
+	
 	function showDiv(divId) {
 	    // Hide all divs
 	    document.getElementById('div1').style.display = 'none';
@@ -140,18 +143,26 @@
 	}
 </style>
 
-<form id="frm" name="frm" method="post" action="/mes/statistics/kw_outputs_lf.do">
+<form id="frm" name="frm" method="post" action="/mes/statistics/kw_asset_tmp_lf.do">
 	
 	<div class="content_up">
 		<div class="content_tit">
-			<h2>산출물 통계</h2>
+			<h2>임시자산 반입출 통계</h2>
 		</div>
 	
 	
 		<div class="tbl_top">
 			<ul class="tbl_top_left" >
+<!-- 				<li> -->
+<!-- 	          		<span>조회 구분</span> -->
+<!-- 					<select name="ePageGubun" id="ePageGubun" onchange="eNowPage()"> -->
+<%-- 						<option value="1" <c:if test="${mesStatisticsVO.ePageGubun eq '1'}">selected</c:if>>사용자기준</option> --%>
+<%-- 						<option value="2" <c:if test="${mesStatisticsVO.ePageGubun eq '2'}">selected</c:if>>유형별기준</option> --%>
+<%-- 						<option value="3" <c:if test="${mesStatisticsVO.ePageGubun eq '3'}">selected</c:if>>기간별</option> --%>
+<!-- 			      	</select> -->
+<!-- 			    </li> -->
 				<li>
-	           		<span>사업기간기간 </span>
+	           		<span>기간 </span>
 		       		<input type="text" class='inp_color' name="topStartDate" style="width:120px; text-align:center;" id="topStartDate" value="${mesStatisticsVO.topStartDate}" readonly/>
 		       		~
 		           	<input type="text" class='inp_color' name="topEndDate" style="width:120px; text-align:center;"  id="topEndDate"  value="${mesStatisticsVO.topEndDate}" readonly/>
@@ -174,41 +185,26 @@
 	<div id="div1"  style="display: block;" >
 		<div class="lf_tbl_list">
 	 		<table style="width:100%" >
-	   		   <thead>
-   		  		<tr> 
-	   		  		<th rowspan="2">프로젝트명</th>
-	   		  		<th colspan="4"> 산출물 </th>
-	   		  		
-  		  		</tr>
-  		  		<tr>
-  		  			<th>착수</th>
-	   		  		<th>중간</th>
-	   		  		<th>완료</th>
-	   		  		<th>합계</th>
+	   		  <thead>
+	   		  	<tr> 
+	   		  		<th>제조사</th>
+	   		  		<th>반입</th>
+	   		  		<th>미반출</th>
   		  		</tr>
 	   		  </thead>
-	   		  <tbody>
-	   		 	<c:forEach var="outputList" items="${outputList}" varStatus="status1">
-	  		  			<tr> 
-			   		  		<td>
-								<c:out value="${outputList.eWordA}" />
-								<input type="hidden" id="eWordA_${status1.index}" name="eWordA" value="${outputList.eWordA}">
-								<input type="hidden" id="eValueD_${status1.index}" name="eValueD" value="${outputList.eValueD}">
+	   		   <tbody>
+	   		 	<c:forEach var="iMakerList" items="${iMakerList}" varStatus="a">
+	  		  			<tr>
+				   		 	<td>${iMakerList.eWordA}
+								<input type="hidden" id="eWordA_${a.index}" name="eWordA" value="${iMakerList.eWordA}">
+								<input type="hidden" id="eValueA_${a.index}" name="eValueA" value="${iMakerList.eValueA}">
+								<input type="hidden" id="eWordB_${a.index}" name="eValueB" value="${iMakerList.eValueB}">
 							</td>
-							<td>
-			   		  			 ${outputList.eValueA} 
-							</td>
-							<td>
-			   		  			 ${outputList.eValueB} 
-							</td>
-							<td>
-			   		  			 ${outputList.eValueC} 
-							</td>
-							<td>
-			   		  			 ${outputList.eValueD} 
-							</td>
+				   		 	<td>${iMakerList.eValueA}</td>
+				   		 	<td>${iMakerList.eValueB}</td>
+								
 						</tr>
-				</c:forEach>
+	  		  		</c:forEach>
 	   		  </tbody>
 			</table>
 		</div>
@@ -219,40 +215,24 @@
 	 		<table style="width:100%" >
 	   		  <thead>
 	   		  	<tr> 
-	   		  		<th rowspan="2">프로젝트명</th>
-	   		  		<th colspan="4"> 보고서 </th>
-	   		  		
-  		  		</tr>
-  		  		<tr>
-  		  			<th>착수</th>
-	   		  		<th>중간</th>
-	   		  		<th>완료</th>
-	   		  		<th>합계</th>
+	   		  		<th>자산유형</th>
+	   		  		<th>반입</th>
+	   		  		<th>미반출</th>
   		  		</tr>
 	   		  </thead>
-	   		  <tbody>
-	   		 	<c:forEach var="projectList" items="${projectList}" varStatus="status2">
+	   		   <tbody>
+	   		 	<c:forEach var="iTypeList" items="${iTypeList}" varStatus="b">
 	  		  			<tr> 
-			   		  		<td>
-								<c:out value="${projectList.eWordA}" />
-								<input type="hidden" id="eWordB_${status2.index}" name="eWordB" value="${projectList.eWordA}">
-								<input type="hidden" id="eValueB_${status2.index}" name="eValueB" value="${projectList.eValueD}">
+			   		  		<td>${iTypeList.eWordB}
+								<input type="hidden" id="eWordB_${b.index}" name="eWordB" value="${iTypeList.eWordB}">
+								<input type="hidden" id="eValueC_${b.index}" name="eValueC" value="${iTypeList.eValueC}">
+								<input type="hidden" id="eValueD_${b.index}" name="eValueD" value="${iTypeList.eValueD}">
 							</td>
-							<td>
-			   		  			 ${projectList.eValueA} 
-							</td>
-							<td>
-			   		  			 ${projectList.eValueB} 
-							</td>
-							<td>
-			   		  			 ${projectList.eValueC} 
-							</td>
-							<td>
-			   		  			 ${projectList.eValueD} 
-							</td>
+				   		 	<td>${iTypeList.eValueC}</td>
+				   		 	<td>${iTypeList.eValueD}</td>
 						</tr>
-				</c:forEach>
-	   		  </tbody>
+	  		  		</c:forEach>
+	   		  	</tbody>
 			</table>
 		</div>
 	</div>
@@ -262,19 +242,19 @@
 	 		<table style="width:100%" >
 	   		  <thead>
 	   		  	<tr> 
-	   		  		<th>사용자명</th>
+	   		  		<th>기간</th>
 	   		  		<th>건수</th>
-  		  		</tr>
+	  		  		</tr>
 	   		  </thead>
 	   		  <tbody>
-	   		 	<c:forEach var="outputsmemList" items="${outputsmemList}" varStatus="status1">
-	   		 		<c:if test="${outputsmemList.kStaffName ne ''}"> 
+	   		 	<c:forEach var="statisticsList" items="${statisticsList}" varStatus="status1">
+	   		 		<c:if test="${statisticsList.mMaintanceCount > 0}"> 
 	  		  			<tr> 
 			   		  		<td>
-								<c:out value="${outputsmemList.kStaffName}" />
+								<c:out value="${statisticsList.eDate}" />
 							</td>
 							<td>
-			   		  			 ${outputsmemList.sOutputCount} 
+			   		  			 ${statisticsList.mMaintanceCount} 
 							</td>
 						</tr>
 						</c:if>
@@ -283,33 +263,6 @@
 			</table>
 		</div>
 	</div>
-	
-	<c:forEach var="outputsyList" items="${outputsyList}" varStatus="i">
-		<c:if test="${outputsyList.sOutputCount > 0}">
-		<input type="hidden" id="sYear_${i.index}" name="sYear" value="${outputsyList.sYear}">
-		<input type="hidden" id="sOutputYCount_${i.index}" name="sOutputYCount" value="${outputsyList.sOutputCount}">
-		</c:if>
-	</c:forEach>
-
-	<c:forEach var="outputsmList" items="${outputsmList}" varStatus="i">
-		<c:if test="${outputsmList.sOutputCount > 0}">
-		<input type="hidden" id="eDate_${i.index}" name="eDate" value="${outputsmList.eDate}">
-		<input type="hidden" id="sOutputmCount_${i.index}" name="sOutputmCount" value="${outputsmList.sOutputCount}">
-		</c:if>
-	</c:forEach>
-
-	<c:forEach var="outputsmemList" items="${outputsmemList}" varStatus="i">
-		<c:if test="${outputsmemList.sOutputCount > 0}">
-		<input type="hidden" id="kStaffName_${i.index}" name="kStaffName" value="${outputsmemList.kStaffName}">
-		<input type="hidden" id="sOutputmemCount_${i.index}" name="sOutputmemCount" value="${outputsmemList.sOutputCount}">
-		</c:if>
-	</c:forEach>
-	
-	<c:forEach var="environmentList" items="${environmentList}" varStatus="i">
-		<input type="hidden" id="maxtemperature_${i.index}" name="maxtemperature" value="${environmentList.maxtemperature}">
-		<input type="hidden" id="mintemperature_${i.index}" name="mintemperature" value="${environmentList.mintemperature}">
-		<input type="hidden" id="environmentName_${i.index}" name="environmentName" value="${environmentList.environmentName}">
-	</c:forEach>
 </form>
 
 
@@ -317,28 +270,20 @@
 <script>
 	const eMachineDate = document.getElementsByName('eDate');
 	const eMachineDateValue = Array.from(eMachineDate).map(eMachineDate => eMachineDate.value);
-
-	const sYear = document.getElementsByName('sYear');
-	const sYearValue = Array.from(sYear).map(sYear => sYear.value);
+ 
+	const Countst = document.getElementsByName('Countst');
+	const CountstValue = Array.from(Countst).map(Countst => parseInt(Countst.value));
+ 
 	
-	const sOutputYCount = document.getElementsByName('sOutputYCount');
-	const sOutputYCountValue = Array.from(sOutputYCount).map(sOutputYCount => parseInt(sOutputYCount.value));
 	
-	const sOutputmCount = document.getElementsByName('sOutputmCount');
-	const sOutputmCountValue = Array.from(sOutputmCount).map(sOutputmCount => parseInt(sOutputmCount.value));
+// 	--
+	const eValueA = document.getElementsByName('eValueA');
+	const eValueAValue = Array.from(eValueA).map(eValueA => parseInt(eValueA.value));
+
+	const eWordAa = document.getElementsByName('eWordA');
+	const eWordAValuea = Array.from(eWordAa).map(eWordAa => eWordAa.value);
+	 
 	
-	const kStaffName = document.getElementsByName('kStaffName');
-	const kStaffNameValue = Array.from(kStaffName).map(kStaffName => kStaffName.value);
-
-	const sOutputmemCount = document.getElementsByName('sOutputmemCount');
-	const sOutputmemCountValue = Array.from(sOutputmemCount).map(sOutputmemCount => parseInt(sOutputmemCount.value));
-	
-	const eWordA = document.getElementsByName('eWordA');
-	const eWordAValue = Array.from(eWordA).map(eWordA => eWordA.value);
-
-	const eValueD = document.getElementsByName('eValueD');
-	const eValueDCountValue = Array.from(eValueD).map(eValueD => parseInt(eValueD.value));
-
 	function uncomma(str) {
 	    str = String(str);
 	    return isNullChk(str.replace(/(,)/g, ''));
@@ -352,14 +297,14 @@
 	
 	const chart1 = Highcharts.chart('containerGraph1', {
 	    chart: {
-	        type: 'column',
+	        type: 'pie',
 	        width: 650
 	    },
 	    title: {
-	        text: '프로젝트당 산출물 등록 건'
+	        text: '제조사별 반입 등록 건'
 	    },
 	    xAxis: {
-	        categories: eWordAValue, // 원형 그래프와 같은 날짜를 사용합니다.
+	        categories: eWordAValuea,
 	        crosshair: true
 	    },
 	    yAxis: {
@@ -372,39 +317,42 @@
 	        valueSuffix: '건'
 	    },
 	    plotOptions: {
-	        column: {
-	            dataLabels: {
-	                enabled: true,
-	                format: '{point.y}', // 막대 그래프의 데이터 라벨 포맷 설정
-	                inside: true
-	            }
-	        }
+	    	 pie: {
+	             allowPointSelect: true,
+	             cursor: 'pointer',
+	             dataLabels: {
+	                 enabled: true,
+	                 format: '<b>{point.name}</b>: {point.y}건' // 각 섹션의 데이터 라벨 포맷 설정
+	             }
+	    	 }
 	    },
 	    series: [
-	    	 {
-	                id: 'Countst',
-		            name: '건',
-		            data: eWordAValue.map((name, index) => ({ name, y: eValueDCountValue[index] })),
-	                visible: true
-		        }
-	    	]
+	        {
+	        	name: '등록 개수',
+	            data: eWordAValuea.map((name, index) => ({ name, y: eValueAValue[index] })),
+	            visible: true
+	        }
+	    ]
 	});
-	const eWordB = document.getElementsByName('eWordB');
-	const eWordBValue = Array.from(eWordB).map(eWordB => eWordB.value);
+// 	--
+	const eValueB = document.getElementsByName('eValueC');
+	const eValueBValue = Array.from(eValueB).map(eValueB => parseInt(eValueB.value));
 
-	const eValueB = document.getElementsByName('eValueB');
-	const eValueBCountValue = Array.from(eValueB).map(eValueB => parseInt(eValueB.value));
+	const eWordBa = document.getElementsByName('eWordB');
+	const eWordBValuea = Array.from(eWordBa).map(eWordBa => eWordBa.value);
+	
 	const chart2 = Highcharts.chart('containerGraph2', {
 		 chart: {
-		        type: 'pie',
+		        type: 'column',
 		        width: 650
 		    },
 		    title: {
-		        text: '프로젝트 보고서 등록 건'
+		        text: '유형별 반입 등록 건'
 		    },
 		    xAxis: {
-		        categories: eWordBValue,
+		        categories: eWordBValuea,
 		        crosshair: true
+		        
 		    },
 		    yAxis: {
 		        min: 0,
@@ -416,19 +364,17 @@
 		        valueSuffix: '건'
 		    },
 		    plotOptions: {
-		    	 pie: {
-		             allowPointSelect: true,
-		             cursor: 'pointer',
-		             dataLabels: {
-		                 enabled: true,
-		                 format: '<b>{point.name}</b>: {point.y}건' // 각 섹션의 데이터 라벨 포맷 설정
-		             }
-		    	 }
+		    	  column: {
+		    	        dataLabels: {
+		    	            enabled: true,  // 막대에 수량 표시
+		    	            format: '{point.y}건'  // 수량 포맷 설정
+		    	        }
+		    	    } 
 		    },
 		    series: [
 		    	{
-		        	name: '요청 개수',
-		            data: eWordBValue.map((name, index) => ({ name, y: eValueBCountValue[index] })),
+		        	name: '자산 유형',
+		            data: eWordBValuea.map((name, index) => ({ name, y: eValueBValue[index] })),
 		            visible: true
 		        }
 		    ]
@@ -436,11 +382,11 @@
 
 	const barChart = Highcharts.chart('containerGraph3', {
 	    chart: {
-	        type: 'column' ,
+	        type: 'column', // 막대 그래프로 설정
 	        width: 650
 	    },
 	    title: {
-	        text: '월별'
+	        text: '기간별'
 	    },
 	    xAxis: {
 	        categories: eMachineDateValue, // 원형 그래프와 같은 날짜를 사용합니다.
@@ -468,7 +414,7 @@
 	    	 {
 	                id: 'Countst',
 		            name: '요청 수',
-		            data: sOutputmCountValue,
+		            data: CountstValue,
 	                visible: true
 		        }
 	    	]
