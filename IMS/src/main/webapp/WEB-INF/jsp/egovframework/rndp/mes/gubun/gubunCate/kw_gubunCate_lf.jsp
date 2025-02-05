@@ -106,7 +106,7 @@ function cancel(){
 			</ul>
 				<ul class="tbl_bottom_right">				
 				<li>
-					<a style="cursor: pointer;" onclick="go_insert()">등록</a>
+	<!--  				<a style="cursor: pointer;" onclick="go_insert()">등록</a>   -->
 				</li>
 				<li>
 					<a style="cursor: pointer;" onclick="cancel()" >뒤로가기</a>

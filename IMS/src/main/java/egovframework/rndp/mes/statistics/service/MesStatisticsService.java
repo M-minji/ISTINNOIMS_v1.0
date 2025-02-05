@@ -46,5 +46,9 @@ public interface MesStatisticsService {
 	public List selectOutputList(MesStatisticsVO mesStatisticsVO) throws Exception;
 
 	public List selectProjectList(MesStatisticsVO mesStatisticsVO) throws Exception;
+	
+	public List eAssetTmpMakerList(MesStatisticsVO mesStatisticsVO) throws Exception;
+
+	public List eAssetTmpTypeList(MesStatisticsVO mesStatisticsVO) throws Exception;
 
 }

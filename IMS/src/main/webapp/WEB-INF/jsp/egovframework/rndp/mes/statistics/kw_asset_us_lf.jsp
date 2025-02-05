@@ -328,7 +328,7 @@
 	    },
 	    series: [
 	        {
-	        	name: '등록 갯수',
+	        	name: '등록 개수',
 	            data: eWordAValuea.map((name, index) => ({ name, y: eValueAValue[index] })),
 	            visible: true
 	        }

@@ -415,5 +415,29 @@
 		   
 		  GROUP BY pp.P_PROJECT_NUM
      </select>
+     
+     <select id="mesStatisticsDAO.eAssetTmpMakerList" parameterClass="mesStatisticsVO"  resultClass="mesStatisticsVO">
+    	 /*mesStatisticsDAO.eAssetTmpMakerList*/
+    	 	SELECT  
+	     		COUNT(eei.eEquipmentItemKey) AS eValueA
+				,eei.eAssetMaker  AS eWordA 
+				,SUM(CASE WHEN eei.eEntryExporterDate IS NULL OR eei.eEntryExporterDate = '' THEN 1 ELSE 0 END) AS eValueB
+			FROM E_EQUIPMENT_IN_ITEM AS eei
+			LEFT JOIN E_EQUIPMENT_IN AS ee ON (ee.eEquipmentInKey =eei.eEquipmentInKey) 
+			WHERE ee.eStatus != '삭제' AND (eei.eAssetMaker IS NOT NULL AND eei.eAssetMaker != '') 
+				AND  DATE_FORMAT(ee.eEntryImportDate, '%Y-%m-%d') BETWEEN #topStartDate# AND #topEndDate#
+			GROUP BY eei.eAssetMaker
+     </select>
+    <select id="mesStatisticsDAO.eAssetTmpTypeList" parameterClass="mesStatisticsVO"  resultClass="mesStatisticsVO">
+     /*mesStatisticsDAO.eAssetTmpTypeList*/
+   			SELECT  
+     			COUNT(eei.eAssetTypeName)  AS eValueC
+				,eei.eAssetTypeName  AS eWordB
+				,SUM(CASE WHEN eei.eEntryExporterDate IS NULL OR eei.eEntryExporterDate = '' THEN 1 ELSE 0 END) AS eValueD
+			FROM E_EQUIPMENT_IN_ITEM AS eei
+			LEFT JOIN E_EQUIPMENT_IN AS ee ON (ee.eEquipmentInKey =eei.eEquipmentInKey) 
+			WHERE ee.eStatus != '삭제'  AND  DATE_FORMAT(ee.eEntryImportDate, '%Y-%m-%d') BETWEEN #topStartDate# AND #topEndDate#
+			GROUP BY eei.eAssetTypeName
+     </select>
         
 </sqlMap>

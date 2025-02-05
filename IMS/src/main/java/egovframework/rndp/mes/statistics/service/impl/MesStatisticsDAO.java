@@ -103,4 +103,14 @@ public class MesStatisticsDAO extends EgovAbstractDAO{
 		return list("mesStatisticsDAO.selectProjectList", mesStatisticsVO);
 	}
 
+	public List eAssetTmpMakerList(MesStatisticsVO mesStatisticsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return list("mesStatisticsDAO.eAssetTmpMakerList", mesStatisticsVO);
+	}
+
+	public List eAssetTmpTypeList(MesStatisticsVO mesStatisticsVO) throws Exception {
+		// TODO Auto-generated method stub
+		return list("mesStatisticsDAO.eAssetTmpTypeList", mesStatisticsVO);
+	}
+
 }
