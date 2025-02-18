@@ -27,7 +27,7 @@
 <div class="login_wrap">
         <header>
             <div class="inner">            
-            <img src='/cmm/fms/getImage.do?atchFileId=${mainLogo}&fileSn=0'  alt="로고" onerror="this.style.display='none';"/>             
+            <img src='/cmm/fms/getImage.do?atchFileId=${mainLogo}&fileSn=0'  alt="로고" onerror="this.src='/images/images/innost_logo.png'"/>             
             </div>
 
         </header>
