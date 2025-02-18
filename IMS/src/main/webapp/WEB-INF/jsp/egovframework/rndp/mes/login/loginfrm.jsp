@@ -100,9 +100,8 @@ function fn_keyDown(){
                  <p>* 원하시는 서비스를 이용하기 위해서는 로그인을 해주세요. </p> 
                 <div class="tab_login">
                     <ul class="tab_btn_area">
-                        <li class="tab_btn id on"></li>
-<!--                         <a ><span>회원 로그인</span></a> -->
-<!--                         <li class="tab_btn bio btn_bio"><a href="/admin/loginfrm.do"><span>관리자 로그인</span></a></li> -->
+                        <li class="tab_btn id on"><span>회원 로그인</span></li>
+                         <li class="tab_btn bio btn_bio"><a href="/admin/loginfrm.do"><span>관리자 로그인</span></a></li> 
                     </ul>
                      <form name="writeform" method="post" action="/mes/login.do">   
                      	<input type="hidden" name="csrfToken" value="${sessionScope.csrfToken}"/>
