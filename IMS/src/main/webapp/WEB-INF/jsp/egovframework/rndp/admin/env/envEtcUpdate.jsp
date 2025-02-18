@@ -122,7 +122,7 @@ function aaa2(){
 				</c:forEach>
 				
 				<tr style="align-items: center;">
-						<th colspan="1">기업로고 <a onclick="mesIMGreg('comLogImgName');" class='mes_btn'>등록</a></th>
+						<th colspan="1">페이지 헤더 로고 <a onclick="mesIMGreg('comLogImgName');" class='mes_btn'>등록</a></th>
 						<td colspan="1"> 
 						 <input type="hidden" name="name" value="comLogImgName" id="comLogImgName"/>
 						 <input type="hidden" name="value" value="${comLogImgName}" id="comLogImgName"/>
@@ -136,7 +136,7 @@ function aaa2(){
 						</td>
 						</tr>
 						<tr>
-						<th colspan="1">기업메인화면로고 <a onclick="mesIMGreg('mainLogImgName');" class='mes_btn'>등록</a></th>
+						<th colspan="1">로그인 기업 로고 <a onclick="mesIMGreg('mainLogImgName');" class='mes_btn'>등록</a></th>
 						<td colspan="1">
 							 <input type="hidden" name="name" value="mainLogImg"/>
 					 		 <input type="hidden" name="value" value="${mainLogImg}" id="mainLogImg">
