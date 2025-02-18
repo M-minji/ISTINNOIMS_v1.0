@@ -478,7 +478,7 @@ input[name="tab_itemTwo"] {
 					<tr>
 						<th style="width:10%;">기타</th>
 						<td id="td_editor" colspan="3" align="center" scope="row">${projectInfo.eRemarks}</td>
-						<th style="width:10%;">사업진행</th>
+						<th style="width:10%;">*사업진행</th>
 						<td> 
 							<input type="text" id="eProjectStatus" name="eProjectStatus" style="width:90%; text-align: left;padding-left: 5px;"  maxlength="30"  value="${projectInfo.eProjectStatus eq '등록' ? '' : projectInfo.eProjectStatus}"  />
 						</td>
