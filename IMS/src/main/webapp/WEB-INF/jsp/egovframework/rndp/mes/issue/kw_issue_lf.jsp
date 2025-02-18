@@ -15,9 +15,14 @@
 <script src="/js/jquery.table2excel.js"></script>
 
 <script type="text/javascript">
+
 $(document).ready(function(){
+	
+		// 달력 설정
 		datepickerSet('topStartDate', 'topEndDate');
 		datepickerIdSet("eSearchWordG");
+		
+		// 스타일 적용
 		viewGubun();
 		tdBlock(10);
 		  $('table[role="grid"].gridjs-table th:nth-child(1) button').hide();
@@ -57,6 +62,7 @@ $(document).ready(function(){
 		  
 	}); 
 	
+	// 현황 다운로드
 	function excelDownload(){
 		//var title = $(".content_tit h2").text();
 		var title = "유지관리";
