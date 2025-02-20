@@ -174,18 +174,53 @@ function checkAllConditions() {
 	    if (requiredFieldsCount > 0) {
 	        alertMessage += "필수 입력 항목 누락!  " ; // +requiredFieldsCount+"건\n";    // 필수 누락은 카운트 뺌
 	    }
+	    if(ANexcelCheckNum > 0) {
+			 alertMessage = "등록하신 파일 내부에 중복되는 자산번호가 존재합니다.\n"
+			 alertMessage = alertMessage.slice(0, -1);
+			 alertMessage += "\n";
+		 }
+	    if(SNexcelCheckNum > 0) {
+			 alertMessage = "엑셀 파일 내부에서 중복되는 제조번호가 존재합니다."
+			 for(let msg of SNDuplicatearr){
+				 alertMessage += msg;
+			 }
+		 }
+	    if(duplicateValueAN > 0) {
+			 alertMessage = duplicateeAssetNumber;
+			 alertMessage = alertMessage.slice(0, -1);
+			 alertMessage += "\n";
+		 }
+	    if(duplicateValueSN > 0) {
+			 alertMessage += duplicateeAssetSNumber;
+			 alertMessage = alertMessage.slice(0, -1);
+			 alertMessage += "\n";
+		 }
 	if (assetTypeCount === 0 && assetStatusCount === 0 && specialCharCount === 0 &&
-	        checkCount === 0 && dateCheckCount === 0 && requiredFieldsCount === 0) {
+	        checkCount === 0 && dateCheckCount === 0 && requiredFieldsCount === 0 && duplicateValueSN == 0 && duplicateValueAN == 0 &&
+	        ANexcelCheckNum == 0 && SNexcelCheckNum == 0) {
 	        return false;  // 모든 카운트가 0일 때 false  반환
 	    }else{
-	    	alertMessage += "으로 등록이 취소되었습니다."
-	    	// 카운트 초기화
+	    	// 초기화
 	    	assetTypeCount = 0;
 	    	assetStatusCount=0;
 	    	specialCharCount=0;
 	    	checkCount=0;
 	    	dateCheckCount=0;
 	    	requiredFieldsCount=0;
+	    	SNarr = [];
+	    	ANarr = [];
+	    	SNarrIdx = [];
+	    	ANarrIdx = [];
+	    	tmpSN = 2;
+	    	tmpAN = 2;
+	    	SNDuplicatearr = [];
+	    	ANDuplicatearr = [];
+	    	SNexcelCheckNum = 0;
+	    	ANexcelCheckNum = 0;
+	    	duplicateValueSN=0;
+	    	duplicateValueAN=0;
+	    	duplicateeAssetSNumber = "제조번호 중복 :";
+			duplicateeAssetNumber = "자산번호 중복 :";
 	    }
     return true;  // 그 외에는 true 반환
 }
@@ -207,6 +242,93 @@ function processInput(input,maxDigits) {
     return number >= 0 ? number : 0;
 }
 
+let SNarr = [];	// 엑셀에 있는 값을 담을 배열
+let ANarr = [];
+let SNarrIdx = []; // 행을 담을 배열
+let ANarrIdx = [];
+var tmpSN = 2;
+var tmpAN = 2;
+let SNDuplicatearr = [];	
+let ANDuplicatearr = [];
+let SNexcelCheckNum = 0;
+let ANexcelCheckNum = 0;
+function SNexcelCheck(sn, index){
+	var value = sn.trim();
+	if(SNarr.includes(value)) {
+		SNexcelCheckNum++;
+		var indexNum = SNDuplicatearr.findIndex(str => str.includes("'" + value + "'  "));
+		if(indexNum < 0) {	// 중복이 처음 발견됨
+			SNDuplicatearr.push("\n'" + value + "'  " + SNarrIdx[SNarr.indexOf(value)] + "행, " + (index+1) + "행");
+		} else {	// 중복이 또 발견됨 (3개이상)
+			SNDuplicatearr[indexNum] += (", " + (index+1) + "행");  
+		}
+	} else {
+		SNarr.push(value);
+		SNarrIdx.push(tmpSN)
+	}
+	tmpSN++;
+}
+function ANexcelCheck(an){
+	var value = an.trim();
+	if(ANarr.includes(value)) {
+		ANexcelCheckNum++;
+		ANDuplicatearr.push(value);
+	} else {
+		ANarr.push(value);
+	}
+}
+
+let duplicateValueSN = 0;
+var duplicateeAssetSNumber = "제조번호 중복 :";
+let duplicateValueAN = 0;
+var duplicateeAssetNumber = "자산번호 중복 :";
+function eAssetSNumberCheck(ogj){
+	
+    var value = ogj;
+    
+        $.ajax({
+			type		: "post"
+		,	dataType	: "json"
+		,	url			: "/mes/asset/kw_asset_sNumber_check.do"
+		,	data		: {
+			eAssetSNumber : value
+			}
+		, async: false
+		,	success		: function(msg){
+			var dataInfo  = msg.result.dataAdd;
+			 if (dataInfo > 0) {
+                // 데이터가 있는 경우 -> 중복 제조번호
+                duplicateeAssetSNumber += (" " + ogj + ",");
+                duplicateValueSN++;
+                return false;
+            }
+			}
+		});
+
+}
+function eAssetNumberCheck(obb){
+    var ttvalue = obb;
+    
+        $.ajax({
+			type		: "post"
+		,	dataType	: "json"
+		,	url			: "/mes/asset/kw_eAssetNumberCheck.do"
+		,	data		: {
+			eAssetSNumber : ttvalue
+			}
+		, async: false
+		,	success		: function(msg){
+			var dataInfo  = msg.result.dataAdd;
+			 if (dataInfo > 0) {
+                // 데이터가 있는 경우 -> 중복 자산번호
+				 duplicateeAssetNumber += (" " + obb + ",");
+	                duplicateValueAN++;
+	                return false;
+            	}
+			}
+		});
+
+}
 
 function readExcel(e) {
     var input = event.target;
@@ -218,9 +340,30 @@ function readExcel(e) {
         workBook.SheetNames.forEach(function (sheetName) {
             var arr = XLSX.utils.sheet_to_json(workBook.Sheets[sheetName], {header:1, raw:false});
         	for(var i = 1 ; i < arr.length; i++){  
-        		
         		//필수값 확인
         		checkRequiredFields(arr[i][0],arr[i][1],arr[i][2],arr[i][3],arr[i][4],arr[i][5]);
+        		if(requiredFieldsCount != 0) {	// 필수값이 비어있으면 다른값 체크 안하고 나감
+        			break;
+        		}
+        		// 엑셀 내 중복 확인
+        		ANexcelCheck(arr[i][1]); // 자산번호
+        		SNexcelCheck(arr[i][4], i);	// 제조번호
+        		if(ANexcelCheckNum != 0 || SNexcelCheckNum != 0) {		// 중복이 있다면 중복값만 체크함. 다른 validation 체크는 중복이 없을 경우에만 실행함
+        			if(i < arr.length - 1) {
+        				continue;
+        			}
+        			break;
+        		}
+        		// 등록 된 자산과 중복 비교
+        		eAssetNumberCheck(arr[i][1]); // 자산번호
+        		eAssetSNumberCheck(arr[i][4]) // 제조번호
+        		if(duplicateValueSN != 0 || duplicateValueAN != 0) {
+        			if(i < arr.length - 1) {
+        				continue;
+        			}
+        			break;
+        		}
+        		
         		//자산유형 확인
         		checkAssetType(arr[i][0]);
                 //텍스트 입력값 길이 확인        		
