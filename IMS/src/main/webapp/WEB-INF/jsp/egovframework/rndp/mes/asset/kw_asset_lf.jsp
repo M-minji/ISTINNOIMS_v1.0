@@ -102,13 +102,16 @@ function checkTextLength(text, maxLength) {
  const invalidChars = ['<', '>', '"', "'", '&'];
  let specialCharStatus = false; // 특수문자 포함 여부
  // 특수문자 체크
+ var specialCheck = false;
  invalidChars.forEach(char => {
      if (text.includes(char)) {
          //specialCharStatus = true;  // 특수문자 포함 시 true로 설정
-    	  specialCharCount++;
+    	 specialCheck = true;
      }
  });
- 
+ if(specialCheck) {
+	 specialCharCount++;
+ }
  
 }
 
@@ -160,32 +163,66 @@ function checkAllConditions() {
 	    }
 
 	    if (specialCharCount > 0) {
-	        alertMessage += "특수문자 포함 오류!  "+specialCharCount+"건\n";
+	    	alertMessage += '특수문자 (<, >, ", \', &) 포함 셀! ' + specialCharCount + '건\n';
 	    }
 
 	    if (checkCount > 0) {
-	        alertMessage += "길이 초과 오류!  "+checkCount+"건\n";
+	        alertMessage += "텍스트 길이 80자 초과!  "+checkCount+"건\n";
 	    }
 
 	    if (dateCheckCount > 0) {
-	        alertMessage += "날짜 형식 오류!  "+dateCheckCount+"건\n";
+	        alertMessage += "날짜 형식(YYYY-MM-DD) 오류!  "+dateCheckCount+"건\n";
 	    }
 	  
 	    if (requiredFieldsCount > 0) {
 	        alertMessage += "필수 입력 항목 누락!  " ; // +requiredFieldsCount+"건\n";    // 필수 누락은 카운트 뺌
 	    }
+	    if(ANexcelCheckNum > 0) {
+	    		alertMessage = "엑셀 파일에서 중복되는 자산번호를 발견하였습니다."
+				 for(let msg of ANDuplicatearr){
+					 alertMessage += msg;
+				 }
+	    		alertMessage += "\n";
+		 }
+	    if(SNexcelCheckNum > 0) {
+	    	alertMessage += "\n";
+			 alertMessage += "엑셀 파일에서 중복되는 제조번호를 발견하였습니다."
+			 for(let msg of SNDuplicatearr){
+				 alertMessage += msg;
+			 }
+		 }
+	    if(duplicateValueAN > 0) {
+			 alertMessage = "등록된 자산과 중복되는 자산번호를 발견하였습니다.\n" + duplicateeAssetNumber;
+		 }
+	    if(duplicateValueSN > 0) {
+	    	alertMessage += "\n등록된 자산과 중복되는 제조번호를 발견하였습니다.\n" + duplicateeAssetSNumber;
+		 }
 	if (assetTypeCount === 0 && assetStatusCount === 0 && specialCharCount === 0 &&
-	        checkCount === 0 && dateCheckCount === 0 && requiredFieldsCount === 0) {
+	        checkCount === 0 && dateCheckCount === 0 && requiredFieldsCount === 0 && duplicateValueSN == 0 && duplicateValueAN == 0 &&
+	        ANexcelCheckNum == 0 && SNexcelCheckNum == 0) {
 	        return false;  // 모든 카운트가 0일 때 false  반환
 	    }else{
-	    	alertMessage += "으로 등록이 취소되었습니다."
-	    	// 카운트 초기화
+	    	// 초기화
 	    	assetTypeCount = 0;
 	    	assetStatusCount=0;
 	    	specialCharCount=0;
 	    	checkCount=0;
 	    	dateCheckCount=0;
 	    	requiredFieldsCount=0;
+	    	SNarr = [];
+	    	ANarr = [];
+	    	SNarrIdx = [];
+	    	ANarrIdx = [];
+	    	tmpSN = 2;
+	    	tmpAN = 2;
+	    	SNDuplicatearr = [];
+	    	ANDuplicatearr = [];
+	    	SNexcelCheckNum = 0;
+	    	ANexcelCheckNum = 0;
+	    	duplicateValueSN=0;
+	    	duplicateValueAN=0;
+	    	duplicateeAssetSNumber = "";
+			duplicateeAssetNumber = "";
 	    }
     return true;  // 그 외에는 true 반환
 }
@@ -207,6 +244,102 @@ function processInput(input,maxDigits) {
     return number >= 0 ? number : 0;
 }
 
+// 엑셀 업로드 시 엑셀 내 중복 체크
+let SNarr = [];	// 최초로 나온 제조번호의 엑셀 행을 담을 배열
+let ANarr = [];
+let SNarrIdx = []; // 최초로 나온 제조번호의 엑셀 행을 담을 배열
+let ANarrIdx = [];
+var tmpSN = 2;		// 반복문을 돌 때 플러스 시켜 중복이 발생한 행을 알게 함
+var tmpAN = 2;
+let SNDuplicatearr = [];	// 중복이 발생한 행을 담을 배열
+let ANDuplicatearr = [];
+let SNexcelCheckNum = 0;	// 중복 여부를 판단하기 위함
+let ANexcelCheckNum = 0;
+function SNexcelCheck(sn, index){
+	var value = sn.trim();
+	if(SNarr.includes(value)) {
+		SNexcelCheckNum++;
+		var indexNum = SNDuplicatearr.findIndex(str => str.includes("'" + value + "'  "));
+		if(indexNum < 0) {	// 중복이 처음 발견됨
+			SNDuplicatearr.push("\n'" + value + "'  " + SNarrIdx[SNarr.indexOf(value)] + "행, " + (index+1) + "행");
+		} else {	// 중복이 또 발견됨 (3개이상)
+			SNDuplicatearr[indexNum] += (", " + (index+1) + "행");  
+		}
+	} else {
+		SNarr.push(value);
+		SNarrIdx.push(tmpSN)
+	}
+	tmpSN++;
+}
+function ANexcelCheck(an, index){
+	var value = an.trim();
+	if(ANarr.includes(value)) {
+		ANexcelCheckNum++;
+		var indexNum = ANDuplicatearr.findIndex(str => str.includes("'" + value + "'  "));
+		if(indexNum < 0) {	// 중복이 처음 발견됨
+			ANDuplicatearr.push("\n'" + value + "'  " + ANarrIdx[ANarr.indexOf(value)] + "행, " + (index+1) + "행");
+		} else {	// 중복이 또 발견됨 (3개이상)
+			ANDuplicatearr[indexNum] += (", " + (index+1) + "행");  
+		}
+	} else {
+		ANarr.push(value);
+		ANarrIdx.push(tmpAN)
+	}
+	tmpAN++;
+}
+
+// 등록 된 자산과 중복 비교
+let duplicateValueSN = 0;
+var duplicateeAssetSNumber = "";
+let duplicateValueAN = 0;
+var duplicateeAssetNumber = "";
+function eAssetSNumberCheck(ogj, idx){
+	
+    var value = ogj;
+    
+        $.ajax({
+			type		: "post"
+		,	dataType	: "json"
+		,	url			: "/mes/asset/kw_asset_sNumber_check.do"
+		,	data		: {
+			eAssetSNumber : value
+			}
+		, async: false
+		,	success		: function(msg){
+			var dataInfo  = msg.result.dataAdd;
+			 if (dataInfo > 0) {
+                // 데이터가 있는 경우 -> 중복 제조번호
+                duplicateeAssetSNumber += (idx + "행. " + ogj + "\n");
+                duplicateValueSN++;
+                return false;
+            }
+			}
+		});
+
+}
+function eAssetNumberCheck(obb, idx){
+    var ttvalue = obb;
+    
+        $.ajax({
+			type		: "post"
+		,	dataType	: "json"
+		,	url			: "/mes/asset/kw_eAssetNumberCheck.do"
+		,	data		: {
+			eAssetSNumber : ttvalue
+			}
+		, async: false
+		,	success		: function(msg){
+			var dataInfo  = msg.result.dataAdd;
+			 if (dataInfo > 0) {
+                // 데이터가 있는 경우 -> 중복 자산번호
+				 duplicateeAssetNumber += (idx + "행. " + obb + "\n");
+	                duplicateValueAN++;
+	                return false;
+            	}
+			}
+		});
+
+}
 
 function readExcel(e) {
     var input = event.target;
@@ -217,10 +350,50 @@ function readExcel(e) {
         var workBook = XLSX.read(data, { type: 'binary' , cellDates: true, dateNF: 'yyyy-mm-dd' });
         workBook.SheetNames.forEach(function (sheetName) {
             var arr = XLSX.utils.sheet_to_json(workBook.Sheets[sheetName], {header:1, raw:false});
-        	for(var i = 1 ; i < arr.length; i++){  
-        		
+            var val1 = true;
+            var val2 = true;
+            var val3 = true;
+            // 필수값 확인
+            for(var i = 1 ; i < arr.length; i++){  
         		//필수값 확인
         		checkRequiredFields(arr[i][0],arr[i][1],arr[i][2],arr[i][3],arr[i][4],arr[i][5]);
+        		if(requiredFieldsCount != 0) {	// 필수값이 비어있으면 나감
+        			val1 = false;
+        			break;
+        		}
+            }
+            // 중복 체크 - 엑셀 내
+            if(val1){
+            	for(var i = 1 ; i < arr.length; i++){  
+            	ANexcelCheck(arr[i][1], i); // 자산번호
+        		SNexcelCheck(arr[i][4], i);	// 제조번호
+        		if(ANexcelCheckNum != 0 || SNexcelCheckNum != 0) {	// 중복이 있다면
+        			val2 = false;
+        			if(i < arr.length - 1) {
+        				continue;
+        			}
+        			break;
+        			}
+            	}
+            }
+            // 중복체크 - 등록 자산
+            if(val1 && val2){
+            	for(var i = 1 ; i < arr.length; i++){  
+            		eAssetNumberCheck(arr[i][1], i+1); // 자산번호
+            		eAssetSNumberCheck(arr[i][4], i+1) // 제조번호
+            		if(duplicateValueSN != 0 || duplicateValueAN != 0) {
+            			val3 = false;
+            			if(i < arr.length - 1) {
+            				continue;
+            			}
+            			break;
+            		}
+            	}
+            }
+            
+            if(val1 && val2 && val3) {
+        	for(var i = 1 ; i < arr.length; i++){  
+        		
         		//자산유형 확인
         		checkAssetType(arr[i][0]);
                 //텍스트 입력값 길이 확인        		
@@ -260,7 +433,7 @@ function readExcel(e) {
         		//내구연수
         		//processInput(arr[i][17],2);//숫자로만 입력 확인 후 그 외  0 처리
         		//비고
-        		checkTextLength(arr[i][18],50);//운영체제
+        		checkTextLength(arr[i][18],80);//비고
         		
 //         			console.log( "0:자산유형(선택)="+ arr[i][0]); 
 //         			console.log( "1:자산번호(50)="+  arr[i][1]); 
@@ -281,7 +454,7 @@ function readExcel(e) {
 //         			console.log( "16:EoL(일자)="+  arr[i][16]); 
 //         			console.log( "17:내구연수(숫자)="+arr[i][17]); 
 //         			console.log( "18:비고값(50)="+  arr[i][18]); 
-       		}
+       		}}
         	
         	
         	 if(checkAllConditions()){//체크하여 문제있으면 메시지 출력 후 종료

@@ -2921,7 +2921,7 @@
 		<![CDATA[
 		SELECT 
 		    aas.asset_sw_key AS eSWRegisterKey,
-		    new_special(aas.asset_product_name) AS eProductName,
+		    getContentLfNew(new_special(aas.asset_product_name),14) AS eProductName,
 		    new_special(aas.asset_product_ver) AS eVersion,
 		    DATE_FORMAT(aas.asset_purchase_date, '%y-%m-%d')  AS ePurchaseDate,
 		    DATE_FORMAT(aas.asset_start_date, '%y-%m-%d')  AS eStartDate,
@@ -2957,7 +2957,7 @@
 		/* mesAssetDAO.mainAssetLifeStatusNewList */
 		SELECT 
 			ASSET_NAME AS aAssetName,
-			ASSET_MODEL AS aAssetModel,
+			getContentLfNew(ASSET_MODEL,14) AS aAssetModel,
 			ASSET_TYPE_NAME AS eAssetTypeName,
 			ASSET_TYPE AS eAssetType,
 			ASSET_LIFE AS eLifespan,
