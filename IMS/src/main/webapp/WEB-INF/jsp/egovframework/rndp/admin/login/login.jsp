@@ -23,7 +23,7 @@
 </script>
 
 </head>
-<body onLoad="document.writeform.id.focus();" >
+<body onLoad="document.writeform.id.focus();">
 <div class="login_wrap">
         <header>
             <div class="inner">            
@@ -33,7 +33,7 @@
         </header>
         <section class="login_area">
             <div class="inner">
-                 <p>* 본 서비스는 <span>IMS 시스템</span>으로 회원으로 등록된 사람에 한하여 이용가능합니다. </p> 
+                 <p>* 본 시스템은 회원으로 등록된 사람에 한하여 이용가능합니다. </p> 
                  <p>* 원하시는 서비스를 이용하기 위해서는 로그인을 해주세요. </p> 
                 <div class="tab_login">
                     <ul class="tab_btn_area">
