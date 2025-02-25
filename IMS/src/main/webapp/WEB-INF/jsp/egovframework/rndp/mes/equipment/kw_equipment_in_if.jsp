@@ -468,11 +468,13 @@
 				<tr>
 					<th>*반입확인자</th>
 					<td>
-						<input type="text" name="eEntryImporter" id="eEntryImporter" style="width:95%; text-align:left;"  class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eEntryImporter')"/>
+						<input type="text" id="eEntryImporter" name="eEntryImporter" style="width:75%;" maxLength="50" />
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eEntryImporter')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>반입확인자 소속</th>
-					<td><span id="eEntryImporterOrgTxt"></span>
-						<input type="hidden" name="eEntryImporterOrg" id="eEntryImporterOrg"  />
+					<td>
+						<input type="text" id="eEntryImporterOrg" name="eEntryImporterOrg" style="width:95%;" maxLength="100"/>
+						<span id="eEntryImporterOrgTxt" style="display: none;"></span>
 					</td>
 				</tr>
 				<tr>

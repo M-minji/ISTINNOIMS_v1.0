@@ -658,13 +658,15 @@ function approvalPop(){
 	  				<tr>
 		  				<th>*요청자</th>
 						<td>
-							<input type="text" name="eRequester" id="eRequester" style="width:95%; text-align:left;" maxLength="50" value=""   class="inp_color" readonly="readonly" onclick="selectWorkerPop('R','eRequester')"/>
+							<input type="text" id="eRequester" name="eRequester" style="width:70%;" maxLength="50" />
+							<a class="mes_btn" onclick="selectWorkerPop('R', 'eRequester')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 							<input type="hidden" name="eReqOrg" id="eReqOrg" style="width:95%; text-align:left;" maxLength="50" value="" />
 							<input type="hidden" name="eReqDept" id="eReqDept" style="width:95%; text-align:left;" maxLength="50" value="" />
 						</td>
 	  					<th>요청자 소속</th>
-						<td><span id="eRequesterOrgTxt"></span>
-							<input type="hidden" id="eRequesterOrg" name="eRequesterOrg"  value="" />
+						<td>
+							<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="100" />
+							<span id="eRequesterOrgTxt" style="display: none;"></span>
 						</td>
 						
 					</tr>
@@ -693,7 +695,7 @@ function approvalPop(){
 					<tr>
 		  				<th>요청사유</th>
 						<td>
-							<input type="text" name="eWorkDetails" id="eWorkDetails" style="width:150px;" maxLength="50" value=""  />
+							<input type="text" name="eWorkDetails" id="eWorkDetails" style="width:95%;" maxLength="50" value=""  />
 						</td>
 						<th>중단여부</th>
 						<td>

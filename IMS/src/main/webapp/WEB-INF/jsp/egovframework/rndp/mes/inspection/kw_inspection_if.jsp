@@ -601,15 +601,17 @@
 				<tr>
 					<th>*점검자</th>
 					<td>
-						<input type="text" name="eInspector" id="eInspector"  style="width:200px; text-align:left;" maxLength="50"  value="" class="inp_color" readonly="readonly" onclick="selectWorkerPop('R','eInspector')" />
+						<input type="text" id="eInspector" name="eInspector" style="width:75%;" maxLength="50" />
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eInspector')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 						<input type="hidden" name="eInspectionResult" id="eInspectionResult" style="width:95%; text-align:left;" maxLength="50" value=""/>
 						<input type="hidden" name="eRequester" id="eRequester" style="width:95%; text-align:left;" maxLength="50" value=""/>
 						<input type="hidden" name="eOrganization" id="eOrganization" style="width:95%; text-align:left;" maxLength="150" value=""/>
 						<input type="hidden" name="eDepartment" id="eDepartment" style="width:95%; text-align:left;" maxLength="150" value=""/>
 					</td>
 					<th>점검자 소속</th>
-					<td><span id="eInspectorOrgTxt"></span>
-						<input type="hidden" name="eInspectorOrg" id="eInspectorOrg"  style="width:200px; text-align:left;" maxLength="50"  value="" class="inp_color" readonly="readonly" onclick="selectWorkerPop('R','eInspector')" />
+					<td>
+						<input type="text" id="eInspectorOrg" name="eInspectorOrg" style="width:95%;" maxLength="100" />
+						<span id="eInspectorOrgTxt" style="display: none;"></span>
 					</td>
 				</tr>
 				<tr>

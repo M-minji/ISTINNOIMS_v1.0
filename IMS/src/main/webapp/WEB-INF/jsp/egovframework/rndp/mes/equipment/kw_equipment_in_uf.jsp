@@ -629,7 +629,7 @@
 	<input type="hidden" id="eEquipmentInKey" name="eEquipmentInKey" value="${mesEquipmentVO.eEquipmentInKey}" />
 	<div class="content">	
 		<div class="content_tit">
-			<h2>임시장비 반입정보 수정페이지</h2>
+			<h2>임시장비 반입정보 수정</h2>
 		</div>
 	</div>
 	
@@ -653,12 +653,14 @@
 				<tr>
 					<th>*반입확인자</th>
 					<td>
-						<input type="text" name="eEntryImporter" id="eEntryImporter" style="width:95%; text-align:left;" value="${info.eEntryImporter }"  class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eEntryImporter')"/>
+						<input type="text" id="eEntryImporter" name="eEntryImporter" style="width:75%;" value="${info.eEntryImporter}" maxLength="100"/>
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eEntryImporter')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>반입확인자 소속</th>
-					<td><span id="eEntryImporterOrgTxt">${info.eEntryImporterOrg } </span>
-						<input type="hidden" name="eEntryImporterOrg" id="eEntryImporterOrg" value="${info.eEntryImporterOrg }" />
-					</td>
+						<td >
+							<input type="text" id="eEntryImporterOrg" name="eEntryImporterOrg" style="width:95%;" maxLength="100" value="${info.eEntryImporterOrg}" />
+							<span id="eEntryImporterOrgTxt" style="display: none;"></span>
+						</td>
 				</tr>
 				<tr>
 					<th>반입사유</th>

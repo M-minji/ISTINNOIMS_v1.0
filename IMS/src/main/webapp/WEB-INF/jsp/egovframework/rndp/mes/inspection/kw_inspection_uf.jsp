@@ -708,7 +708,8 @@
 				<tr>
 					<th>*점검자</th>
 					<td>
-						<input type="text" name="eInspector" id="eInspector"  style="width:95%; text-align:left;" maxLength="50"  value="${selInfo.eInspector}"  class="inp_color" readonly="readonly" onclick="selectWorkerPop('R','eInspector')"  />
+						<input type="text" id="eInspector" name="eInspector" style="width:75%;" maxLength="50" value="${selInfo.eInspector}"   />
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eInspector')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 						<input type="hidden" name="eInspectionResult" id="eInspectionResult" style="width:95%; text-align:left;" maxLength="50" value="${selInfo.eInspectionResult}"/>
 						<input type="hidden" name="eRequester" id="eRequester" style="width:95%; text-align:left;" maxLength="50" value="${selInfo.eRequester}"/>
 						<input type="hidden" name="eOther" id="eOther" style="width:95%; text-align:left;" maxLength="50" value=""/>
@@ -717,8 +718,8 @@
 					</td>
 					<th>점검자 소속</th>
 					<td>
-						<span id="eInspectorOrgTxt">${selInfo.eInspectorOrg}</span>
-						<input type="hidden" name="eInspectorOrg" id="eInspectorOrg" style="width:95%; text-align:left;" maxLength="150" value="${selInfo.eInspectorOrg}"/>
+						<input type="text" id="eInspectorOrg" name="eInspectorOrg" style="width:95%;" maxLength="100" value="${selInfo.eInspectorOrg}"/>
+						<span id="eInspectorOrgTxt" style="display: none;"></span>
 					</td>
 				</tr> 
 				<tr>

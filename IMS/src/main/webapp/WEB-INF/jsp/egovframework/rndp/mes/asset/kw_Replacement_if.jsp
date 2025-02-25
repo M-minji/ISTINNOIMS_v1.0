@@ -540,12 +540,14 @@
 				<tr>
 					<th>*교체확인자</th>
 					<td>
-						<input type="text" name="eReplacedBy" id="eReplacedBy" style="width:95%; text-align:left;" maxLength="100" class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eReplacedBy')"/>
+						<input type="text" id="eReplacedBy" name="eReplacedBy" style="width:75%;" maxLength="50" />
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eReplacedBy')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>교체확인자 소속</th>
-					<td><span id="eReplacedByOrgTxt"></span>
-						<input type="hidden" name="eReplacedByOrg" id="eReplacedByOrg" style="width:95%; text-align:left;" maxLength="100" class="inp_color"  readonly="readonly" />
-					</td>
+						<td >
+							<input type="text" id="eReplacedByOrg" name="eReplacedByOrg" style="width:95%;" maxLength="100"/>
+							<span id="eReplacedByOrgTxt" style="display: none;"></span>
+						</td>
 				</tr>
 				<tr>
 					<th>교체 정보</th>
