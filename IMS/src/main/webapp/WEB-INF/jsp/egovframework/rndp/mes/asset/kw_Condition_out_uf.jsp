@@ -590,12 +590,14 @@
 				<tr>
 					<th>*반출자</th>
 					<td>
-						<input type="text" name="eEntryStaff" id="eEntryStaff" style="width:95%; text-align:left;"  value="${assetInfo.eEntryStaff }"  class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eEntryStaff')"/>
+						<input type="text" id="eEntryStaff" name="eEntryStaff" style="width:75%;" value="${assetInfo.eEntryStaff}" maxLength="100"/>
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eEntryStaff')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>반출자 소속</th>
-					<td><span id="eEntryStaffOrgTxt">${assetInfo.eEntryStaffOrg }</span>
-						<input type="hidden" name="eEntryStaffOrg" id="eEntryStaffOrg" style="width:95%; text-align:left;" value="${assetInfo.eEntryStaffOrg }" />
-					</td>
+						<td >
+							<input type="text" id="eEntryStaffOrg" name="eEntryStaffOrg" style="width:95%;" maxLength="100" value="${assetInfo.eEntryStaffOrg}" />
+							<span id="eEntryStaffOrgTxt" style="display: none;"></span>
+						</td>
 				</tr>
 				<tr>
 					<th>요청사유</th>

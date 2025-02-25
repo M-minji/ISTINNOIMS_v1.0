@@ -832,14 +832,16 @@
 		     			</select>
 					</td>
 				</tr>
-				<tr>
+				<tr>				
 					<th >*요청자</th>
 					<td >
-						<input type="text" id="eRequester" name="eRequester" style="width:90%;" value="${issueInfo.eRequester}" maxLength="100" class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eRequester')"/>
+						<input type="text" id="eRequester" name="eRequester" style="width:75%;" value="${issueInfo.eRequester}" maxLength="100"/>
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eRequester')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th >요청자 소속</th>
-					<td ><span id="eRequesterOrgTxt">${issueInfo.eRequesterOrg}</span>
-						<input type="hidden" id="eRequesterOrg" name="eRequesterOrg" style="width:240px;" maxLength="100" class="inp_color"  readonly="readonly" value="${issueInfo.eRequesterOrg}" />
+					<td >
+						<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="100" value="${issueInfo.eRequesterOrg}" />
+						<span id="eRequesterOrgTxt" style="display: none;"></span>
 					</td>
   				</tr>
 				<tr>
