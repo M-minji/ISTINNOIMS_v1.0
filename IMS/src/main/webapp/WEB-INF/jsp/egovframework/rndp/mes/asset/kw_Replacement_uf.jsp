@@ -531,7 +531,7 @@
 	<input type="hidden" name="sSignStatus" id="sSignStatus" value="${info.sSignStatus}" />
 	<div class="content">	
 		<div class="content_tit">
-			<h2>부품 교체 정보 수정 페이지</h2>
+			<h2>부품 교체 정보 수정</h2>
 		</div>
 	</div>
 	
@@ -556,12 +556,14 @@
 				<tr>					
 					<th>*교체확인자</th>
 					<td>
-						<input type="text" name="eReplacedBy" id="eReplacedBy" style="width:120px; text-align:center;" class="inp_color"   value="${info.eReplacedBy }"  class="inp_color"  readonly="readonly" onclick="selectWorkerPop('R','eReplacedBy')"/>
+						<input type="text" id="eReplacedBy" name="eReplacedBy" style="width:75%;" value="${info.eReplacedBy}" maxLength="100"/>
+						<a class="mes_btn" onclick="selectWorkerPop('R', 'eReplacedBy')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>교체확인자 소속</th>
-					<td><span id="eReplacedByOrgTxt">${info.eReplacedByOrg}</span>
-						<input type="hidden" name="eReplacedByOrg" id="eReplacedByOrg" style="width:95%; text-align:left;" maxLength="100" class="inp_color"  readonly="readonly" value="${info.eReplacedByOrg }"/>
-					</td>
+							<td >
+								<input type="text" id="eReplacedByOrg" name="eReplacedByOrg" style="width:95%;" maxLength="100" value="${info.eReplacedByOrg}" />
+								<span id="eReplacedByOrgTxt" style="display: none;"></span>
+							</td>
 				</tr>
 				<tr>
 					<th>교체 정보</th>
