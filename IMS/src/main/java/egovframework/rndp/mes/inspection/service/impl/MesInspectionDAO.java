@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import egovframework.rndp.mes.asset.service.MesAssetVO;
 import egovframework.rndp.mes.inspection.service.MesInspectionVO;
+import egovframework.rndp.mes.user.service.MesUserVO;
 import egovframework.rte.psl.dataaccess.EgovAbstractDAO;
 
 @Repository("mesInspectionDAO")
@@ -87,6 +88,28 @@ public class MesInspectionDAO extends EgovAbstractDAO{
 		return list("mesInspectionDAO.mesInspectiontExcelList", mesInspectionVO);
 	}
 
+	public int selectFieldCount(MesInspectionVO mesInspectionVO) throws Exception{
+		// TODO Auto-generated method stub
+		return (Integer) getSqlMapClientTemplate().queryForObject("mesInspectionDAO.selectFieldCount", mesInspectionVO);
+	}
 	
+	public List selectFieldList(MesInspectionVO mesInspectionVO) throws Exception{
+		// TODO Auto-generated method stub
+		return list("mesInspectionDAO.selectFieldList", mesInspectionVO);
+	}
+	
+	public void mesInspectionFieldInsert(MesInspectionVO mesInspectionVO) throws Exception{
+		// TODO Auto-generated method stub
+		insert("mesInspectionDAO.mesInspectionFieldInsert", mesInspectionVO);
+	}
 	  
+	public void mesInspectionFieldUpdate(MesInspectionVO mesInspectionVO) throws Exception{
+		// TODO Auto-generated method stub
+		update("mesInspectionDAO.mesInspectionFieldUpdate", mesInspectionVO);
+	}
+	
+	public MesInspectionVO selectFieldInfo(MesInspectionVO mesInspectionVO) throws Exception{
+		// TODO Auto-generated method stub
+		return (MesInspectionVO) select("mesInspectionDAO.selectFieldInfo", mesInspectionVO);
+	}
 }

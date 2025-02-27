@@ -36,7 +36,13 @@ public interface MesInspectionService {
 
 	public List mesInspectiontExcelList(MesInspectionVO mesInspectionVO) throws Exception;
 	
-	 
+	public int selectFieldCount(MesInspectionVO mesInspectionVO) throws Exception;
 	
+	public List selectFieldList(MesInspectionVO mesInspectionVO) throws Exception;
 	
+	public void mesInspectionFieldInsert(MesInspectionVO mesInspectionVO) throws Exception;
+	
+	public MesInspectionVO selectFieldInfo(MesInspectionVO mesInspectionVO) throws Exception;
+	
+	public void mesInspectionFieldUpdate(MesInspectionVO mesInspectionVO) throws Exception;
 }
