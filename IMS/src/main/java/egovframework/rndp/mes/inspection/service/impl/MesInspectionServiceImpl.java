@@ -25,6 +25,7 @@ import egovframework.rndp.mes.inspection.service.MesInspectionVO;
 import egovframework.rndp.mes.issue.service.MesIssueVO;
 import egovframework.rndp.mes.position.service.MesPositionVO;
 import egovframework.rndp.mes.sign.service.MesSignService;
+import egovframework.rndp.mes.user.service.MesUserVO;
 
 @Service("mesInspectionService")
 public class MesInspectionServiceImpl implements MesInspectionService {
@@ -244,6 +245,40 @@ public class MesInspectionServiceImpl implements MesInspectionService {
 		return mesInspectionDAO.mesInspectiontExcelList(mesInspectionVO);
 	}
 	
+	@Override
+	public int selectFieldCount(MesInspectionVO mesInspectionVO) throws Exception {
+		// TODO Auto-generated method stub
+		int res = 0;
+		try {
+			res =mesInspectionDAO.selectFieldCount(mesInspectionVO);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return res;
+	}
 	
+	@Override
+	public List selectFieldList(MesInspectionVO mesInspectionVO) throws Exception {
+		// TODO Auto-generated method stub
+		return mesInspectionDAO.selectFieldList(mesInspectionVO);
+	}
+	
+	@Override
+	public void mesInspectionFieldInsert(MesInspectionVO mesInspectionVO) throws Exception {
+		// TODO Auto-generated method stub
+		mesInspectionDAO.mesInspectionFieldInsert(mesInspectionVO);
+	}
+	
+	@Override
+	public MesInspectionVO selectFieldInfo(MesInspectionVO mesInspectionVO) throws Exception {
+		// TODO Auto-generated method stub
+		return mesInspectionDAO.selectFieldInfo(mesInspectionVO);
+	}
+	
+	@Override
+	public void mesInspectionFieldUpdate(MesInspectionVO mesInspectionVO) throws Exception {
+		// TODO Auto-generated method stub
+		mesInspectionDAO.mesInspectionFieldUpdate(mesInspectionVO);
+	}
 	
 }

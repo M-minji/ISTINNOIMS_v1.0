@@ -44,6 +44,7 @@ import egovframework.rndp.mes.issue.service.MesIssueVO;
 import egovframework.rndp.mes.login.service.MesK_StaffVo;
 import egovframework.rndp.mes.sign.service.MesSignService;
 import egovframework.rndp.mes.sign.service.MesSignVO;
+import egovframework.rndp.mes.user.service.MesUserVO;
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 import net.sf.jxls.transformer.XLSTransformer;
 
@@ -352,6 +353,18 @@ public class MesInspectionController {
 		MesInspectionVO selInfo = 	mesInspectionService.eInspectionInfo(mesInspectionVO);
 		model.addAttribute("selInfo", selInfo);
 
+		MesInspectionVO selField = new MesInspectionVO();
+		if (selInfo.geteFieldKey() == null || selInfo.geteFieldKey().equals("")) {
+			selField.seteField1("필드1");
+			selField.seteField2("필드2");
+			selField.seteField3("필드3");
+			selField.seteField4("필드4");
+			selField.seteField5("필드5");
+		} else {
+			selField = 	mesInspectionService.selectFieldInfo(selInfo);
+		}
+		model.addAttribute("fieldInfo", selField);
+		
 		List eFileInfoList = mesInspectionService.eFileInfoList(mesInspectionVO);
 		model.addAttribute("eFileInfoList", eFileInfoList);
 		
@@ -422,6 +435,18 @@ public class MesInspectionController {
 		
 		MesInspectionVO selInfo = 	mesInspectionService.eInspectionInfo(mesInspectionVO);
 		model.addAttribute("selInfo", selInfo);
+		
+		MesInspectionVO selField = new MesInspectionVO();
+		if (selInfo.geteFieldKey() == null || selInfo.geteFieldKey().equals("")) {
+			selField.seteField1("필드1");
+			selField.seteField2("필드2");
+			selField.seteField3("필드3");
+			selField.seteField4("필드4");
+			selField.seteField5("필드5");
+		} else {
+			selField = 	mesInspectionService.selectFieldInfo(selInfo);
+		}
+		model.addAttribute("fieldInfo", selField);
 		
 		List eFileInfoList = mesInspectionService.eFileInfoList(mesInspectionVO);
 		model.addAttribute("eFileInfoList", eFileInfoList);
@@ -636,5 +661,123 @@ public class MesInspectionController {
 		    	e.printStackTrace();
 		    }
 		}
+		
+		
+		@RequestMapping(value = "/mes/inspection/kw_inspection_field_lf.do")
+		public String mesInspectiontFieldLf(HttpServletRequest request
+				, RedirectAttributes redirectAttributes
+				, @ModelAttribute("mesInspectionVO") MesInspectionVO mesInspectionVO
+				, ModelMap model) throws Exception{
+
+			
+			MesK_StaffVo staffVO = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");
+			model.addAttribute("staffVO", staffVO);
+			mesInspectionVO.setkStaffKey(Integer.toString(staffVO.getkStaffKey()));
+
+			/*페이징*/			
+			PaginationInfo paginationInfo = new PaginationInfo();
+			paginationInfo.setCurrentPageNo(mesInspectionVO.getPageIndex());
+			paginationInfo.setRecordCountPerPage(mesInspectionVO.getRecordCountPerPage());
+			paginationInfo.setPageSize(mesInspectionVO.getPageSize());
+			mesInspectionVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+			mesInspectionVO.setLastIndex(paginationInfo.getLastRecordIndex());
+			mesInspectionVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+			
 	
+			List fieldList = mesInspectionService.selectFieldList(mesInspectionVO);
+			int totCnt = mesInspectionService.selectFieldCount(mesInspectionVO);
+			
+			model.addAttribute("fieldList", fieldList);
+			paginationInfo.setTotalRecordCount(totCnt);
+			model.addAttribute("paginationInfo", paginationInfo);
+			
+			return "mes/inspection/kw_inspection_field_lf.tiles";
+		}
+		
+		@RequestMapping(value = "/mes/inspection/kw_inspection_field_if.do")
+		public String mesInspectiontFieldIf(HttpServletRequest request
+				, @ModelAttribute("mesInspectionVO") MesInspectionVO mesInspectionVO
+				, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
+			MesK_StaffVo staffVO = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");
+			model.addAttribute("staffVO", staffVO);
+			mesInspectionVO.setkStaffKey(Integer.toString(staffVO.getkStaffKey()));
+			return "mes/inspection/kw_inspection_field_if.tiles";
+		}
+	
+		@RequestMapping(value = "/mes/inspection/kw_inspection_field_i.do")
+		public String mesInspectiontFieldInsert(HttpServletRequest request
+				, @ModelAttribute("mesInspectionVO") MesInspectionVO mesInspectionVO
+				, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
+			MesK_StaffVo staffVO = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");
+			model.addAttribute("staffVO", staffVO);
+			mesInspectionVO.setkStaffKey(Integer.toString(staffVO.getkStaffKey()));
+			mesInspectionService.mesInspectionFieldInsert(mesInspectionVO);
+			return "redirect:/mes/inspection/kw_inspection_field_lf.do";
+		}
+		
+		@RequestMapping(value = "/mes/inspection/kw_inspection_field_uf.do")
+		public String mesInspectiontFieldUf(HttpServletRequest request
+				, RedirectAttributes redirectAttributes
+				, @ModelAttribute("mesInspectionVO") MesInspectionVO mesInspectionVO
+				, ModelMap model) throws Exception{
+			String csrfToken = UUID.randomUUID().toString();
+			request.getSession().setAttribute("csrfToken", csrfToken);
+			
+			MesK_StaffVo staffVO = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");
+			model.addAttribute("staffVO", staffVO);
+			
+			MesInspectionVO fieldInfo = mesInspectionService.selectFieldInfo(mesInspectionVO);
+			model.addAttribute("info", fieldInfo);
+			
+			return "mes/inspection/kw_inspection_field_uf.tiles";
+		}
+		
+		@RequestMapping(value = "/mes/inspection/kw_inspection_field_u.do")
+		public String mesInspectiontFieldUdate(HttpServletRequest request
+				, @ModelAttribute("mesInspectionVO") MesInspectionVO mesInspectionVO
+				, ModelMap model, RedirectAttributes redirectAttributes) throws Exception {
+			MesK_StaffVo staffVO = (MesK_StaffVo) request.getSession().getAttribute("mesStaff");
+			model.addAttribute("staffVO", staffVO);
+			mesInspectionVO.setkStaffKey(Integer.toString(staffVO.getkStaffKey()));
+			mesInspectionService.mesInspectionFieldUpdate(mesInspectionVO);
+			return "redirect:/mes/inspection/kw_inspection_field_lf.do";
+		}
+		
+		// 팝업
+		@RequestMapping(value = "/mes/inspection/kw_inspection_field_box.do")
+		public String mesFieldPop(HttpServletRequest request
+				, RedirectAttributes redirectAttributes
+				, HttpServletResponse response
+				, @ModelAttribute("mesInspectionVO") MesInspectionVO mesInspectionVO
+				, ModelMap model) throws Exception {
+			
+			String sessionToken = (String) request.getSession().getAttribute("csrfToken");
+	        String requestToken = request.getParameter("csrfToken");
+
+	        if (sessionToken == null || !sessionToken.equals(requestToken)) {
+	            request.getRequestDispatcher("/error.jsp").forward(request, response);
+	        }
+			
+			// paging
+			PaginationInfo paginationInfo = new PaginationInfo();
+			paginationInfo.setCurrentPageNo(mesInspectionVO.getPageIndex());
+			paginationInfo.setRecordCountPerPage(mesInspectionVO.getRecordCountPerPage());
+			paginationInfo.setPageSize(mesInspectionVO.getPageSize());
+			mesInspectionVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+			mesInspectionVO.setLastIndex(paginationInfo.getLastRecordIndex());
+			mesInspectionVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+			
+			
+			List fieldList = mesInspectionService.selectFieldList(mesInspectionVO);
+			int totCnt = mesInspectionService.selectFieldCount(mesInspectionVO);
+			paginationInfo.setTotalRecordCount(totCnt);
+						
+			
+			model.addAttribute("fieldList", fieldList);
+			model.addAttribute("paginationInfo", paginationInfo);
+			
+			redirectAttributes.addFlashAttribute("mesInspectionVO", mesInspectionVO);
+
+			return "mesPopup/mes/inspection/popup/kw_inspection_result_field_box";
+		}
 }

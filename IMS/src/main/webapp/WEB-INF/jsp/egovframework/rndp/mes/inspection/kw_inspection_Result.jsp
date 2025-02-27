@@ -278,6 +278,39 @@
 	    document.body.removeChild(form);
 	}
 	
+	
+	function sel_field(){	
+		// 동적으로 폼 생성
+	    const form = document.createElement("form");
+	    form.method = "POST";
+	    form.action = "/mes/inspection/kw_inspection_field_box.do";
+	    form.target = "AddrAdd"; // 새 창 이름
+	    
+	    const csrfTokenGubun = document.createElement("input");
+	    csrfTokenGubun.type = "hidden";
+	    csrfTokenGubun.name = "csrfToken";
+	    csrfTokenGubun.value = $("input[name=csrfToken]").val();
+	    form.appendChild(csrfTokenGubun);
+	    
+	    const kMenuKeyGubun = document.createElement("input");
+	    kMenuKeyGubun.type = "hidden";
+	    kMenuKeyGubun.name = "kMenuKey";
+	    kMenuKeyGubun.value = "${key}";
+	    form.appendChild(kMenuKeyGubun);
+
+	    // 폼을 문서에 추가
+	    document.body.appendChild(form);
+
+	    // 새 창 열기
+	    window.open("", "AddrAdd", "width=1400, height=650, status=no, toolbar=no, resizable=yes, menubar=no, location=no, scrollbars=yes");
+
+	    // 폼 전송
+	    form.submit();
+
+	    // 폼 제거
+	    document.body.removeChild(form);
+	}
+	
 	function setAssetReturnPop(obj){  
 		$.ajax({
 				type		: "post"
@@ -467,6 +500,16 @@
 			}
 		}
 		
+		function setFieldReturnPop(data) {
+			document.getElementById("eFieldKey").value = data.eFieldKey;
+	
+		    document.getElementById("field1").innerText = data.eField1;
+		    document.getElementById("field2").innerText = data.eField2;
+		    document.getElementById("field3").innerText = data.eField3;
+		    document.getElementById("field4").innerText = data.eField4;
+		    document.getElementById("field5").innerText = data.eField5;
+		}
+
 		
 		
 </script>
@@ -475,6 +518,7 @@
 	<input type="hidden" name="pageIndex" id="pageIndex" value="${mesInspectionVO.pageIndex}" />
 	<input type="hidden" name="recordCountPerPage" id="recordCountPerPage" value="${mesInspectionVO.recordCountPerPage}" />
 	<input type="hidden" name="eInspectionKey" id="eInspectionKey" value="${mesInspectionVO.eInspectionKey}" />
+	<input type="hidden" id="eFieldKey" name="eFieldKey"  value="${mesInspectionVO.eFieldKey}"/>
 	<div class="content">	
 		<div class="content_tit">
 			<h2>점검 정보 결과 등록</h2>
@@ -578,7 +622,8 @@
 	<div class="tbl_list">
 		<table>
 			<caption style="text-align: left; margin-bottom:10px;">
-				   <a class="mes_btn" onclick="sel_asset()" style="float:right">장비 선택</a>
+					<a class="mes_btn" onclick="sel_asset()" style="float:right; margin-right:10px; margin-left:10px;">장비 선택</a>
+				   <a class="mes_btn" onclick="sel_field()" style="float:right">필드 선택</a>
 			</caption>
 				<thead>
 				<tr>
@@ -589,11 +634,11 @@
 					<th style="width: 7%;">모델명</th>
 					<th style="width: 7%;">망구분</th>
 					<th style="width: 5%;">장비구분</th>
-					<th style="width: 5%;">필드1</th>
-					<th style="width: 5%;">필드2</th>
-					<th style="width: 5%;">필드3</th>
-					<th style="width: 5%;">필드4</th>
-					<th style="width: 5%;">필드5</th>
+					<th id="field1" style="width: 5%;">필드1</th>
+					<th id="field2" style="width: 5%;">필드2</th>
+					<th id="field3" style="width: 5%;">필드3</th>
+					<th id="field4" style="width: 5%;">필드4</th>
+					<th id="field5" style="width: 5%;">필드5</th>
 					<th style="width: 5%;">점검일자</th>
 					<th style="width: 5%;">점검결과</th>
 					<th style="width: 5%;">비고</th>

@@ -21,9 +21,9 @@ public class MesInspectionVO extends DefultVO{
 	private String eSearchTypeSet8					= "";
 	private String eSearchTypeSet9					= "";
 	
-	
-	
-	
+
+	private String searchType					= "";
+	private String searchWord					= "";
 	
 
 	private String eViewGubun					= "";
@@ -59,10 +59,15 @@ public class MesInspectionVO extends DefultVO{
 	private String eField3					= "";
 	private String eField4					= "";
 	private String eField5					= "";
-	private String eField6					= "";
-	private String eField7					= "";
-	private String eField8					= "";
+	private String eField6					= ""; 	
+	private String eField7					= "";	
+	private String eField8					= "";	
 	private String eField9					= "";
+
+	private String eFieldKey					= "";
+	private String eFieldName					= "";
+	private String eFieldStatus					= "";
+	
 	
 	private String eItemRemark					= "";
 	private String eItemOther					= "";
@@ -100,11 +105,17 @@ public class MesInspectionVO extends DefultVO{
 	private String  sSignStaffGubun                        = "";        
 	private String  sSignStaffPosition                        = "";        
 	private String  sSignStatus                        = "";        
-	private String  ePageGubun                        = "";        
+	private String  ePageGubun                        = "";     
+	private String  ePageInfo                        = "";            
+	 
 	
 	
-	
-	
+	public String getePageInfo() {
+		return ePageInfo;
+	}
+	public void setePageInfo(String ePageInfo) {
+		this.ePageInfo = ePageInfo;
+	}
 	public String getkStaffKey() {
 		return kStaffKey;
 	}
@@ -573,40 +584,36 @@ public class MesInspectionVO extends DefultVO{
 	public void seteInspectionKey(String eInspectionKey) {
 		this.eInspectionKey = eInspectionKey;
 	}
-	@Override
-	public String toString() {
-		return "MesInspectionVO [eTopStartDate=" + eTopStartDate + ", eTopEndDate=" + eTopEndDate + ", eSearchTypeSet1="
-				+ eSearchTypeSet1 + ", eSearchTypeSet2=" + eSearchTypeSet2 + ", eSearchTypeSet3=" + eSearchTypeSet3
-				+ ", eSearchTypeSet4=" + eSearchTypeSet4 + ", eSearchTypeSet5=" + eSearchTypeSet5 + ", eSearchTypeSet6="
-				+ eSearchTypeSet6 + ", eSearchTypeSet7=" + eSearchTypeSet7 + ", eSearchTypeSet8=" + eSearchTypeSet8
-				+ ", eSearchTypeSet9=" + eSearchTypeSet9 + ", eViewGubun=" + eViewGubun + ", kStaffKey=" + kStaffKey
-				+ ", eStaffName=" + eStaffName + ", eStaffKey=" + eStaffKey + ", eAssetKey=" + eAssetKey
-				+ ", eInspectionKey=" + eInspectionKey + ", eRegistrant=" + eRegistrant + ", eRegistrationDate="
-				+ eRegistrationDate + ", eInspectionDate=" + eInspectionDate + ", eInspectionTypeName="
-				+ eInspectionTypeName + ", eInspectionType=" + eInspectionType + ", eInspectionCycleName="
-				+ eInspectionCycleName + ", eInspectionCycle=" + eInspectionCycle + ", eRequester=" + eRequester
-				+ ", eOrganization=" + eOrganization + ", eDepartment=" + eDepartment + ", eInspector=" + eInspector
-				+ ", eInspectorOrg=" + eInspectorOrg + ", eInspectionResult=" + eInspectionResult + ", eRemark="
-				+ eRemark + ", eOther=" + eOther + ", eFileID=" + eFileID + ", eFileName=" + eFileName + ", eFileExt="
-				+ eFileExt + ", eField1=" + eField1 + ", eField2=" + eField2 + ", eField3=" + eField3 + ", eField4="
-				+ eField4 + ", eField5=" + eField5 + ", eField6=" + eField6 + ", eField7=" + eField7 + ", eField8="
-				+ eField8 + ", eField9=" + eField9 + ", eItemRemark=" + eItemRemark + ", eItemOther=" + eItemOther
-				+ ", eItemInspectionDate=" + eItemInspectionDate + ", eStatus=" + eStatus + ", eAssetName=" + eAssetName
-				+ ", eAssetMaker=" + eAssetMaker + ", eAssetModel=" + eAssetModel + ", eAssetManufactureNumber="
-				+ eAssetManufactureNumber + ", eAssetForm=" + eAssetForm + ", eAssetIntroducer=" + eAssetIntroducer
-				+ ", eAssetDate=" + eAssetDate + ", eAssetCost=" + eAssetCost + ", eAssetImage=" + eAssetImage
-				+ ", eAssetEtc=" + eAssetEtc + ", ePositionName1=" + ePositionName1 + ", eDeviceType=" + eDeviceType
-				+ ", eAssetPurpose=" + eAssetPurpose + ", eNetworkType=" + eNetworkType + ", eHostName=" + eHostName
-				+ ", eIp=" + eIp + ", eOs=" + eOs + ", eAssetType=" + eAssetType + ", oSignPass=" + oSignPass
-				+ ", sSignTableKey=" + sSignTableKey + ", sSignTableName=" + sSignTableName + ", sSignDecison="
-				+ sSignDecison + ", sSignContent=" + sSignContent + ", sSignProgress=" + sSignProgress
-				+ ", sSignStaffKey=" + sSignStaffKey + ", sSignStaffName=" + sSignStaffName + ", sSignStaffGubun="
-				+ sSignStaffGubun + ", sSignStaffPosition=" + sSignStaffPosition + ", sSignStatus=" + sSignStatus
-				+ ", ePageGubun=" + ePageGubun + "]";
+	public String getSearchType() {
+		return searchType;
 	}
-	 
-	
-	
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getSearchWord() {
+		return searchWord;
+	}
+	public void setSearchWord(String searchWord) {
+		this.searchWord = searchWord;
+	}
+	public String geteFieldKey() {
+		return eFieldKey;
+	}
+	public void seteFieldKey(String eFieldKey) {
+		this.eFieldKey = eFieldKey;
+	}
+	public String geteFieldName() {
+		return eFieldName;
+	}
+	public void seteFieldName(String eFieldName) {
+		this.eFieldName = eFieldName;
+	}
+	public String geteFieldStatus() {
+		return eFieldStatus;
+	}
+	public void seteFieldStatus(String eFieldStatus) {
+		this.eFieldStatus = eFieldStatus;
+	}
 	
 	
 	
