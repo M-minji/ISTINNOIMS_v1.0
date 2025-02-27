@@ -241,6 +241,7 @@
 		/* mesInspectionDAO.eInspectionInfo*/
 		SELECT 
 			  INSPECTION_NUM AS eInspectionKey
+			  , field_key AS eFieldKey
 			, eInspectionDate
 			, eRegistrant
 			, eStaffKey
@@ -284,7 +285,10 @@
 	
 	<update id="mesInspectionDAO.eInspectionUpdate" parameterClass="mesIVO" >
 		/*mesInspectionDAO.eInspectionUpdate*/
-		UPDATE  INSPECTION  SET   eStatus = #eStatus# WHERE INSPECTION_NUM = #eInspectionKey#
+		UPDATE  INSPECTION  
+		SET   eStatus = #eStatus#
+		, field_key = #eFieldKey#
+		 WHERE INSPECTION_NUM = #eInspectionKey#
 	</update>
 	
 	<insert id="mesInspectionDAO.eInspectionResultInsert" parameterClass="mesIVO">
@@ -366,6 +370,7 @@
 	UPDATE INSPECTION
 		SET 
 			  eInspectionDate = #eInspectionDate#
+			  , field_key = #eFieldKey#
 			, eInspectionTypeName = #eInspectionTypeName#
 			, eInspectionType = #eInspectionType#
 			, eRegistrationDate = #eRegistrationDate#
@@ -389,4 +394,160 @@
 			 sSignStatus = #sSignStatus#
 		WHERE INSPECTION_NUM = #eInspectionKey#
 	</update>
+	
+	<select id="mesInspectionDAO.selectFieldCount" parameterClass="mesIVO" resultClass="int">
+		/* mesInspectionDAO.selectFieldCount*/
+		SELECT
+			COUNT(field_key)
+		FROM
+			INSPECTION_RESULT_FIELD f
+		WHERE 1=1
+		AND (fstatus IS NULL OR fstatus != '삭제')
+		<isNotEmpty property="searchWord">
+			<isEqual property="searchType" compareValue="1">
+				AND	(
+			        LOWER(field_name) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField1) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField2) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField3) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField4) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField5) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+		        )
+			</isEqual>
+			<isEqual property="searchType" compareValue="2">
+				AND	LOWER(field_name) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			</isEqual>
+			<isEqual property="searchType" compareValue="3">
+				AND (
+			        LOWER(eField1) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField2) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField3) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField4) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField5) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			    )
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="eSearchTypeSet1">
+				AND	LOWER(field_name) LIKE CONCAT('%', LOWER(#eSearchTypeSet1#), '%')
+		</isNotEmpty>
+		<isNotEmpty property="eSearchTypeSet2">
+				AND (
+			        LOWER(eField1) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField2) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField3) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField4) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField5) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			    )
+		</isNotEmpty>
+	</select>
+	
+	<select id="mesInspectionDAO.selectFieldList" parameterClass="mesIVO" resultClass="mesIVO">
+		/* mesInspectionDAO.selectFieldList */
+		SELECT
+			field_key 		AS eFieldKey
+		,	field_name 		AS eFieldName
+		,	eField1 		AS eField1
+		,	eField2 		AS eField2
+		,	eField3 		AS eField3
+		,	eField4 		AS eField4
+		,	eField5 		AS eField5
+		,	k_staff_key 	AS kStaffKey
+		,	fstatus 	AS eFieldStatus
+		FROM
+			INSPECTION_RESULT_FIELD f
+		WHERE 1=1
+		AND (fstatus IS NULL OR fstatus != '삭제') 
+		<isNotEmpty property="searchWord">
+			<isEqual property="searchType" compareValue="1">
+				AND	(
+			        LOWER(field_name) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField1) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField2) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField3) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField4) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField5) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+		        )
+			</isEqual>
+			<isEqual property="searchType" compareValue="2">
+				AND	LOWER(field_name) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			</isEqual>
+			<isEqual property="searchType" compareValue="3">
+				AND (
+			        LOWER(eField1) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField2) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField3) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField4) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			        OR LOWER(eField5) LIKE CONCAT('%', LOWER(#searchWord#), '%')
+			    )
+			</isEqual>
+		</isNotEmpty>
+		<isNotEmpty property="eSearchTypeSet1">
+				AND	LOWER(field_name) LIKE CONCAT('%', LOWER(#eSearchTypeSet1#), '%')
+		</isNotEmpty>
+		<isNotEmpty property="eSearchTypeSet2">
+				AND (
+			        LOWER(eField1) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField2) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField3) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField4) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			        OR LOWER(eField5) LIKE CONCAT('%', LOWER(#eSearchTypeSet2#), '%')
+			    )
+		</isNotEmpty>
+		ORDER BY field_key DESC
+		LIMIT #recordCountPerPage# OFFSET #firstIndex#
+	</select>
+	
+	<insert id="mesInspectionDAO.mesInspectionFieldInsert" parameterClass="mesIVO">
+		/* mesInspectionDAO.mesInspectionFieldInsert */
+		  <selectKey type="post" keyProperty="eFieldKey" >
+	        SELECT LAST_INSERT_ID() AS eFieldKey
+		  </selectKey>
+		INSERT INTO INSPECTION_RESULT_FIELD
+		(	  field_name
+			, eField1
+			, eField2
+			, eField3
+			, eField4
+			, eField5
+			, k_staff_key
+		)
+		VALUES(
+			  #eFieldName#
+			, #eField1#
+			, #eField2#
+			, #eField3#
+			, #eField4#
+			, #eField5#
+			, #kStaffKey#
+			);
+	</insert>
+	
+	<update id="mesInspectionDAO.mesInspectionFieldUpdate" parameterClass="mesIVO" >
+		/*mesInspectionDAO.mesInspectionFieldUpdate*/
+	 UPDATE INSPECTION_RESULT_FIELD 
+	 SET field_name = #eFieldName#  
+		 , eField1 = #eField1#
+		 , eField2 = #eField2#
+		 , eField3 = #eField3#
+		 , eField4 = #eField4#
+		 , eField5 = #eField5#
+		 , fstatus = #eFieldStatus#
+	 WHERE  field_key = #eFieldKey#
+	</update>
+	
+	<select id="mesInspectionDAO.selectFieldInfo" parameterClass="mesIVO" resultClass="mesIVO">
+		/* mesInspectionDAO.selectFieldInfo */
+		SELECT 
+			  field_key AS eFieldKey
+			, field_name AS eFieldName
+			, eField1
+			, eField2
+			, eField3
+			, eField4
+			, eField5
+			, k_staff_key AS kStaffKey
+			, fstatus AS eFieldStatus
+		FROM INSPECTION_RESULT_FIELD
+		WHERE 1=1 AND (fstatus IS NULL OR fstatus != '삭제') AND field_key = #eFieldKey#
+		</select>
 </sqlMap>

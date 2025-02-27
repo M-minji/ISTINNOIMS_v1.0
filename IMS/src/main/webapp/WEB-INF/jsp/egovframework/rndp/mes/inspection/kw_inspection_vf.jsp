@@ -724,11 +724,11 @@
 					<th style="width: 7%;">모델명</th>
 					<th style="width: 7%;">망구분</th>
 					<th style="width: 5%;">장비구분</th>
-					<th style="width: 5%;">필드1</th>
-					<th style="width: 5%;">필드2</th>
-					<th style="width: 5%;">필드3</th>
-					<th style="width: 5%;">필드4</th>
-					<th style="width: 5%;">필드5</th>
+					<th style="width: 5%;">${fieldInfo.eField1}</th>
+					<th style="width: 5%;">${fieldInfo.eField2}</th>
+					<th style="width: 5%;">${fieldInfo.eField3}</th>
+					<th style="width: 5%;">${fieldInfo.eField4}</th>
+					<th style="width: 5%;">${fieldInfo.eField5}</th>
 					<th style="width: 5%;">점검일자</th>
 					<th style="width: 5%;">점검결과</th>
 					<th style="width: 5%;">비고</th>
