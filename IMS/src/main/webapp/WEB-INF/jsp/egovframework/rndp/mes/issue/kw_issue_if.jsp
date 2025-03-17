@@ -789,12 +789,12 @@
 				<tr>
 					<th >*요청자</th>
 					<td >
-						<input type="text" id="eRequester" name="eRequester" style="width:75%;" maxLength="100" />
+						<input type="text" id="eRequester" name="eRequester" style="width:75%;" maxLength="50" />
 						<a class="mes_btn" onclick="selectWorkerPop('R', 'eRequester')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th >요청자 소속</th>
 					<td >
-						<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="100"/>
+						<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="50"/>
 						<span id="eRequesterOrgTxt" style="display: none;"></span>
 					</td>
   				</tr>

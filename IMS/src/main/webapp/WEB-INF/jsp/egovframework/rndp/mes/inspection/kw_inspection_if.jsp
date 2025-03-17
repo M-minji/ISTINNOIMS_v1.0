@@ -610,7 +610,7 @@
 					</td>
 					<th>점검자 소속</th>
 					<td>
-						<input type="text" id="eInspectorOrg" name="eInspectorOrg" style="width:95%;" maxLength="100" />
+						<input type="text" id="eInspectorOrg" name="eInspectorOrg" style="width:95%;" maxLength="50" />
 						<span id="eInspectorOrgTxt" style="display: none;"></span>
 					</td>
 				</tr>

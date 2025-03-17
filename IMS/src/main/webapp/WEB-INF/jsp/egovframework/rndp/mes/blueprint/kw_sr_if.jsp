@@ -537,7 +537,7 @@ function approvalPop(){
 						</td>
 						<th >요청자 소속</th>
 						<td >
-							<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="100"/>
+							<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="50"/>
 							<span id="eRequesterOrgTxt" style="display: none;"></span>
 						</td>
 					</tr>
@@ -545,7 +545,7 @@ function approvalPop(){
 	  				
 					<tr>
 						<th	colspan="4" style="text-align:center;">
-							요청사항
+							요청내용
 						</th>
 					</tr>
 					<tr>

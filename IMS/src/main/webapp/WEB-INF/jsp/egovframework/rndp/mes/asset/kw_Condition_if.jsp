@@ -530,7 +530,7 @@
 					</td>
 					<th>반출자 소속</th>
 					<td>
-						<input type="text" id="eEntryStaffOrg" name="eEntryStaffOrg" style="width:95%;" maxLength="100"/>
+						<input type="text" id="eEntryStaffOrg" name="eEntryStaffOrg" style="width:95%;" maxLength="50"/>
 						<span id="eEntryStaffOrgTxt" style="display: none;"></span>
 					</td>
 				</tr>

@@ -545,7 +545,7 @@
 					</td>
 					<th>교체확인자 소속</th>
 						<td >
-							<input type="text" id="eReplacedByOrg" name="eReplacedByOrg" style="width:95%;" maxLength="100"/>
+							<input type="text" id="eReplacedByOrg" name="eReplacedByOrg" style="width:95%;" maxLength="50"/>
 							<span id="eReplacedByOrgTxt" style="display: none;"></span>
 						</td>
 				</tr>
