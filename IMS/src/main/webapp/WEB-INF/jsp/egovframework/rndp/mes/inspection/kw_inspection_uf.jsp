@@ -762,7 +762,7 @@
 					</td>
 					<th>점검자 소속</th>
 					<td>
-						<input type="text" id="eInspectorOrg" name="eInspectorOrg" style="width:95%;" maxLength="100" value="${selInfo.eInspectorOrg}"/>
+						<input type="text" id="eInspectorOrg" name="eInspectorOrg" style="width:95%;" maxLength="50" value="${selInfo.eInspectorOrg}"/>
 						<span id="eInspectorOrgTxt" style="display: none;"></span>
 					</td>
 				</tr> 
