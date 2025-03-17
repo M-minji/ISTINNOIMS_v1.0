@@ -296,6 +296,10 @@ $(document).ready(function(){
 		    </ul>
 		    <ul id="search_detail" style="display: none;">
 				<li>
+					<span>요청자</span>
+					<input type="text" id="eSearchWordH" name="eSearchWordH" style="width:100px;" value="${mesIssueVO.eSearchWordH}" maxlength="30" />
+				</li>
+				<li>
 					<span>처리자</span>
 					<input type="text" id="eSearchWordF" name="eSearchWordF" style="width:100px;" value="${mesIssueVO.eSearchWordF}" maxlength="30" />
 				</li>
