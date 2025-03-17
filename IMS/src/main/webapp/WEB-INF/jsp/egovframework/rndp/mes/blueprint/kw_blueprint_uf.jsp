@@ -696,7 +696,7 @@
 						</td>
 		  				<th>요청자 소속</th>
 						<td>
-							<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="100" value="${info.eRequesterOrg}"/>
+							<input type="text" id="eRequesterOrg" name="eRequesterOrg" style="width:95%;" maxLength="50" value="${info.eRequesterOrg}"/>
 							<span id="eRequesterOrgTxt" style="display: none;"></span>
 						</td>
 					</tr>

@@ -312,7 +312,7 @@
 	  				
 					<tr>
 						<th	colspan="4" style="text-align:center;">
-							요청사항
+							요청내용
 						</th>
 					</tr>
 					<tr>

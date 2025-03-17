@@ -130,7 +130,7 @@ function excelDwonload(){
 					<input type="text" id="eTextSearchWord1" name="eTextSearchWord1" style="width:120px;" class="searchWord" value="${mesBlueprintVO.eTextSearchWord1}" maxlength="30"  />
 				</li>
 				<li>
-					<span>요청사항</span>
+					<span>요청내용</span>
 					<input type="text" id="eTextSearchWord2" name="eTextSearchWord2" style="width:120px;" class="searchWord" value="${mesBlueprintVO.eTextSearchWord2}" maxlength="30" />
 				</li>
 				<li>
@@ -168,7 +168,7 @@ function excelDwonload(){
 					<th>작성자</th>
 					<th>요청일자</th>
 					<th>요청자</th>
-					<th>요청사항</th>
+					<th>요청내용</th>
 					<th>요청사유</th>
 					<th>해결방법</th>
 					<th>처리시작일시</th>

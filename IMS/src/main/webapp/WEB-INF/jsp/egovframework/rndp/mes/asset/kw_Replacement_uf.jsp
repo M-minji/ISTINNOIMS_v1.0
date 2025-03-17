@@ -556,12 +556,12 @@
 				<tr>					
 					<th>*교체확인자</th>
 					<td>
-						<input type="text" id="eReplacedBy" name="eReplacedBy" style="width:75%;" value="${info.eReplacedBy}" maxLength="100"/>
+						<input type="text" id="eReplacedBy" name="eReplacedBy" style="width:75%;" value="${info.eReplacedBy}" maxLength="50"/>
 						<a class="mes_btn" onclick="selectWorkerPop('R', 'eReplacedBy')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>교체확인자 소속</th>
 							<td >
-								<input type="text" id="eReplacedByOrg" name="eReplacedByOrg" style="width:95%;" maxLength="100" value="${info.eReplacedByOrg}" />
+								<input type="text" id="eReplacedByOrg" name="eReplacedByOrg" style="width:95%;" maxLength="50" value="${info.eReplacedByOrg}" />
 								<span id="eReplacedByOrgTxt" style="display: none;"></span>
 							</td>
 				</tr>

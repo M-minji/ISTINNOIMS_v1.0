@@ -653,12 +653,12 @@
 				<tr>
 					<th>*반입확인자</th>
 					<td>
-						<input type="text" id="eEntryImporter" name="eEntryImporter" style="width:75%;" value="${info.eEntryImporter}" maxLength="100"/>
+						<input type="text" id="eEntryImporter" name="eEntryImporter" style="width:75%;" value="${info.eEntryImporter}" maxLength="50"/>
 						<a class="mes_btn" onclick="selectWorkerPop('R', 'eEntryImporter')" style="float: right; margin-right: 10px;" >담당자 선택</a>
 					</td>
 					<th>반입확인자 소속</th>
 						<td >
-							<input type="text" id="eEntryImporterOrg" name="eEntryImporterOrg" style="width:95%;" maxLength="100" value="${info.eEntryImporterOrg}" />
+							<input type="text" id="eEntryImporterOrg" name="eEntryImporterOrg" style="width:95%;" maxLength="50" value="${info.eEntryImporterOrg}" />
 							<span id="eEntryImporterOrgTxt" style="display: none;"></span>
 						</td>
 				</tr>

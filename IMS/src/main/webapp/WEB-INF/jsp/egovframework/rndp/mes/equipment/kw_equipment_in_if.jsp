@@ -473,7 +473,7 @@
 					</td>
 					<th>반입확인자 소속</th>
 					<td>
-						<input type="text" id="eEntryImporterOrg" name="eEntryImporterOrg" style="width:95%;" maxLength="100"/>
+						<input type="text" id="eEntryImporterOrg" name="eEntryImporterOrg" style="width:95%;" maxLength="50"/>
 						<span id="eEntryImporterOrgTxt" style="display: none;"></span>
 					</td>
 				</tr>

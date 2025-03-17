@@ -261,6 +261,11 @@ $(document).ready(function(){
 							</c:forEach>	
 						</select>
 				</li>
+				
+				<li>
+					<span>요청내용</span>
+					<input type="text" id="eSearchWordE" name="eSearchWordE" style="width:100px;" value="${mesIssueVO.eSearchWordE}" maxlength="30" />
+				</li>
 				<li>
 					 <span>요청일자</span>
 		       		<input type="text" name="topStartDate" id="topStartDate" value="${mesIssueVO.topStartDate}"  style="width:100px;text-align: center;" readonly  class="inp_color"/>
@@ -290,10 +295,6 @@ $(document).ready(function(){
 <!-- 			    </li> -->
 		    </ul>
 		    <ul id="search_detail" style="display: none;">
-				<li>
-					<span>요청내용</span>
-					<input type="text" id="eSearchWordE" name="eSearchWordE" style="width:100px;" value="${mesIssueVO.eSearchWordE}" maxlength="30" />
-				</li>
 				<li>
 					<span>처리자</span>
 					<input type="text" id="eSearchWordF" name="eSearchWordF" style="width:100px;" value="${mesIssueVO.eSearchWordF}" maxlength="30" />
