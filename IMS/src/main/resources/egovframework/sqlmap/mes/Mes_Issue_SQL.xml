@@ -78,6 +78,9 @@
 		<isNotEmpty property="eSearchWordG">
 				AND ( DATE_FORMAT(COALESCE(NULLIF(eActualWorkDate, ''), eProcessingDate), '%Y-%m-%d') >= DATE_FORMAT(#eSearchWordG#, '%Y-%m-%d'))
 		</isNotEmpty>
+		<isNotEmpty property="eSearchWordH">
+				AND LOWER(eRequester) LIKE CONCAT('%',LOWER(#eSearchWordH#),'%')
+		</isNotEmpty>
 		ORDER BY ISSUE_NUM DESC
 		LIMIT #recordCountPerPage# OFFSET #firstIndex#
 	</select>
@@ -112,6 +115,9 @@
 		</isNotEmpty>
 		<isNotEmpty property="eSearchWordG">
 				AND ( DATE_FORMAT(COALESCE(NULLIF(eActualWorkDate, ''), eProcessingDate), '%Y-%m-%d') >= DATE_FORMAT(#eSearchWordG#, '%Y-%m-%d'))
+		</isNotEmpty>
+		<isNotEmpty property="eSearchWordH">
+				AND LOWER(eRequester) LIKE CONCAT('%',LOWER(#eSearchWordH#),'%')
 		</isNotEmpty>
 	</select>
 	
